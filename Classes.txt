@@ -11,6 +11,13 @@ Public Board{
 	//methods
 	public boolean addRider(Position pos);
 	public boolean removeRider(Position pos);
+	public String toString();
+	
+	//Ajout (yeet si jamais t'es pas d'accord ou on yettera plus tard)
+	//(inspiré du TD2 sur les echecs)
+	public boolean move(Position from, Position to);
+	
+	
 }
 
 Public Position{
@@ -22,29 +29,52 @@ Public Position{
 	public boolean isValid();
 	public int getCol();
 	public int getRow();
+	
+	//Ajout
+	public boolean equals(Position pos);
+	public String toString();
 }
 
 Public  Classe De{
-	//On l'a déjà
+	private int v; //valeur
+	
+	public De () {
+		v=0;
+	}
+	
+	public void rouler() {
+		v=(int)(Math.random()*6)+1;
+	}
+	
+	int getValeur() {
+		return v;
+	}
 }
 
 Public Classe Rider{
 	//attributs
 	private Position pos;
-	private COLOR color;
+	private COULEUR color;
 
 	//methods
 	public void/boolean move(Position to);
+	
+	//Ajout
+	public Postion getPos();
+	public COULEUR getColor();
 }
 
 public class Game{
 	private List<Rider> riders;
 	private Board board;
-	private int turn;
+	private int turn; //pas convaincu par celui là
 
 	//methods
-	Public void play(); //boucle de jeu
-	Public void turn(); //tour par tour
+	Public void play(int first); //boucle de jeu
+	Public void turn(Rider p1, Rider r2); //tour par tour
+	
+	//Ajout
+	public String toString();
 }
 
 Abstract Cell{
@@ -54,6 +84,10 @@ Abstract Cell{
 	
 	//methods
 	String toString();
+	
+	//Ajout
+	public char getSymbole();
+	public Position getPosition();
 }
 
 Abstract PlayableCell extends Cell implements Questionnable{
