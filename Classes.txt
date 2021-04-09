@@ -1,0 +1,94 @@
+Classes:
+
+Enum COULEUR(BLUE,RED);
+
+Public Board{
+	//attributs
+	private int cols;
+	private int rows;
+	private ArrayList<ArrayList<Cell>> cells;
+
+	//methods
+	public boolean addRider(Position pos);
+	public boolean removeRider(Position pos);
+}
+
+Public Position{
+	//attributs
+	private int col;
+	private int row;
+
+	//methods
+	public boolean isValid();
+	public int getCol();
+	public int getRow();
+}
+
+Public  Classe De{
+	//On l'a déjà
+}
+
+Public Classe Rider{
+	//attributs
+	private Position pos;
+	private COLOR color;
+
+	//methods
+	public void/boolean move(Position to);
+}
+
+public class Game{
+	private List<Rider> riders;
+	private Board board;
+	private int turn;
+
+	//methods
+	Public void play(); //boucle de jeu
+	Public void turn(); //tour par tour
+}
+
+Abstract Cell{
+	//attributs
+	private Position pos;
+	private char symbole;
+	
+	//methods
+	String toString();
+}
+
+Abstract PlayableCell extends Cell implements Questionnable{
+	//attributs
+	private boolean occuped;
+	
+	//methods
+	abstract Public String process(Rider r);
+}
+
+Public CellFree extends PlayableCell {
+	//methods
+	Public String process(Rider r);
+}
+
+Public CellHole extends PlayableCell {
+	//methods
+	Public String process(Rider r);
+}
+
+Public CellHedge extends PlayableCell {
+	//methods
+	Public String process(Rider r);
+}
+
+Public CellRiver extends PlayableCell {
+	//methods
+	Public String process(Rider r);
+}
+
+Public CellSide extends Cell {
+	//methods
+	Public String process(Rider r);
+}
+
+Public CellWhite extends Cell{
+	Public String process(Rider r);
+}
