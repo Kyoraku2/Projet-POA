@@ -1,8 +1,12 @@
 Classes:
 
-Enum COULEUR(BLUE,RED);
+✓ : recopiées mais pas implémentée 
+	// g arrêté paske je me suis dis go faire un vocal 
+	// de confirmation de ce modele avant de recopier mdr
 
-Public Board{
+✓Enum COULEUR(BLUE,RED);
+
+✓Public Board{
 	//attributs
 	private int cols;
 	private int rows;
@@ -14,7 +18,7 @@ Public Board{
 	public String toString();
 	
 	//Ajout (yeet si jamais t'es pas d'accord ou on yettera plus tard)
-	//(inspiré du TD2 sur les echecs)
+	//(inspiré du TD2 sur les echecs) 
 	public boolean move(Position from, Position to);
 	
 	
@@ -36,18 +40,18 @@ Public Position{
 }
 
 Public  Classe De{
-	private int v; //valeur
+	private int value;
 	
 	public De () {
-		v=0;
+		value=0;
 	}
 	
 	public void rouler() {
-		v=(int)(Math.random()*6)+1;
+		value=(int)(Math.random()*6)+1;
 	}
 	
-	int getValeur() {
-		return v;
+	int getValue() {
+		return value;
 	}
 }
 
@@ -58,6 +62,8 @@ Public Classe Rider{
 
 	//methods
 	public void/boolean move(Position to);
+		// boOlean c bien je pense on peut faire des verifs
+		// et messages d'erreur + facilement 
 	
 	//Ajout
 	public Postion getPos();
@@ -119,10 +125,10 @@ Public CellRiver extends PlayableCell {
 }
 
 Public CellSide extends Cell {
-	//methods
-	Public String process(Rider r);
+	//yeet les process pour ces deux la sont pas utils
+	//comme on peut pas aller dessus
 }
 
 Public CellWhite extends Cell{
-	Public String process(Rider r);
+
 }
