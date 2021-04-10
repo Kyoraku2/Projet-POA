@@ -13,7 +13,7 @@ while(veut saisir){
 
 ✓Enum COULEUR(BLUE,RED);
 
-Public Board{
+✓Public Board{
 	//attributs
 	private int cols; //longueur
 	private int rows; //largeur
@@ -33,7 +33,7 @@ Public Board{
 	public String toString();
 }
 
-Public Position{
+✓Public Position{
 	//attributs
 	private int col;
 	private int row;

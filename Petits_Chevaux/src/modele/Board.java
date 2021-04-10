@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Board {
 
-	//Attibutes
+	//Attributes
 	
 	private int cols;
 	private int rows;
@@ -12,15 +12,41 @@ public class Board {
 	
 	//Constructeurs
 	
+	//A faire
 	public Board() {
 		
 	}
 	
+	//A faire
+	public Board(int cols) {
+		
+	}	
+	
 	//Methodes
 	
 	//A faire
-	public String toString() {
-		return "";
+	public void init() {
+		
+	}
+	
+	//A faire
+	public boolean removeCell(Position pos) {
+		return true;
+	}
+
+	//A faire
+	public boolean addCell(Cell cell) {
+		return true;
+	}
+	
+	//A faire
+	public void changeCell(char symbole,Position from) {
+		
+	}
+	
+	//A faire
+	public boolean removeRider(Position pos) {
+		return true;
 	}
 	
 	//A faire
@@ -29,13 +55,13 @@ public class Board {
 	}
 	
 	//A faire
-	public boolean removeRider(Position pos) {
-		return true;
+	public void move(Position from, Position to) {
+		
 	}
-	
 	
 	//A faire
-	public boolean move(Position from, Position to) {
-		return true;
+	public String toString() {
+		return "";
 	}
+		
 }
