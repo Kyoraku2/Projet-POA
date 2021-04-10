@@ -4,24 +4,33 @@ Classes:
 	// g arrêté paske je me suis dis go faire un vocal 
 	// de confirmation de ce modele avant de recopier mdr
 
+while(veut saisir){
+	...saisie...
+	changeCell();
+}
+
+//Pour les cases d'arrivée : 4 cases blanches au milieu si la longueur est paire, 5 sinon.
+
 ✓Enum COULEUR(BLUE,RED);
 
-✓Public Board{
+Public Board{
 	//attributs
-	private int cols;
-	private int rows;
-	private ArrayList<ArrayList<Cell>> cells;
+	private int cols; //longueur
+	private int rows; //largeur
+	private ArrayList<ArrayList<Cell>> cells; //int[][]
+
+	Public Board();
+	Public Board(int cols);
 
 	//methods
-	public boolean addRider(Position pos);
-	public boolean removeRider(Position pos);
+	public void init();
+	public boolean removeCell(Position pos);
+	public boolean addCell(Cell cell);
+	public void changeCell(char symbole,Postion from); //En gros on part d'un plateau de cells vides et la on change
+	public boolean removeRider(Position from);
+	public boolean addRider(Position to);
+	public void move(Position from, Position to);
 	public String toString();
-	
-	//Ajout (yeet si jamais t'es pas d'accord ou on yettera plus tard)
-	//(inspiré du TD2 sur les echecs) 
-	public boolean move(Position from, Position to);
-	
-	
 }
 
 Public Position{
@@ -39,7 +48,7 @@ Public Position{
 	public String toString();
 }
 
-Public  Classe De{
+Public Classe De{
 	private int value;
 	
 	public De () {
@@ -58,45 +67,45 @@ Public  Classe De{
 Public Classe Rider{
 	//attributs
 	private Position pos;
-	private COULEUR color;
+	private Couleur color;
 
 	//methods
-	public void/boolean move(Position to);
-		// boOlean c bien je pense on peut faire des verifs
-		// et messages d'erreur + facilement 
-	
-	//Ajout
+	public void move(Position to);
 	public Postion getPos();
-	public COULEUR getColor();
+	public Couleur getColor();
 }
 
 public class Game{
 	private List<Rider> riders;
 	private Board board;
-	private int turn; //pas convaincu par celui là
+
+	public Game(){
+		riders=new List<Rider>();
+		...
+	}
 
 	//methods
 	Public void play(int first); //boucle de jeu
 	Public void turn(Rider p1, Rider r2); //tour par tour
-	
-	//Ajout
 	public String toString();
 }
 
 Abstract Cell{
+	Public Cell(Position pos,char symbole);
 	//attributs
 	private Position pos;
 	private char symbole;
 	
 	//methods
-	String toString();
-	
-	//Ajout
 	public char getSymbole();
 	public Position getPosition();
 }
 
 Abstract PlayableCell extends Cell implements Questionnable{
+	Public Cell(Position pos,char symbole){
+		super(pos,symbole);
+		occuped=false;
+	}
 	//attributs
 	private boolean occuped;
 	
@@ -105,30 +114,45 @@ Abstract PlayableCell extends Cell implements Questionnable{
 }
 
 Public CellFree extends PlayableCell {
+	Public CellFree(Position pos){
+		super(pos,'.');
+	}
 	//methods
 	Public String process(Rider r);
 }
 
 Public CellHole extends PlayableCell {
+	Public CellHole(Position pos){
+		super(pos,'@');
+	}
 	//methods
 	Public String process(Rider r);
 }
 
 Public CellHedge extends PlayableCell {
+	Public CellHedge(Position pos){
+		super(pos,'|');
+	}
 	//methods
 	Public String process(Rider r);
 }
 
 Public CellRiver extends PlayableCell {
+	Public CellRiver(){
+		super(pos,'~');
+	}
 	//methods
 	Public String process(Rider r);
 }
 
 Public CellSide extends Cell {
-	//yeet les process pour ces deux la sont pas utils
-	//comme on peut pas aller dessus
+	Public CellSide(){
+		super(pos,'+');
+	}
 }
 
 Public CellWhite extends Cell{
-
+	Public CellWhite(){
+		super(pos,'');
+	}
 }
