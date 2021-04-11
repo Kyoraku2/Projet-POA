@@ -24,6 +24,14 @@ public class Board {
 	
 	//Methodes
 	
+	public int getCols() {
+		return cols;
+	}
+	
+	public int getRows() {
+		return rows;
+	}
+	
 	//A faire
 	public void init() {
 		

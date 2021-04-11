@@ -48,7 +48,7 @@ while(veut saisir){
 	public String toString();
 }
 
-Public Classe De{
+✓Public Classe De{
 	private int value;
 	
 	public De () {
@@ -64,7 +64,7 @@ Public Classe De{
 	}
 }
 
-Public Classe Rider{
+✓Public Classe Rider{
 	//attributs
 	private Position pos;
 	private Couleur color;
@@ -75,7 +75,7 @@ Public Classe Rider{
 	public Couleur getColor();
 }
 
-public class Game{
+✓ public class Game{
 	private List<Rider> riders;
 	private Board board;
 
@@ -90,7 +90,7 @@ public class Game{
 	public String toString();
 }
 
-Abstract Cell{
+✓ Abstract Cell{
 	Public Cell(Position pos,char symbole);
 	//attributs
 	private Position pos;
@@ -101,7 +101,7 @@ Abstract Cell{
 	public Position getPosition();
 }
 
-Abstract PlayableCell extends Cell implements Questionnable{
+✓ Abstract PlayableCell extends Cell implements Questionnable{
 	Public Cell(Position pos,char symbole){
 		super(pos,symbole);
 		occuped=false;
@@ -113,7 +113,7 @@ Abstract PlayableCell extends Cell implements Questionnable{
 	abstract Public String process(Rider r);
 }
 
-Public CellFree extends PlayableCell {
+✓ Public CellFree extends PlayableCell {
 	Public CellFree(Position pos){
 		super(pos,'.');
 	}
@@ -121,7 +121,7 @@ Public CellFree extends PlayableCell {
 	Public String process(Rider r);
 }
 
-Public CellHole extends PlayableCell {
+✓Public CellHole extends PlayableCell {
 	Public CellHole(Position pos){
 		super(pos,'@');
 	}
@@ -129,7 +129,7 @@ Public CellHole extends PlayableCell {
 	Public String process(Rider r);
 }
 
-Public CellHedge extends PlayableCell {
+✓Public CellHedge extends PlayableCell {
 	Public CellHedge(Position pos){
 		super(pos,'|');
 	}
@@ -137,7 +137,7 @@ Public CellHedge extends PlayableCell {
 	Public String process(Rider r);
 }
 
-Public CellRiver extends PlayableCell {
+✓Public CellRiver extends PlayableCell {
 	Public CellRiver(){
 		super(pos,'~');
 	}
@@ -145,13 +145,13 @@ Public CellRiver extends PlayableCell {
 	Public String process(Rider r);
 }
 
-Public CellSide extends Cell {
+✓Public CellSide extends Cell {
 	Public CellSide(){
 		super(pos,'+');
 	}
 }
 
-Public CellWhite extends Cell{
+✓Public CellWhite extends Cell{
 	Public CellWhite(){
 		super(pos,'');
 	}
