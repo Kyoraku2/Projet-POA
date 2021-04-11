@@ -20,8 +20,8 @@ public class Game {
 	public Game(int size) {
 		board=new Board(size);
 		riders= new LinkedList<Rider>();
-		riders.add(new Rider(new Position(1,1),Couleur.RED));
-		riders.add(new Rider(new Position(board.getCols()-2,board.getRows()-2),Couleur.BLUE));
+		riders.add(new Rider(new Position(1,0),Couleur.RED));
+		riders.add(new Rider(new Position(board.getCols()-2,board.getRows()-1),Couleur.BLUE));
 	}
 	
 	//Methods
