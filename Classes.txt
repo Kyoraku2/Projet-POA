@@ -15,35 +15,42 @@ while(veut saisir){
 
 ✓Public Board{
 	//attributs
-	private int cols; //longueur
-	private int rows; //largeur
-	private ArrayList<ArrayList<Cell>> cells; //int[][]
+	private int cols
+	private int rows
+	private ArrayList<ArrayList<Cell>> cells
+	private Position start_red
+	private Position start_blue
+	private Position end_red
+	private Position end_blue
 
-	Public Board();
-	Public Board(int cols);
+	public Board
+	public Board(int c)
 
-	//methods
-	public void init();
-	public boolean removeCell(Position pos);
-	public boolean addCell(Cell cell);
-	public void changeCell(char symbole,Postion from); //En gros on part d'un plateau de cells vides et la on change
-	public boolean removeRider(Position from);
-	public boolean addRider(Position to);
-	public void move(Position from, Position to);
-	public String toString();
+	//methodes
+	public int getCols()
+	public int getRows()
+	public void init()
+	public void changeCell()
+	public boolean removeRider()
+	public boolean addRider()
+	public Position getRedStart()
+	public Position getBlueStart()
+	public Position getRedEnd()
+	public Position getBlueEnd()
+	public String toString()
 }
 
 ✓Public Position{
 	//attributs
 	private int col;
 	private int row;
+	
+	public Position(int c, int r)
 
 	//methods
 	public boolean isValid();
-	public int getCol();
-	public int getRow();
-	
-	//Ajout
+	public int getCol()
+	public int getRow()
 	public boolean equals(Position pos);
 	public String toString();
 }
@@ -69,6 +76,8 @@ while(veut saisir){
 	private Position pos;
 	private Couleur color;
 
+	public Rider(Position p, Couleur c)
+
 	//methods
 	public void move(Position to);
 	public Postion getPos();
@@ -79,10 +88,8 @@ while(veut saisir){
 	private List<Rider> riders;
 	private Board board;
 
-	public Game(){
-		riders=new List<Rider>();
-		...
-	}
+	public Game()
+	public Game(int size)
 
 	//methods
 	Public void play(int first); //boucle de jeu
@@ -91,68 +98,55 @@ while(veut saisir){
 }
 
 ✓ Abstract Cell{
-	Public Cell(Position pos,char symbole);
 	//attributs
 	private Position pos;
 	private char symbole;
 	
+	public Cell(Position p,char s);
+
 	//methods
 	public char getSymbole();
 	public Position getPosition();
 }
 
-✓ Abstract PlayableCell extends Cell implements Questionnable{
-	Public Cell(Position pos,char symbole){
-		super(pos,symbole);
-		occuped=false;
-	}
+✓ Abstract CellPlayable extends Cell implements Questionnable{
 	//attributs
 	private boolean occuped;
 	
+	public Cell(Position p,char s)
+
 	//methods
 	abstract Public String process(Rider r);
 }
 
 ✓ Public CellFree extends PlayableCell {
-	Public CellFree(Position pos){
-		super(pos,'.');
-	}
+	public CellFree(Position p)
 	//methods
-	Public String process(Rider r);
+	public String process(Rider r);
 }
 
 ✓Public CellHole extends PlayableCell {
-	Public CellHole(Position pos){
-		super(pos,'@');
-	}
+	public CellHole(Position p)
 	//methods
-	Public String process(Rider r);
+	public String process(Rider r);
 }
 
 ✓Public CellHedge extends PlayableCell {
-	Public CellHedge(Position pos){
-		super(pos,'|');
-	}
+	public CellHedge(Position p)
 	//methods
-	Public String process(Rider r);
+	public String process(Rider r);
 }
 
 ✓Public CellRiver extends PlayableCell {
-	Public CellRiver(){
-		super(pos,'~');
-	}
+	public CellRiver()
 	//methods
-	Public String process(Rider r);
+	public String process(Rider r);
 }
 
 ✓Public CellSide extends Cell {
-	Public CellSide(){
-		super(pos,'+');
-	}
+	public CellSide()
 }
 
 ✓Public CellWhite extends Cell{
-	Public CellWhite(){
-		super(pos,'');
-	}
+	public CellWhite()
 }
