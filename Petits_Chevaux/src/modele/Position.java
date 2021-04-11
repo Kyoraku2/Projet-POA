@@ -31,6 +31,10 @@ public class Position {
 		return true;
 	}
 	
+	public boolean equals(Position pos) {
+		return this.col==pos.col && this.row==pos.row;
+	}
+	
 	//A faire
 	public String toString() {
 		return "";
