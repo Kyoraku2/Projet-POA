@@ -16,7 +16,7 @@
         <children xmi:type="notation:SemanticListCompartment" xmi:id="_TLEHMprPEeuWkb_A8cCDnQ" type="OperationCompartment"/>
         <children xmi:type="notation:SemanticListCompartment" xmi:id="_TLEHM5rPEeuWkb_A8cCDnQ" visible="false" type="SignalCompartment"/>
         <children xmi:type="umlnotation:UMLShapeCompartment" xmi:id="_TLEHNJrPEeuWkb_A8cCDnQ" visible="false" type="StructureCompartment"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TK69QZrPEeuWkb_A8cCDnQ" x="11324" y="2831"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TK69QZrPEeuWkb_A8cCDnQ" x="10824" y="2772"/>
       </children>
       <element xsi:nil="true"/>
     </contents>
