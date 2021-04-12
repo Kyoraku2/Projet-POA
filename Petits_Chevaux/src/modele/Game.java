@@ -8,6 +8,7 @@ public class Game {
 	//Attributs
 	private List<Rider> riders;
 	private Board board;
+	private De de;
 	
 	//Constructeurs
 	
@@ -18,8 +19,9 @@ public class Game {
 	
 	//celui bonus taille
 	public Game(int size) {
+		de=new De();
 		board=new Board(size);
-		riders= new LinkedList<Rider>();
+		riders=new LinkedList<Rider>();
 		riders.add(new Rider(new Position(1,0),Couleur.RED));
 		riders.add(new Rider(new Position(board.getCols()-2,board.getRows()-1),Couleur.BLUE));
 	}
