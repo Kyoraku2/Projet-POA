@@ -15,6 +15,10 @@ public class Rider {
 	
 	//Methods
 	
+	public void setPosition(Position p) {
+		this.pos=p;
+	}
+	
 	public Position getPos() {
 		return pos;
 	}
