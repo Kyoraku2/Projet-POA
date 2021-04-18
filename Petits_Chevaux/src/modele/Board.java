@@ -128,10 +128,9 @@ public class Board {
 		}
 		
 		//A faire
-		public boolean followPath(Rider r, int n) {
+		public void followPath(Rider r, int n) {
 			//dissocier rouge and blux
 			//chemin
-			return true;
 		}
 		
 		public Cell getCell(Position p) {
