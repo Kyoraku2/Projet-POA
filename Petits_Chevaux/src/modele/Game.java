@@ -30,12 +30,62 @@ public class Game {
 	
 	//A faire
 	public void play(int first) {
-		
+		//boucle de jeu (while pas arrivé, on alterne le tour)
+		/*
+		boolean fini=false
+		while(!fini) {
+			if(first==1){
+				//r1 rouge, r2 bleu
+				fini=turn(r1,r2)
+				Si fini
+					end(r1)
+					break;
+				fini=turn(r2,r1)
+				Si fini
+					end(r2)
+			}else{
+				fini=turn(r2,r1)
+				Si fini
+					end(r1)
+					break;
+				fini=turn(r1,r2)
+				Si fini
+					end(r2)
+			}
+		}*/
 	}
 	
 	//A faire
-	public void turn(Rider p1, Rider p2){
-		
+	public void go(Rider r1, Rider r2, int de) {
+		//board.followPath
+		//			Si collision à l'arrivée then yeet r2
+		//			Sinon r juste occuped
+		//			call Process
+	}
+	
+	//A faire
+	public void goStart(Rider r) {
+		//place sur le pos de départ
+	}
+	
+	//A faire (utiliser getCellType avec pos départ)
+	public boolean turn(Rider r1, Rider r2){
+		//Roule un dé
+		//Check pos départ
+		//Si hole : increment 
+		//		Si ==3 : =-1
+		//Si haie : 
+		//		Si de impaire : go(r1,r2,de.getValue())
+		//Si River :
+		//		Si de paire : go(r1,r2,de.getValue())	
+		//Si Free :
+		//	Si ecurie : 
+		//		Si 6 :
+		//			goDepart(r1)
+		//	Sinon Si position end 
+		//		return true
+		//	go(r1,r2,de.getValue())
+		return false;
 	}
 	
 	//A faire

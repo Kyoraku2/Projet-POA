@@ -1,8 +1,10 @@
 package modele;
 
 import java.util.*;
+
 public class Board {
-		//attributs
+	
+		//Attributs
 		private int cols;
 		private int rows;
 		private ArrayList<ArrayList<Cell>> cells;
@@ -24,7 +26,11 @@ public class Board {
 			for(int i=0;i<cols;++i) {
 				cells.add(new ArrayList<Cell>(rows));
 				for(int j=0; j<rows;++j) {
-					cells.get(i).add(new CellFree(new Position(i,j)));
+					if(i==1 && j==1 || i==cols-2 && j==cols-2) {
+						cells.get(i).add(new CellFree(new Position(i,j),true));
+					}else{
+						cells.get(i).add(new CellFree(new Position(i,j)));
+					}
 				}
 			}
 			start_red=new Position(1,1);
@@ -39,7 +45,7 @@ public class Board {
 			}
 		}
 
-		//methods
+		//Methods
 		public int getCols() {
 			return cols;
 		}
@@ -100,15 +106,40 @@ public class Board {
 			}
 			cells.get(from.getCol()).set(from.getRow(), cell);
 		}
+		
 
 		public boolean removeRider(Position from) {
+			((CellPlayable)cells.get(from.getCol()).get(from.getRow())).unOccuped();
 			return true;
 		}
+
 		public boolean addRider(Position to) {
+			((CellPlayable)cells.get(to.getCol()).get(to.getRow())).becomeOccuped();
 			return true;
 		}
-		public void move(Position from, Position to) {
-			
+		
+		// A finir peut être
+		public void move(Rider r,Position from, Position to) {
+			if(from.isValid(rows,cols) && to.isValid(rows,cols) && getCell(to).isPlayable()) {
+				r.move(to);
+				removeRider(from);
+				addRider(to);
+			}
+		}
+		
+		//A faire
+		public boolean followPath(Rider r, int n) {
+			//dissocier rouge and blux
+			//chemin
+			return true;
+		}
+		
+		public Cell getCell(Position p) {
+			return cells.get(p.getCol()).get(p.getRow());
+		}
+		
+		public char getCellType(Position p) {
+			return cells.get(p.getCol()).get(p.getRow()).getSymbole();
 		}
 		
 		public Position getRedStart() {

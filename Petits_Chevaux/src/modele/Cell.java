@@ -20,4 +20,5 @@ public abstract class Cell {
 	public Position getPosition() {
 		return pos;
 	}
+	abstract public boolean isPlayable();
 }

@@ -4,21 +4,19 @@ public class Rider {
 	
 	//Attributs
 	private Position pos;
+	private int inHole;
 	private Couleur color;
 	
 	//Constructeur 
 	
 	public Rider(Position p,Couleur c) {
 		pos=p;
-		color =c;
+		color=c;
+		inHole=-1;
 	}
 	
 	//Methods
-	
-	public void setPosition(Position p) {
-		this.pos=p;
-	}
-	
+
 	public Position getPos() {
 		return pos;
 	}
@@ -27,9 +25,8 @@ public class Rider {
 		return color;
 	}
 	
-	//A faire
 	public void move(Position to) {
-		
+		pos=to;
 	}
 	
 	

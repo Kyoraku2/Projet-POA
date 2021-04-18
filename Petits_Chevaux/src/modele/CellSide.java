@@ -7,6 +7,8 @@ public class CellSide extends Cell{
 		super(p,'+');
 	}	
 	
-
+	public boolean isPlayable() {
+		return false;
+	}
 	
 }

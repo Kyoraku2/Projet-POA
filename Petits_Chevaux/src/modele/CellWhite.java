@@ -6,6 +6,9 @@ public class CellWhite extends Cell{
 	public CellWhite(Position p) {
 		super(p,' ');
 	}	
-
+	
+	public boolean isPlayable() {
+		return false;
+	}
 	
 }

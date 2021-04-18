@@ -11,4 +11,16 @@ public abstract class CellPlayable extends Cell implements Questionnable{
 		occuped=false;
 	}
 	
+	public boolean isPlayable() {
+		return true;
+	}
+	
+	public void becomeOccuped() {
+		occuped=true;
+	}
+	
+	public void unOccuped() {
+		occuped=true;
+	}
+	
 }

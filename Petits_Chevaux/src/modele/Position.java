@@ -1,7 +1,6 @@
 package modele;
 
 public class Position {
-
 	//Attributs
 	
 	private int col;
@@ -16,28 +15,24 @@ public class Position {
 	
 	//Methods
 	
-	//A faire
 	public int getCol() {
 		return col;
 	}
 	
-	//A faire
 	public int getRow() {
 		return row;
 	}
 	
-	//A faire
-	public boolean isValid() {
-		return true;
+	public boolean isValid(int height,int width) {
+		return col>=0 && col<width && row>=0 && row<width;
 	}
 	
 	public boolean equals(Position pos) {
 		return this.col==pos.col && this.row==pos.row;
 	}
 	
-	//A faire
 	public String toString() {
-		return "";
+		return "("+col+","+row+")";
 	}
 	
 }
