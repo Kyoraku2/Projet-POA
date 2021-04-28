@@ -5,6 +5,8 @@ public class Rider {
 	//Attributs
 	private Position pos;
 	private int inHole;
+	private boolean river;
+	private boolean hedge;
 	private Couleur color;
 	
 	//Constructeur 
@@ -13,6 +15,8 @@ public class Rider {
 		pos=p;
 		color=c;
 		inHole=-1;
+		river=false;
+		hedge=false;
 	}
 	
 	//Methods
