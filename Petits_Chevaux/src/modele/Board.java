@@ -13,10 +13,6 @@ public class Board {
 		private Position start_blue;
 		private Position end_red;
 		private Position end_blue;
-
-		public Board() {
-			this(16);
-		}
 		
 		public Board(int c) {
 			rows=7;

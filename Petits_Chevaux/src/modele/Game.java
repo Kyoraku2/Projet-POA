@@ -72,8 +72,12 @@ public class Game {
 	public boolean turn(Rider r1, Rider r2){
 		//Roule un dé
 		//Check pos départ
-		//Si hole : increment 
+		//Si hole : 
+		//		process(){
+		//		increment 
 		//		Si ==3 : =-1
+		//		}
+		//      
 		//Si haie : 
 		//		Si de impaire : go(r1,r2,de.getValue())
 		//Si River :
@@ -86,6 +90,10 @@ public class Game {
 		//		return true
 		//	go(r1,r2,de.getValue())
 		return false;
+	}
+	
+	public void end(Rider r) {
+		
 	}
 	
 	//A faire
