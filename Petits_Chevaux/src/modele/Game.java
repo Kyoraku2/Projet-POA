@@ -15,6 +15,7 @@ public class Game {
 	//celui de base
 	public Game() {
 		this(16);
+		board.init();
 	}
 	
 	//celui bonus taille
@@ -31,47 +32,91 @@ public class Game {
 	//A faire
 	public void play(int first) {
 		//boucle de jeu (while pas arrivé, on alterne le tour)
-		/*
-		boolean fini=false
-		while(!fini) {
+		boolean ended=false;
+		Rider r1= riders.get(0); //red
+		Rider r2= riders.get(1); //blue
+		while(ended==false){
 			if(first==1){
 				//r1 rouge, r2 bleu
-				fini=turn(r1,r2)
-				Si fini
-					end(r1)
+				
+				ended=turn(r1,r2);
+				if(ended) {
+					end(r1);
 					break;
-				fini=turn(r2,r1)
-				Si fini
-					end(r2)
+				}
+				ended=turn(r2,r1);
+				if(ended) {
+					end(r2);
+				}
 			}else{
-				fini=turn(r2,r1)
-				Si fini
-					end(r1)
+				ended=turn(r2,r1);
+				if(ended) {
+					end(r1);
 					break;
-				fini=turn(r1,r2)
-				Si fini
-					end(r2)
+				}
+				ended=turn(r1,r2);
+				if(ended) {
+					end(r2);
+				}
 			}
-		}*/
+		}
 	}
 	
 	//A faire
 	public void go(Rider r1, Rider r2, int de) {
-		//board.followPath
-		//			Si collision à l'arrivée then yeet r2
-		//			Sinon r juste occuped
-		//			call Process
+		//	board.followPath
+		board.followPath(r1,de);
+		//	Si collision à l'arrivée then yeet r2
+		//	Sinon r juste occuped
+		if(r1.getPos().equals(r2.getPos())) {
+			goStart(r2);
+		}
+		//	call process
+		System.out.println(board.getCell(r1.getPos()));
 	}
 	
 	//A faire
 	public void goStart(Rider r) {
-		//place sur le pos de départ
+		if(r.getColor()==Couleur.RED) {
+			board.move(r,r.getPos(),board.getRedStart());
+		}else{
+			board.move(r,r.getPos(),board.getBlueStart());
+		}
 	}
 	
 	//A faire (utiliser getCellType avec pos départ)
 	public boolean turn(Rider r1, Rider r2){
 		//Roule un dé
+		de.rouler();
+		int value=de.getValue();
 		//Check pos départ
+		char c=board.getCellType(r1.getPos());
+		switch(c) {
+			case '@'://Si hole : 
+				go(r1,r2,value);
+			break;
+			case '|'://Si haie : 
+				if(value%2!=0) {
+					go(r1,r2,value);
+				}
+			break;
+			case '~'://Si River :
+				if(value%2==0) {
+					go(r1,r2,value);
+				}
+			break;
+			default://Si Free :
+				if(value==6 && !board.getCell(r1.getPos()).isPlayable()) {
+					goStart(r1);
+				}else {
+					if(( r1.getColor()==Couleur.RED && r1.getPos().equals(board.getRedEnd()) )|| ( r1.getColor()==Couleur.BLUE && r1.getPos().equals(board.getBlueEnd()) )) {
+						return true;
+					}
+				}
+				go(r1,r2,value);
+			break;
+		}
+		System.out.println("wsh"+this.toString());
 		//Si hole : 
 		//		process(){
 		//		increment 
@@ -93,12 +138,16 @@ public class Game {
 	}
 	
 	public void end(Rider r) {
-		
+		if(r.getColor()==Couleur.RED) {
+			System.out.println("Le joueur Rouge a gagné !");
+		}else {
+			System.out.println("Le joueur Bleu a gagné !");
+		}
 	}
 	
 	//A faire
 	public String toString() {
-		return "";
+		return board.toString(riders.get(0),riders.get(1));
 	}
 	
 	

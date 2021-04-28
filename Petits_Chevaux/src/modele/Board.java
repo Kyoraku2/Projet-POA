@@ -150,7 +150,7 @@ public class Board {
 			return end_blue;
 		}
 		
-		public String toString() {
+		public String toString(Rider r1,Rider r2) {
 			String str="";
 			for(int i=0;i<rows;++i) {
 				for(int j=0;j<cols;++j) {
@@ -161,7 +161,15 @@ public class Board {
 						if(end_red.equals(new Position(j,i)) || end_blue.equals(new Position(j,i))) {
 							str+=" * ";
 						}else {
-							str+=" "+cells.get(j).get(i).getSymbole()+" ";
+							if(r1.getPos().equals(new Position(j,i))) {
+								str+=" R ";
+							}else {
+								if(r2.getPos().equals(new Position(j,i))) {
+									str+=" B ";
+								}else {
+									str+=" "+cells.get(j).get(i).getSymbole()+" ";
+								}
+							}
 						}
 					}
 				}

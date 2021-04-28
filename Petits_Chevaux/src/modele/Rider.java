@@ -29,6 +29,34 @@ public class Rider {
 		return color;
 	}
 	
+	public boolean inRiver() {
+		return river;
+	}
+	
+	public boolean inHedge() {
+		return hedge;
+	}
+	
+	public int inHole() {
+		return inHole;
+	}
+	
+	public void incrementHole() {
+		++inHole;
+	}
+	
+	public void resetHole() {
+		inHole=-1;
+	}
+	
+	public void setHedge(boolean h) {
+		hedge=h;
+	}
+	
+	public void setRiver(boolean h) {
+		hedge=h;
+	}
+	
 	public void move(Position to) {
 		pos=to;
 	}
