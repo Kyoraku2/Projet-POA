@@ -23,8 +23,8 @@ public class Game {
 		de=new De();
 		board=new Board(size);
 		riders=new LinkedList<Rider>();
-		riders.add(new Rider(new Position(1,0),Couleur.RED));
-		riders.add(new Rider(new Position(board.getCols()-2,board.getRows()-1),Couleur.BLUE));
+		riders.add(new Rider(new Position(1,0),new Position(1,1),Couleur.RED));
+		riders.add(new Rider(new Position(board.getCols()-2,board.getRows()-1),new Position(board.getCols()-2,board.getRows()-2),Couleur.BLUE));
 	}
 	
 	//Methods
@@ -62,33 +62,32 @@ public class Game {
 		}
 	}
 	
-	//A faire
 	public void go(Rider r1, Rider r2, int de) {
-		//	board.followPath
 		board.followPath(r1,de);
-		//	Si collision à l'arrivée then yeet r2
-		//	Sinon r juste occuped
 		if(r1.getPos().equals(r2.getPos())) {
 			goStart(r2);
 		}
 		//	call process
-		System.out.println(board.getCell(r1.getPos()));
+		System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
 	}
 	
-	//A faire
 	public void goStart(Rider r) {
 		if(r.getColor()==Couleur.RED) {
-			board.move(r,r.getPos(),board.getRedStart());
+			board.move(r,r.getPos(),r.getStart());
 		}else{
-			board.move(r,r.getPos(),board.getBlueStart());
+			board.move(r,r.getPos(),r.getStart());
 		}
+		System.out.println(((CellPlayable)board.getCell(r.getPos())).process(r)); //cast
 	}
 	
-	//A faire (utiliser getCellType avec pos départ)
 	public boolean turn(Rider r1, Rider r2){
 		//Roule un dé
 		de.rouler();
 		int value=de.getValue();
+		System.out.print("Le cavalier de couleur ");
+		System.out.print(r1.getColor()==Couleur.RED?"ROUGE ":"BLEU ");
+		System.out.print("joue\n");
+		System.out.println("Valeur du dé : "+value+"\n");
 		//Check pos départ
 		char c=board.getCellType(r1.getPos());
 		switch(c) {
@@ -106,43 +105,28 @@ public class Game {
 				}
 			break;
 			default://Si Free :
-				if(value==6 && !board.getCell(r1.getPos()).isPlayable()) {
+				if(value==6 && board.getCellType(r1.getPos())=='=') {
 					goStart(r1);
+					//return true;
 				}else {
-					if(( r1.getColor()==Couleur.RED && r1.getPos().equals(board.getRedEnd()) )|| ( r1.getColor()==Couleur.BLUE && r1.getPos().equals(board.getBlueEnd()) )) {
+					if(r1.getPos().equals(board.getBlueEnd()) || r1.getPos().equals(board.getRedEnd())) {
 						return true;
 					}
 				}
 				go(r1,r2,value);
 			break;
 		}
-		System.out.println("wsh"+this.toString());
-		//Si hole : 
-		//		process(){
-		//		increment 
-		//		Si ==3 : =-1
-		//		}
-		//      
-		//Si haie : 
-		//		Si de impaire : go(r1,r2,de.getValue())
-		//Si River :
-		//		Si de paire : go(r1,r2,de.getValue())	
-		//Si Free :
-		//	Si ecurie : 
-		//		Si 6 :
-		//			goDepart(r1)
-		//	Sinon Si position end 
-		//		return true
-		//	go(r1,r2,de.getValue())
+		System.out.println(this.toString());
 		return false;
 	}
 	
 	public void end(Rider r) {
-		if(r.getColor()==Couleur.RED) {
+		System.out.println(this.toString());
+		/*if(r.getColor()==Couleur.RED) {
 			System.out.println("Le joueur Rouge a gagné !");
 		}else {
 			System.out.println("Le joueur Bleu a gagné !");
-		}
+		}*/
 	}
 	
 	//A faire

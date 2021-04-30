@@ -8,15 +8,17 @@ public class Rider {
 	private boolean river;
 	private boolean hedge;
 	private Couleur color;
+	private Position start;
 	
 	//Constructeur 
 	
-	public Rider(Position p,Couleur c) {
+	public Rider(Position p, Position s,Couleur c) {
 		pos=p;
 		color=c;
 		inHole=-1;
 		river=false;
 		hedge=false;
+		start=s;
 	}
 	
 	//Methods
@@ -27,6 +29,10 @@ public class Rider {
 	
 	public Couleur getColor() {
 		return color;
+	}
+	
+	public Position getStart() {
+		return start;
 	}
 	
 	public boolean inRiver() {

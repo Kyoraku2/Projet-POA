@@ -9,8 +9,6 @@ public class Board {
 		private int rows;
 		private ArrayList<ArrayList<Cell>> cells;
 		
-		private Position start_red;
-		private Position start_blue;
 		private Position end_red;
 		private Position end_blue;
 		
@@ -22,15 +20,11 @@ public class Board {
 			for(int i=0;i<cols;++i) {
 				cells.add(new ArrayList<Cell>(rows));
 				for(int j=0; j<rows;++j) {
-					if(i==1 && j==1 || i==cols-2 && j==cols-2) {
-						cells.get(i).add(new CellFree(new Position(i,j),true));
-					}else{
-						cells.get(i).add(new CellFree(new Position(i,j)));
-					}
+					cells.get(i).add(new CellFree(new Position(i,j)));
 				}
 			}
-			start_red=new Position(1,1);
-			start_blue=new Position(cols-2,rows-2);
+			//start_red=new Position(1,1);
+			//start_blue=new Position(cols-2,rows-2);
 			
 			if(cols%2==0) {
 				end_red=new Position((int)(cols/2)-3,(int)(rows/2));
@@ -66,9 +60,6 @@ public class Board {
 					}
 				}
 			}
-			for(int i=end_red.getCol();i<end_blue.getCol();++i) {
-				changeCell(' ',new Position(i,(int)(rows/2)));
-			}
 			for(int i=1; i<cols-1;i++) {
 				changeCell(' ',new Position(i,2));
 				changeCell(' ',new Position(i,4));
@@ -76,6 +67,21 @@ public class Board {
 			changeCell('@',new Position(4,1));
 			changeCell('|',new Position(5,5));
 			changeCell('~',new Position(10,5));
+			changeCell('=',new Position(1,0));
+			changeCell('=',new Position(cols-2,rows-1));
+			changeCell('#',new Position(1,1));
+			changeCell('#',new Position(cols-2,rows-2));
+			if(cols%2==0) {
+				for(int i=(int)(cols/2)-3;i<(int)(cols/2)+2;++i) {
+					changeCell(' ',new Position(i,(int)(rows/2)));
+				}
+				changeCell('*',new Position((int)(cols/2)-3,(int)(rows/2)));
+				changeCell('*',new Position((int)(cols/2)+2,(int)(rows/2)));
+			}else {
+				//end_red=new Position((int)(cols/2)+1-2,(int)(rows/2)+1);
+				//end_blue=new Position((int)(cols/2)+1+2,(int)(rows/2)+1);
+			}
+			
 		}
 		
 		public void changeCell(char symbole,Position from) {
@@ -95,6 +101,15 @@ public class Board {
 					break;
 				case ' ':
 					cell=new CellWhite(from);
+					break;
+				case '#':
+					cell=new CellStart(from);
+					break;
+				case '=':
+					cell=new CellStable(from);
+					break;
+				case '*':
+					cell=new CellFinish(from);
 					break;
 				default:
 					cell=new CellFree(from);
@@ -136,13 +151,7 @@ public class Board {
 		public char getCellType(Position p) {
 			return cells.get(p.getCol()).get(p.getRow()).getSymbole();
 		}
-		
-		public Position getRedStart() {
-			return start_red;
-		}
-		public Position getBlueStart() {
-			return start_blue;
-		}
+
 		public Position getRedEnd() {
 			return end_red;
 		}
@@ -155,21 +164,14 @@ public class Board {
 			for(int i=0;i<rows;++i) {
 				for(int j=0;j<cols;++j) {
 					//str+=" "+cells.get(j).get(i).getSymbole()+" "+cells.get(j).get(i).getPosition().getCol()+" "+cells.get(j).get(i).getPosition().getRow()+" ";
-					if(start_red.equals(new Position(j,i)) || start_blue.equals(new Position(j,i))) {
-						str+=" # ";
-					}else{
-						if(end_red.equals(new Position(j,i)) || end_blue.equals(new Position(j,i))) {
-							str+=" * ";
+					
+					if(r1.getPos().equals(new Position(j,i))) {
+						str+=" R ";
+					}else {
+						if(r2.getPos().equals(new Position(j,i))) {
+							str+=" B ";
 						}else {
-							if(r1.getPos().equals(new Position(j,i))) {
-								str+=" R ";
-							}else {
-								if(r2.getPos().equals(new Position(j,i))) {
-									str+=" B ";
-								}else {
-									str+=" "+cells.get(j).get(i).getSymbole()+" ";
-								}
-							}
+							str+=" "+cells.get(j).get(i).getSymbole()+" ";
 						}
 					}
 				}

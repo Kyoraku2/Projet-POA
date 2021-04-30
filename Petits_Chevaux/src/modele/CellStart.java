@@ -1,12 +1,10 @@
 package modele;
 
-public class CellFree extends CellPlayable{
-	//Constructeurs
-	public CellFree(Position p) {
-		super(p,'.');
+public class CellStart extends CellPlayable{
+	public CellStart(Position p) {
+		super(p,'#');
 	}
 	
-	//Methodes	
 	public String process(Rider r) {
 		String str="** Le cavalier ";
 		if(r.getColor()==Couleur.RED) {
@@ -14,7 +12,7 @@ public class CellFree extends CellPlayable{
 		}else {
 			str+="BLEU ";
 		}
-		str+="est sur une case neutre **";
+		str+="est sur la case de départ **";
 		return str;
 	}
 }
