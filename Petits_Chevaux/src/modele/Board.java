@@ -23,15 +23,13 @@ public class Board {
 					cells.get(i).add(new CellFree(new Position(i,j)));
 				}
 			}
-			//start_red=new Position(1,1);
-			//start_blue=new Position(cols-2,rows-2);
 			
 			if(cols%2==0) {
 				end_red=new Position((int)(cols/2)-3,(int)(rows/2));
 				end_blue=new Position((int)(cols/2)+2,(int)(rows/2));
 			}else {
-				//end_red=new Position((int)(cols/2)+1-2,(int)(rows/2)+1);
-				//end_blue=new Position((int)(cols/2)+1+2,(int)(rows/2)+1);
+				end_red=new Position((int)(cols/2)+1-2,(int)(rows/2)+1);
+				end_blue=new Position((int)(cols/2)+1+2,(int)(rows/2)+1);
 			}
 		}
 
@@ -71,15 +69,15 @@ public class Board {
 			changeCell('=',new Position(cols-2,rows-1));
 			changeCell('#',new Position(1,1));
 			changeCell('#',new Position(cols-2,rows-2));
+			for(int i=end_red.getCol();i<end_blue.getCol();++i) {
+				changeCell(' ',new Position(i,(int)(rows/2)));
+			}
 			if(cols%2==0) {
-				for(int i=(int)(cols/2)-3;i<(int)(cols/2)+2;++i) {
-					changeCell(' ',new Position(i,(int)(rows/2)));
-				}
 				changeCell('*',new Position((int)(cols/2)-3,(int)(rows/2)));
 				changeCell('*',new Position((int)(cols/2)+2,(int)(rows/2)));
 			}else {
-				//end_red=new Position((int)(cols/2)+1-2,(int)(rows/2)+1);
-				//end_blue=new Position((int)(cols/2)+1+2,(int)(rows/2)+1);
+				changeCell('*',new Position((int)(cols/2)+1-3,(int)(rows/2)));
+				changeCell('*',new Position((int)(cols/2)+1+1,(int)(rows/2)));
 			}
 			
 		}
@@ -129,7 +127,6 @@ public class Board {
 			return true;
 		}
 		
-		// A finir peut être
 		public void move(Rider r,Position from, Position to) {
 			if(from.isValid(rows,cols) && to.isValid(rows,cols) && getCell(to).isPlayable()) {
 				r.move(to);
@@ -138,7 +135,6 @@ public class Board {
 			}
 		}
 		
-		//A faire
 		public void followPath(Rider r, int n) {
 			//dissocier rouge and blux
 			if(r.getColor()==Couleur.RED) {
@@ -148,27 +144,22 @@ public class Board {
 					if(x<cols-2 && y==1) {
 						move(r,r.getPos(),new Position(x+1,y));
 						n--;
-						continue;
 					}
 					if(x==cols-2 && y<rows-2) {
 						move(r,r.getPos(),new Position(x,y+2));
 						n--;
-						continue;
 					}
 					if(x>1 && y==rows-2) {
 						move(r,r.getPos(),new Position(x-1,y));
 						n--;
-						continue;
 					}
 					if(x==1 && y>3) {
 						move(r,r.getPos(),new Position(x,y-2));
 						n--;
-						continue;
 					}
 					if(y==3 && x<end_red.getCol()) {
 						move(r,r.getPos(),new Position(x+1,y));
 						n--;
-						continue;
 					}
 					if(getCell(r.getPos()).getSymbole()=='*') {
 						break;
@@ -203,8 +194,6 @@ public class Board {
 			String str="";
 			for(int i=0;i<rows;++i) {
 				for(int j=0;j<cols;++j) {
-					//str+=" "+cells.get(j).get(i).getSymbole()+" "+cells.get(j).get(i).getPosition().getCol()+" "+cells.get(j).get(i).getPosition().getRow()+" ";
-					
 					if(r1.getPos().equals(new Position(j,i))) {
 						str+=" R ";
 					}else {

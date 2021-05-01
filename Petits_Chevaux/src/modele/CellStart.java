@@ -12,7 +12,11 @@ public class CellStart extends CellPlayable{
 		}else {
 			str+="BLEU ";
 		}
-		str+="est sur la case de départ **";
+		if(r.getPos()==r.getStart()) {
+            str+="est sur la case de départ **";
+        }else {
+            str+="est sur une case neutre **";
+        }
 		return str;
 	}
 }

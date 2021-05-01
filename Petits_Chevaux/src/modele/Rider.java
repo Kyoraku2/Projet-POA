@@ -59,8 +59,8 @@ public class Rider {
 		hedge=h;
 	}
 	
-	public void setRiver(boolean h) {
-		hedge=h;
+	public void setRiver(boolean r) {
+		river=r;
 	}
 	
 	public void move(Position to) {

@@ -15,7 +15,6 @@ public class Game {
 	//celui de base
 	public Game() {
 		this(16);
-		board.init();
 	}
 	
 	//celui bonus taille
@@ -25,16 +24,17 @@ public class Game {
 		riders=new LinkedList<Rider>();
 		riders.add(new Rider(new Position(1,0),new Position(1,1),Couleur.RED));
 		riders.add(new Rider(new Position(board.getCols()-2,board.getRows()-1),new Position(board.getCols()-2,board.getRows()-2),Couleur.BLUE));
+		board.init();
 	}
 	
 	//Methods
 	
-	//A faire
 	public void play(int first) {
 		//boucle de jeu (while pas arrivé, on alterne le tour)
 		boolean ended=false;
 		Rider r1= riders.get(0); //red
 		Rider r2= riders.get(1); //blue
+		System.out.println(this.toString());
 		while(ended==false){
 			if(first==1){
 				//r1 rouge, r2 bleu
@@ -51,39 +51,51 @@ public class Game {
 			}else{
 				ended=turn(r2,r1);
 				if(ended) {
-					end(r1);
+					end(r2);
 					break;
 				}
 				ended=turn(r1,r2);
 				if(ended) {
-					end(r2);
+					end(r1);
 				}
 			}
 		}
 	}
 	
 	public void go(Rider r1, Rider r2, int de) {
-		board.followPath(r1,de);
+		if(board.getCellType(r1.getPos())=='=') {
+			goStart(r1);
+		}else {
+			board.followPath(r1,de);
+		}
 		if(r1.getPos().equals(r2.getPos())) {
-			goStart(r2);
+			if(r2.getPos().equals(r2.getStart())) {
+				goStable(r2);
+			}else {
+				goStart(r2);
+			}
 		}
 		//	call process
 		System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
 	}
 	
 	public void goStart(Rider r) {
+		board.move(r,r.getPos(),r.getStart());
+	}
+	
+	public void goStable(Rider r) {
 		if(r.getColor()==Couleur.RED) {
-			board.move(r,r.getPos(),r.getStart());
+			board.move(r,r.getPos(),new Position(1,0));
 		}else{
-			board.move(r,r.getPos(),r.getStart());
+			board.move(r,r.getPos(),new Position(board.getCols()-2,board.getRows()-1));
 		}
-		System.out.println(((CellPlayable)board.getCell(r.getPos())).process(r)); //cast
 	}
 	
 	public boolean turn(Rider r1, Rider r2){
 		//Roule un dé
 		de.rouler();
 		int value=de.getValue();
+
 		System.out.print("Le cavalier de couleur ");
 		System.out.print(r1.getColor()==Couleur.RED?"ROUGE ":"BLEU ");
 		System.out.print("joue\n");
@@ -92,7 +104,7 @@ public class Game {
 		char c=board.getCellType(r1.getPos());
 		switch(c) {
 			case '@'://Si hole : 
-				if(r1.inHole()==0) {
+				if(r1.inHole()==-1) {
 					go(r1,r2,value);
 				}else {
 					System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
@@ -116,19 +128,22 @@ public class Game {
 				break;
 			case '=':
 				if(value==6 && board.getCellType(r1.getPos())=='=') {
-					goStart(r1);
+					go(r1,r2,1);
 				}else {
 					System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
 				}
 				break;
+			case '*':
+				return true;
 			default://Si Free :
-				if(r1.getPos().equals(board.getBlueEnd()) || r1.getPos().equals(board.getRedEnd())) {
-					return true;
-				}
 				go(r1,r2,value);
 				break;
 		}
 		System.out.println(this.toString());
+		c=board.getCellType(r1.getPos());
+		if(c=='*') {
+			return true;
+		}
 		return false;
 	}
 	
@@ -141,7 +156,6 @@ public class Game {
 		}
 	}
 	
-	//A faire
 	public String toString() {
 		return board.toString(riders.get(0),riders.get(1));
 	}

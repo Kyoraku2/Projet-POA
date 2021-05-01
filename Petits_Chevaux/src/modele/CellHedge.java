@@ -9,7 +9,6 @@ public class CellHedge extends CellPlayable{
 		
 	//Methods
 	
-	//A faire
 	public String process (Rider r) {
 		r.setHedge(true);
 		String str="** Le cavalier ";
@@ -18,11 +17,7 @@ public class CellHedge extends CellPlayable{
 		}else {
 			str+="BLEU ";
 		}
-		if(!r.inHedge()) {
-			str+="est libéré d'une haie **";
-		}else {
-			str+="est tombé dans une haie **";
-		}
+		str+="est tombé dans une haie **";
 		return str;
 	}
 }

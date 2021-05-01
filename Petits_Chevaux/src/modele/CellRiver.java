@@ -8,7 +8,6 @@ public class CellRiver extends CellPlayable{
 	}	
 	
 	//Methods
-	//A faire
 	public String process (Rider r) {
 		r.setRiver(true);
 		String str="** Le cavalier ";
@@ -17,11 +16,7 @@ public class CellRiver extends CellPlayable{
 		}else {
 			str+="BLEU ";
 		}
-		if(!r.inRiver()) {
-			str+="est libéré d'une rivière **";
-		}else {
-			str+="est tombé dans une rivière **";
-		}
+		str+="est tombé dans une rivière **";
 		return str;
 	}
 }
