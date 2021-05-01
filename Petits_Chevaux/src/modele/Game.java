@@ -92,41 +92,53 @@ public class Game {
 		char c=board.getCellType(r1.getPos());
 		switch(c) {
 			case '@'://Si hole : 
-				go(r1,r2,value);
-			break;
+				if(r1.inHole()==0) {
+					go(r1,r2,value);
+				}else {
+					System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
+				}
+				break;
 			case '|'://Si haie : 
 				if(value%2!=0) {
+					r1.setHedge(false);
 					go(r1,r2,value);
+				}else {
+					System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
 				}
-			break;
+				break;
 			case '~'://Si River :
 				if(value%2==0) {
+					r1.setRiver(false);
 					go(r1,r2,value);
+				}else {
+					System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
 				}
-			break;
-			default://Si Free :
+				break;
+			case '=':
 				if(value==6 && board.getCellType(r1.getPos())=='=') {
 					goStart(r1);
-					//return true;
 				}else {
-					if(r1.getPos().equals(board.getBlueEnd()) || r1.getPos().equals(board.getRedEnd())) {
-						return true;
-					}
+					System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
+				}
+				break;
+			default://Si Free :
+				if(r1.getPos().equals(board.getBlueEnd()) || r1.getPos().equals(board.getRedEnd())) {
+					return true;
 				}
 				go(r1,r2,value);
-			break;
+				break;
 		}
 		System.out.println(this.toString());
 		return false;
 	}
 	
 	public void end(Rider r) {
-		System.out.println(this.toString());
-		/*if(r.getColor()==Couleur.RED) {
+		//System.out.println(this.toString());
+		if(r.getColor()==Couleur.RED) {
 			System.out.println("Le joueur Rouge a gagné !");
 		}else {
 			System.out.println("Le joueur Bleu a gagné !");
-		}*/
+		}
 	}
 	
 	//A faire

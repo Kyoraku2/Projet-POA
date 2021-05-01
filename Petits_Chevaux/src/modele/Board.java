@@ -141,6 +141,46 @@ public class Board {
 		//A faire
 		public void followPath(Rider r, int n) {
 			//dissocier rouge and blux
+			if(r.getColor()==Couleur.RED) {
+				while(n!=0) {
+					int x=r.getPos().getCol();
+					int y=r.getPos().getRow();
+					if(x<cols-2 && y==1) {
+						move(r,r.getPos(),new Position(x+1,y));
+						n--;
+						continue;
+					}
+					if(x==cols-2 && y<rows-2) {
+						move(r,r.getPos(),new Position(x,y+2));
+						n--;
+						continue;
+					}
+					if(x>1 && y==rows-2) {
+						move(r,r.getPos(),new Position(x-1,y));
+						n--;
+						continue;
+					}
+					if(x==1 && y>3) {
+						move(r,r.getPos(),new Position(x,y-2));
+						n--;
+						continue;
+					}
+					if(y==3 && x<end_red.getCol()) {
+						move(r,r.getPos(),new Position(x+1,y));
+						n--;
+						continue;
+					}
+					if(getCell(r.getPos()).getSymbole()=='*') {
+						break;
+					}
+				}
+			}else {
+				while(n!=0) {
+					int x=r.getPos().getCol();
+					int y=r.getPos().getRow();
+					n--;
+				}
+			}
 			//chemin
 		}
 		
