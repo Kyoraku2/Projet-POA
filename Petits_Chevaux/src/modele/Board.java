@@ -169,7 +169,34 @@ public class Board {
 				while(n!=0) {
 					int x=r.getPos().getCol();
 					int y=r.getPos().getRow();
-					n--;
+					if(x>1 && y==rows-2) {
+						move(r,r.getPos(),new Position(x-1,y));
+						n--;
+						continue;
+					}
+					if(x==1 && y>1) {
+						move(r,r.getPos(),new Position(x,y-2));
+						n--;
+						continue;
+					}
+					if(x<cols-2 && y==1) {
+						move(r,r.getPos(),new Position(x+1,y));
+						n--;
+						continue;
+					}
+					if(x==cols-2 && y<3) {
+						move(r,r.getPos(),new Position(x,y+2));
+						n--;
+						continue;
+					}
+					if(y==3 && x>end_blue.getCol()) {
+						move(r,r.getPos(),new Position(x-1,y));
+						n--;
+						continue;
+					}
+					if(getCell(r.getPos()).getSymbole()=='*') {
+						break;
+					}
 				}
 			}
 			//chemin
