@@ -2,6 +2,7 @@ package modele;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Game {
 	
@@ -92,6 +93,9 @@ public class Game {
 	}
 	
 	public boolean turn(Rider r1, Rider r2){
+		Scanner s=new Scanner(System.in);
+		System.out.print("Press ENTER to roll the dice : ");
+		String str=s.nextLine();
 		//Roule un dé
 		de.rouler();
 		int value=de.getValue();
