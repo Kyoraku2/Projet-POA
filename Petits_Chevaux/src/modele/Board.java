@@ -10,15 +10,37 @@ import java.util.*;
 
 public class Board {
 	
-		//Attributes
+	////// Attributes //////
+	
+		/**
+		 * x-coordinate
+		 */
 		private int cols;
+		/**
+		 * y-coordinate
+		 */
 		private int rows;
+		/**
+		 * ArrayList of ArrayList of Cell modeling a board 
+		 */
 		private ArrayList<ArrayList<Cell>> cells;
-		
+		/**
+		 * Position where the red player finish and win the race
+		 */
 		private Position end_red;
+		/**
+		 * Position where the blue player finish and win the race
+		 */
 		private Position end_blue;
+	
 		
-		//Constructor
+	////// Constructor //////
+		
+		/**
+		 * Constructor of board
+		 * 
+		 * @param c The length of the board
+		 */
 		public Board(int c) {
 			rows=7;
 			this.cols=c+2;
@@ -39,17 +61,78 @@ public class Board {
 				end_blue=new Position((int)(cols/2)+1+1,(int)(rows/2));
 			}
 		}
+		
+		
+	////// Methods //////
 
-		//Methods
+		/**
+		 * Getter of the number of columns of the board
+		 * 
+		 * @return the number of columns
+		 */
 		public int getCols() {
 			return cols;
 		}
 		
+		/**
+		 * Getter of the number of rows of the board
+		 * 
+		 * @return the number of rows
+		 */
 		public int getRows() {
 			return rows;
 		}
 		
+		/**
+		 * Getter of a cell of the board 
+		 * 
+		 * @param p the position of the cell we want
+		 * @return The cell
+		 */
+		public Cell getCell(Position p) {
+			return cells.get(p.getCol()).get(p.getRow());
+		}
 		
+		/**
+		 * Getter of the type of a cell of the board 
+		 * 	Uses getCell
+		 * 
+		 * @param p the position of the cell we want
+		 * @return The character indicating the type of the cell 
+		 */
+		public char getCellType(Position p) {
+			return getCell(p).getSymbole();
+			//return cells.get(p.getCol()).get(p.getRow()).getSymbole();
+		}
+
+		/**
+		 * Getter of the position where the red rider end the race
+		 * 
+		 * @return The end position of red
+		 */
+		public Position getRedEnd() {
+			return end_red;
+		}
+		
+		/**
+		 * Getter of the position where the blue rider end the race
+		 * 
+		 * @return The end position of blue
+		 */
+		public Position getBlueEnd() {
+			return end_blue;
+		}
+		
+		/**
+		 * Initialize the board
+		 * Put	CellWhite where the players doesn't go
+		 * 		CellFree where they can go
+		 * 		CellSide around the board
+		 * 		Cell start and CellStable of each players
+		 * 		CellRiver, CellHole and CellHedge according to the board we where given in class
+		 * Then calculate where the CellFinish of each player will be
+		 * 
+		 */
 		public void init() {
 			for(int i=0;i<rows;++i) {
 				if(i==0 || i==rows-1) {
@@ -83,6 +166,12 @@ public class Board {
 			changeCell('*',new Position(end_blue.getCol(),end_blue.getRow()));
 		}
 		
+		/**
+		 * Change the type of the cell of a known position in the ArrayList cells
+		 * 
+		 * @param symbole	Allows to know the new type of the cell
+		 * @param from		The position of the cell to change
+		 */
 		public void changeCell(char symbole,Position from) {
 			Cell cell;
 			switch(symbole) {
@@ -117,17 +206,36 @@ public class Board {
 			cells.get(from.getCol()).set(from.getRow(), cell);
 		}
 		
-
+		/**
+		 * Remove a rider from a CellPlayable
+		 * 
+		 * @param from	The position of the rider to remove
+		 * @return true when the rider is removed
+		 */
 		public boolean removeRider(Position from) {
 			((CellPlayable)cells.get(from.getCol()).get(from.getRow())).unOccuped();
 			return true;
 		}
-
+		
+		/**
+		 * Add a rider to a CellPlayable
+		 * 
+		 * @param to	The position where the rider will be added
+		 * @return true when the rider is added
+		 */
 		public boolean addRider(Position to) {
 			((CellPlayable)cells.get(to.getCol()).get(to.getRow())).becomeOccuped();
 			return true;
 		}
 		
+		/**
+		 * Move a rider from a cell to another
+		 * Checks if the new position is valid then move the rider to it
+		 * 
+		 * @param r		The rider we want to move
+		 * @param from	The position of the rider
+		 * @param to	The position where the rider will be moved
+		 */
 		public void move(Rider r,Position from, Position to) {
 			if(from.isValid(rows,cols) && to.isValid(rows,cols) && getCell(to).isPlayable()) {
 				r.move(to);
@@ -136,6 +244,16 @@ public class Board {
 			}
 		}
 		
+		/**
+		 * Allow to move the rider of several cases according to his path
+		 * First it checks what player has to move since they don't have the same path
+		 * Then while the rider hasn't moved of the number of cell he has 
+		 * 		it checks where it is and move it to the next cell 
+		 * 
+		 * @param r		The rider we want to move
+		 * @param from	The position of the rider
+		 * @param to	The position where the rider will be moved
+		 */
 		public void followPath(Rider r, int n) {
 			if(r.getColor()==Couleur.RED) {
 				while(n!=0) {
@@ -201,21 +319,14 @@ public class Board {
 			}
 		}
 		
-		public Cell getCell(Position p) {
-			return cells.get(p.getCol()).get(p.getRow());
-		}
-		
-		public char getCellType(Position p) {
-			return cells.get(p.getCol()).get(p.getRow()).getSymbole();
-		}
-
-		public Position getRedEnd() {
-			return end_red;
-		}
-		public Position getBlueEnd() {
-			return end_blue;
-		}
-		
+		/**
+		 * Allows to represent the board of the game 
+		 * 	shows the players and all the specials cells
+		 * 
+		 * @param r1 The first player
+		 * @param r2 The second player
+		 * @return A String modeling the board
+		 */
 		public String toString(Rider r1,Rider r2) {
 			String str="";
 			for(int i=0;i<rows;++i) {
