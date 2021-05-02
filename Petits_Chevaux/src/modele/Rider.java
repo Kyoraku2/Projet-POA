@@ -1,8 +1,14 @@
 package modele;
 
+/**
+ * Rider class
+ * @author Marie-Almina
+ * @author Tayeb
+ */
+
 public class Rider {
 	
-	//Attributs
+	//Attributes
 	private Position pos;
 	private int inHole;
 	private boolean river;
@@ -10,7 +16,7 @@ public class Rider {
 	private Couleur color;
 	private Position start;
 	
-	//Constructeur 
+	//Constructor 
 	
 	public Rider(Position p, Position s,Couleur c) {
 		pos=p;
@@ -22,7 +28,6 @@ public class Rider {
 	}
 	
 	//Methods
-
 	public Position getPos() {
 		return pos;
 	}

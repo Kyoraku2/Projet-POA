@@ -1,12 +1,19 @@
 package modele;
 
+/**
+ * CellFree class, normal CellPlayable
+ * @author Marie-Almina
+ * @author Tayeb
+ */
+
 public class CellFree extends CellPlayable{
-	//Constructeurs
+	
+	//Constructor
 	public CellFree(Position p) {
 		super(p,'.');
 	}
 	
-	//Methodes	
+	//Methods	
 	public String process(Rider r) {
 		String str="** Le cavalier ";
 		if(r.getColor()==Couleur.RED) {

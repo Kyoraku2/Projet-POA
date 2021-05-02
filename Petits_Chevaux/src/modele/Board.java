@@ -2,9 +2,15 @@ package modele;
 
 import java.util.*;
 
+/**
+ * Board class
+ * @author Marie-Almina
+ * @author Tayeb
+ */
+
 public class Board {
 	
-		//Attributs
+		//Attributes
 		private int cols;
 		private int rows;
 		private ArrayList<ArrayList<Cell>> cells;
@@ -12,6 +18,7 @@ public class Board {
 		private Position end_red;
 		private Position end_blue;
 		
+		//Constructor
 		public Board(int c) {
 			rows=7;
 			this.cols=c+2;
@@ -130,7 +137,6 @@ public class Board {
 		}
 		
 		public void followPath(Rider r, int n) {
-			//dissocier rouge and blux
 			if(r.getColor()==Couleur.RED) {
 				while(n!=0) {
 					int x=r.getPos().getCol();
@@ -193,7 +199,6 @@ public class Board {
 					}
 				}
 			}
-			//chemin
 		}
 		
 		public Cell getCell(Position p) {

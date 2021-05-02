@@ -1,12 +1,19 @@
 package modele;
 
+/**
+ * CellWhite, non-playable cells
+ * @author Marie-Almina
+ * @author Tayeb
+ */
+
 public class CellWhite extends Cell{
 
-	//Constructeur 
+	//Constructor 
 	public CellWhite(Position p) {
 		super(p,' ');
 	}	
 	
+	//Methods
 	public boolean isPlayable() {
 		return false;
 	}

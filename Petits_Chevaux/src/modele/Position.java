@@ -1,20 +1,24 @@
 package modele;
 
+/**
+ * Position class
+ * @author Marie-Almina
+ * @author Tayeb
+ */
+
 public class Position {
-	//Attributs
 	
+	//Attributes
 	private int col;
 	private int row;
 	
-	//Constructeur 
-	
+	//Constructor 
 	public Position(int c,int r) {
 		col=c;
 		row=r;
 	}
 	
 	//Methods
-	
 	public int getCol() {
 		return col;
 	}

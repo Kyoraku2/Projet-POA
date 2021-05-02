@@ -1,13 +1,19 @@
 package modele;
 
+/**
+ * Cell class, general representation of cells
+ * @author Marie-Almina
+ * @author Tayeb
+ */
+
 public abstract class Cell {
 	
-	//Attributs
+	//Attributes
 	private Position pos;
 	private char symbole;
 	
 	
-	//Constructeurs
+	//Constructor
 	public Cell(Position p, char s) {
 		pos=p;
 		symbole=s;

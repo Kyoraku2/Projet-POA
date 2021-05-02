@@ -1,14 +1,19 @@
 package modele;
 
+/**
+ * CellHole class, special event 
+ * @author Marie-Almina
+ * @author Tayeb
+ */
+
 public class CellHole extends CellPlayable{
 
-	//Constructeur 
+	//Constructor 
 	public CellHole(Position p) {
 		super(p,'@');
 	}
 	
 	//Methods
-	//A faire
 	public String process (Rider r) {
 		r.incrementHole();
 		if(r.inHole()==3) {

@@ -4,21 +4,24 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Game class
+ * @author Marie-Almina
+ * @author Tayeb
+ */
+
 public class Game {
 	
-	//Attributs
+	//Attributes
 	private List<Rider> riders;
 	private Board board;
 	private De de;
 	
-	//Constructeurs
-	
-	//celui de base
+	//Constructors
 	public Game() {
 		this(16);
 	}
 	
-	//celui bonus taille
 	public Game(int size) {
 		de=new De();
 		board=new Board(size);
@@ -29,17 +32,13 @@ public class Game {
 	}
 	
 	//Methods
-	
 	public void play(int first) {
-		//boucle de jeu (while pas arrivé, on alterne le tour)
 		boolean ended=false;
 		Rider r1= riders.get(0); //red
 		Rider r2= riders.get(1); //blue
 		System.out.println(this.toString());
 		while(ended==false){
 			if(first==1){
-				//r1 rouge, r2 bleu
-				
 				ended=turn(r1,r2);
 				if(ended) {
 					end(r1);
@@ -76,7 +75,6 @@ public class Game {
 				goStart(r2);
 			}
 		}
-		//	call process
 		System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
 	}
 	
@@ -96,7 +94,6 @@ public class Game {
 		Scanner s=new Scanner(System.in);
 		System.out.print("Press ENTER to roll the dice : ");
 		String str=s.nextLine();
-		//Roule un dé
 		de.rouler();
 		int value=de.getValue();
 
@@ -104,17 +101,16 @@ public class Game {
 		System.out.print(r1.getColor()==Couleur.RED?"ROUGE ":"BLEU ");
 		System.out.print("joue\n");
 		System.out.println("Valeur du dé : "+value+"\n");
-		//Check pos départ
 		char c=board.getCellType(r1.getPos());
 		switch(c) {
-			case '@'://Si hole : 
+			case '@'://if hole : 
 				if(r1.inHole()==-1) {
 					go(r1,r2,value);
 				}else {
 					System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
 				}
 				break;
-			case '|'://Si haie : 
+			case '|'://if hedge : 
 				if(value%2!=0) {
 					r1.setHedge(false);
 					go(r1,r2,value);
@@ -122,7 +118,7 @@ public class Game {
 					System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
 				}
 				break;
-			case '~'://Si River :
+			case '~'://if river :
 				if(value%2==0) {
 					r1.setRiver(false);
 					go(r1,r2,value);
@@ -130,16 +126,16 @@ public class Game {
 					System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
 				}
 				break;
-			case '=':
+			case '='://if stable
 				if(value==6 && board.getCellType(r1.getPos())=='=') {
 					go(r1,r2,1);
 				}else {
 					System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
 				}
 				break;
-			case '*':
+			case '*'://if end
 				return true;
-			default://Si Free :
+			default://Si free :
 				go(r1,r2,value);
 				break;
 		}
@@ -152,7 +148,6 @@ public class Game {
 	}
 	
 	public void end(Rider r) {
-		//System.out.println(this.toString());
 		if(r.getColor()==Couleur.RED) {
 			System.out.println("Le joueur Rouge a gagné !");
 		}else {

@@ -1,5 +1,11 @@
 package modele;
 
+/**
+ * Interface Questionnable for cellPlayable
+ * @author Marie-Almina
+ * @author Tayeb
+ */
+
 public interface Questionnable {
 	public String process (Rider r); 
 	// le cavalier r est éventuellement modifié par la case

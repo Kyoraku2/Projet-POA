@@ -1,14 +1,19 @@
 package modele;
 
+/**
+ * CellHedge class, special event 
+ * @author Marie-Almina
+ * @author Tayeb
+ */
+
 public class CellHedge extends CellPlayable{
 
-	//Constructeur 
+	//Constructor 
 	public CellHedge(Position p) {
 		super(p,'|');
 	}
 		
 	//Methods
-	
 	public String process (Rider r) {
 		r.setHedge(true);
 		String str="** Le cavalier ";

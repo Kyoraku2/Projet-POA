@@ -1,8 +1,14 @@
 package modele;
 
+/**
+ * CellRiver class, special event
+ * @author Marie-Almina
+ * @author Tayeb
+ */
+
 public class CellRiver extends CellPlayable{
 
-	//Constructeur 
+	//Constructor 
 	public CellRiver(Position p) {
 		super(p,'~');
 	}	
