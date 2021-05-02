@@ -28,8 +28,8 @@ public class Board {
 				end_red=new Position((int)(cols/2)-3,(int)(rows/2));
 				end_blue=new Position((int)(cols/2)+2,(int)(rows/2));
 			}else {
-				end_red=new Position((int)(cols/2)+1-2,(int)(rows/2)+1);
-				end_blue=new Position((int)(cols/2)+1+2,(int)(rows/2)+1);
+				end_red=new Position((int)(cols/2)+1-3,(int)(rows/2));
+				end_blue=new Position((int)(cols/2)+1+1,(int)(rows/2));
 			}
 		}
 
@@ -72,14 +72,8 @@ public class Board {
 			for(int i=end_red.getCol();i<end_blue.getCol();++i) {
 				changeCell(' ',new Position(i,(int)(rows/2)));
 			}
-			if(cols%2==0) {
-				changeCell('*',new Position((int)(cols/2)-3,(int)(rows/2)));
-				changeCell('*',new Position((int)(cols/2)+2,(int)(rows/2)));
-			}else {
-				changeCell('*',new Position((int)(cols/2)+1-3,(int)(rows/2)));
-				changeCell('*',new Position((int)(cols/2)+1+1,(int)(rows/2)));
-			}
-			
+			changeCell('*',new Position(end_red.getCol(),end_red.getRow()));
+			changeCell('*',new Position(end_blue.getCol(),end_blue.getRow()));
 		}
 		
 		public void changeCell(char symbole,Position from) {
