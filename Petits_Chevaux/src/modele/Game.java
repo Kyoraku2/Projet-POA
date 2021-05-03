@@ -100,7 +100,7 @@ public class Game {
 		System.out.print("Le cavalier de couleur ");
 		System.out.print(r1.getColor()==Couleur.RED?"ROUGE ":"BLEU ");
 		System.out.print("joue\n");
-		System.out.println("Valeur du dé : "+value+"\n");
+		System.out.println("Valeur du dÃ© : "+value+"\n");
 		char c=board.getCellType(r1.getPos());
 		switch(c) {
 			case '@'://if hole : 
@@ -149,9 +149,9 @@ public class Game {
 	
 	public void end(Rider r) {
 		if(r.getColor()==Couleur.RED) {
-			System.out.println("Le joueur Rouge a gagné !");
+			System.out.println("Le joueur Rouge a gagnÃ© !");
 		}else {
-			System.out.println("Le joueur Bleu a gagné !");
+			System.out.println("Le joueur Bleu a gagnÃ© !");
 		}
 	}
 	

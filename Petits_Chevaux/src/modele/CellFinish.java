@@ -8,12 +8,28 @@ package modele;
 
 public class CellFinish extends CellPlayable{
 
-	//Constructor
+	//////Constructor //////
+
+	/**
+	 * Constructor of CellFinish
+	 * The symbol is the same for all cells of same type
+	 * 
+	 * @param p The position of the cell
+	 */
 	public CellFinish(Position p) {
 		super(p,'*');
 	}
 	
-	//Methods	
+	
+	//////Methods //////
+
+	/**
+	 * 	Function used to process the effect of the cell on the player
+	 * 	and explains this effect
+	 * 
+	 * @param r The rider entering the cell
+	 * @return A String explaining what the cell does
+	 */
 	public String process(Rider r) {
 		String str="** Le cavalier ";
 		if(r.getColor()==Couleur.RED) {
@@ -21,7 +37,7 @@ public class CellFinish extends CellPlayable{
 		}else {
 			str+="BLEU ";
 		}
-		str+="est sur la case d'arrivée **";
+		str+="est sur la case d'arrivÃ©e **";
 		return str;
 	}
 }

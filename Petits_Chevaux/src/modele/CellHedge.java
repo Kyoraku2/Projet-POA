@@ -8,12 +8,28 @@ package modele;
 
 public class CellHedge extends CellPlayable{
 
-	//Constructor 
+	//////Constructor //////
+
+	/**
+	 * Constructor of CellFinish
+	 * The symbol is the same for all cells of same type
+	 * 
+	 * @param p The position of the cell
+	 */
 	public CellHedge(Position p) {
 		super(p,'|');
 	}
 		
-	//Methods
+	//////Methods //////
+
+	/**
+	 * 	Function used to process the effect of the cell on the player
+	 * 	and explains this effect
+	 * 	Sets the boolean hedge of the player to true
+	 * 
+	 * @param r The rider entering the cell
+	 * @return A String explaining what the cell does
+	 */
 	public String process (Rider r) {
 		r.setHedge(true);
 		String str="** Le cavalier ";
@@ -22,7 +38,7 @@ public class CellHedge extends CellPlayable{
 		}else {
 			str+="BLEU ";
 		}
-		str+="est tombé dans une haie **";
+		str+="est tombÃ© dans une haie **";
 		return str;
 	}
 }

@@ -8,13 +8,28 @@ package modele;
 
 public class CellRiver extends CellPlayable{
 
-	//Constructor 
+	//////Constructor //////
+
+	/**
+	 * Constructor of CellFinish
+	 * The symbol is the same for all cells of same type
+	 * 
+	 * @param p The position of the cell
+	 */
 	public CellRiver(Position p) {
 		super(p,'~');
 	}	
 	
-	//Methods
-	public String process (Rider r) {
+	//////Methods //////
+
+	/**
+	 * 	Function used to process the effect of the cell on the player
+	 * 	and explains this effect
+	 * 	Sets the river boolean of the rider to true
+	 * 
+	 * @param r The rider entering the cell
+	 * @return A String explaining what the cell does
+	 */	public String process (Rider r) {
 		r.setRiver(true);
 		String str="** Le cavalier ";
 		if(r.getColor()==Couleur.RED) {
@@ -22,7 +37,7 @@ public class CellRiver extends CellPlayable{
 		}else {
 			str+="BLEU ";
 		}
-		str+="est tombé dans une rivière **";
+		str+="est tombÃ© dans une riviÃ¨re **";
 		return str;
 	}
 }

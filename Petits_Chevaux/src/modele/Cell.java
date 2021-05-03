@@ -8,23 +8,56 @@ package modele;
 
 public abstract class Cell {
 	
-	//Attributes
+	//////Attributes //////
+	
+	/**
+	 * position of the cell
+	 */	
 	private Position pos;
-	private char symbole;
+	/**
+	 * symbol of the cell
+	 * used to know it's type and to print it on the board
+	 */	
+	private char symbol;
 	
 	
-	//Constructor
+	//////Constructor //////
+	
+	/**
+	 * Constructor of Cell
+	 * 
+	 * @param p The position of the cell
+	 * @param c The character used for it's symbol
+	 */
 	public Cell(Position p, char s) {
 		pos=p;
-		symbole=s;
+		symbol=s;
 	}
 	
-	//Methods
-	public char getSymbole() {
-		return symbole;
+	//////Methods //////
+
+	/**
+	 * Getter of the symbol of the cell
+	 * 
+	 * @return the symbol
+	 */
+	public char getSymbol() {
+		return symbol;
 	}
+	
+	/**
+	 * Getter of the position of the cell
+	 * 
+	 * @return the position
+	 */
 	public Position getPosition() {
 		return pos;
 	}
+	
+	/**
+	 * Abstract function used to know is a cell is a playable one or not
+	 * 
+	 * @return true is it's playable false otherwise
+	 */
 	abstract public boolean isPlayable();
 }
