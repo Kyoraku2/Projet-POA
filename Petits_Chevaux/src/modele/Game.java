@@ -12,16 +12,39 @@ import java.util.Scanner;
 
 public class Game {
 	
-	//Attributes
+	////// Attributes //////
+	
+	/**
+	 * List of the players of the game
+	 */
 	private List<Rider> riders;
+	/**
+	 * Board used for the game
+	 */
 	private Board board;
+	/**
+	 * Dice that will be used by the players
+	 */
 	private De de;
 	
-	//Constructors
+	
+	////// Constructor //////
+	
+	/**
+	 * Default constructor of game
+	 * Call the other constructor with the size 16
+	 */
 	public Game() {
 		this(16);
 	}
 	
+	/**
+	 * Constructor of Game
+	 * Create a dice, add two riders to the list
+	 * Create and initialize a board of size size
+	 * 
+	 * @param size The size of the board that will be created
+	 */
 	public Game(int size) {
 		de=new De();
 		board=new Board(size);
@@ -31,7 +54,16 @@ public class Game {
 		board.init();
 	}
 	
-	//Methods
+	
+	////// Methods //////
+
+	/**
+	 * The game loop
+	 * Calls the function turn for each turn of each player
+	 * If one player win end the game loop and calls end
+	 * 
+	 * @param first The first player to play (1 for red)
+	 */
 	public void play(int first) {
 		boolean ended=false;
 		Rider r1= riders.get(0); //red
@@ -62,6 +94,16 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Allows to move a player of a number of case given by the dice
+	 * If it lands on the same case as the other rider the other rider will be sent back to it's start 
+	 * 		and the rider is already on it's start it will go back to it's stable
+	 * Prints the result of the process of the cell
+	 * 
+	 * @param r1 The first rider
+	 * @param r2 The other rider
+	 * @param de The value of the dice rolled by the player
+	 */
 	public void go(Rider r1, Rider r2, int de) {
 		if(board.getCellType(r1.getPos())=='=') {
 			goStart(r1);
@@ -78,10 +120,21 @@ public class Game {
 		System.out.println(((CellPlayable)board.getCell(r1.getPos())).process(r1)+"\n");
 	}
 	
+	
+	/**
+	 * Send a rider back to the start cell
+	 * 
+	 * @param r The rider
+	 */
 	public void goStart(Rider r) {
 		board.move(r,r.getPos(),r.getStart());
 	}
 	
+	/**
+	 * Send a rider back to the stable cell
+	 * 
+	 * @param r The rider
+	 */
 	public void goStable(Rider r) {
 		if(r.getColor()==Couleur.RED) {
 			board.move(r,r.getPos(),new Position(1,0));
@@ -90,6 +143,17 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Allows to make a turn 
+	 * Ask the player to press enter to roll the dice
+	 * Then prints information on this turn (who plays and how much)
+	 * Checks on witch cell the player is and then if he can move
+	 * If he can move it moves it to the right cell using go
+	 * 
+	 * @param r1 The first rider
+	 * @param r2 The other rider
+	 * @return True if the player has won (if he is on the finished line) false otherwise
+	 */
 	public boolean turn(Rider r1, Rider r2){
 		Scanner s=new Scanner(System.in);
 		System.out.print("Press ENTER to roll the dice : ");
@@ -147,6 +211,11 @@ public class Game {
 		return false;
 	}
 	
+	/**
+	 * Prints the results of the race
+	 * 
+	 * @param r The winner
+	 */
 	public void end(Rider r) {
 		if(r.getColor()==Couleur.RED) {
 			System.out.println("Le joueur Rouge a gagné !");
@@ -155,6 +224,11 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Call to string of board with the riders of the game
+	 * 
+	 * @return toString of board using the riders
+	 */
 	public String toString() {
 		return board.toString(riders.get(0),riders.get(1));
 	}
