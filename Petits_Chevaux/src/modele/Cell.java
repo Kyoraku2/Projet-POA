@@ -11,10 +11,6 @@ public abstract class Cell {
 	//////Attributes //////
 	
 	/**
-	 * position of the cell
-	 */	
-	private Position pos;
-	/**
 	 * symbol of the cell
 	 * used to know it's type and to print it on the board
 	 */	
@@ -26,11 +22,9 @@ public abstract class Cell {
 	/**
 	 * Constructor of Cell
 	 * 
-	 * @param p The position of the cell
 	 * @param c The character used for it's symbol
 	 */
-	public Cell(Position p, char s) {
-		pos=p;
+	public Cell(char s) {
 		symbol=s;
 	}
 	
@@ -45,14 +39,6 @@ public abstract class Cell {
 		return symbol;
 	}
 	
-	/**
-	 * Getter of the position of the cell
-	 * 
-	 * @return the position
-	 */
-	public Position getPosition() {
-		return pos;
-	}
 	
 	/**
 	 * Abstract function used to know is a cell is a playable one or not

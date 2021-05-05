@@ -8,26 +8,15 @@ package modele;
 
 public abstract class CellPlayable extends Cell implements Questionnable{
 	
-	//////Attributes //////
-	
-	/**
-	 * Boolean allowing to know if a player is on this cell
-	 */	
-	private boolean occuped;
-	
-	
 	//////Constructor //////
 	
 	/**
 	 * Constructor of Cell
-	 * Sets occuped to false
 	 * 
-	 * @param p The position of the cell
 	 * @param c The character used for it's symbol
 	 */
-	public CellPlayable(Position p,char s) {
-		super(p,s);
-		occuped=false;
+	public CellPlayable(char s) {
+		super(s);
 	}
 	
 	
@@ -41,21 +30,6 @@ public abstract class CellPlayable extends Cell implements Questionnable{
 	public boolean isPlayable() {
 		return true;
 	}
-	
-	/**
-	 * Set occuped to true to show that a player is on this cell
-	 * 
-	 */
-	public void becomeOccuped() {
-		occuped=true;
-	}
-	
-	/**
-	 * Set occuped to false to show that there is no player on that cell
-	 * 
-	 */
-	public void unOccuped() {
-		occuped=false;
-	}
+
 	
 }

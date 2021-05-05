@@ -14,10 +14,9 @@ public class CellWhite extends Cell{
 	 * Constructor of CellFinish
 	 * The symbol is the same for all cells of same type
 	 * 
-	 * @param p The position of the cell
 	 */
-	public CellWhite(Position p) {
-		super(p,' ');
+	public CellWhite() {
+		super(' ');
 	}	
 	
 	//////Methods //////

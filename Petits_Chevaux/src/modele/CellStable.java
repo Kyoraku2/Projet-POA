@@ -14,10 +14,9 @@ public class CellStable extends CellPlayable{
 	 * Constructor of CellFinish
 	 * The symbol is the same for all cells of same type
 	 * 
-	 * @param p The position of the cell
 	 */
-	public CellStable(Position p) {
-		super(p,'=');
+	public CellStable() {
+		super('=');
 	}
 	
 	//////Methods //////

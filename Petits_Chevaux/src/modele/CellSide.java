@@ -14,10 +14,9 @@ public class CellSide extends Cell{
 	 * Constructor of CellFinish
 	 * The symbol is the same for all cells of same type
 	 * 
-	 * @param p The position of the cell
 	 */
-	public CellSide(Position p) {
-		super(p,'+');
+	public CellSide() {
+		super('+');
 	}	
 	
 	//////Methods //////

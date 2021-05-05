@@ -49,7 +49,7 @@ public class Board {
 		for(int i=0;i<cols;++i) {
 			cells.add(new ArrayList<Cell>(rows));
 			for(int j=0; j<rows;++j) {
-				cells.get(i).add(new CellFree(new Position(i,j)));
+				cells.get(i).add(new CellFree());
 			}
 		}
 		
@@ -102,7 +102,6 @@ public class Board {
 	 */
 	public char getCellType(Position p) {
 		return getCell(p).getSymbol();
-		//return cells.get(p.getCol()).get(p.getRow()).getSymbole();
 	}
 
 	/**
@@ -176,57 +175,36 @@ public class Board {
 		Cell cell;
 		switch(symbole) {
 			case '@':
-				cell=new CellHole(from);
+				cell=new CellHole();
 				break;
 			case '|':
-				cell=new CellHedge(from);
+				cell=new CellHedge();
 				break;
 			case '~':
-				cell=new CellRiver(from);
+				cell=new CellRiver();
 				break;
 			case '+':
-				cell=new CellSide(from);
+				cell=new CellSide();
 				break;
 			case ' ':
-				cell=new CellWhite(from);
+				cell=new CellWhite();
 				break;
 			case '#':
-				cell=new CellStart(from);
+				cell=new CellStart();
 				break;
 			case '=':
-				cell=new CellStable(from);
+				cell=new CellStable();
 				break;
 			case '*':
-				cell=new CellFinish(from);
+				cell=new CellFinish();
 				break;
 			default:
-				cell=new CellFree(from);
+				cell=new CellFree();
 				break;
 		}
 		cells.get(from.getCol()).set(from.getRow(), cell);
 	}
 	
-	/**
-	 * Remove a rider from a CellPlayable
-	 * 
-	 * @param from	The position of the rider to remove
-	 * @return true when the rider is removed
-	 */
-	public boolean removeRider(Position from) {
-		((CellPlayable)cells.get(from.getCol()).get(from.getRow())).unOccuped();
-		return true;
-	}
-	
-	/**
-	 * Add a rider to a CellPlayable
-	 * 
-	 * @param to	The position where the rider will be added
-	 * @return true when the rider is added
-	 */
-	public boolean addRider(Position to) {
-		((CellPlayable)cells.get(to.getCol()).get(to.getRow())).becomeOccuped();
-		return true;
-	}
 	
 	/**
 	 * Move a rider from a cell to another
@@ -239,8 +217,6 @@ public class Board {
 	public void move(Rider r,Position from, Position to) {
 		if(from.isValid(rows,cols) && to.isValid(rows,cols) && getCell(to).isPlayable()) {
 			r.move(to);
-			removeRider(from);
-			addRider(to);
 		}
 	}
 	

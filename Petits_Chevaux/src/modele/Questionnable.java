@@ -7,11 +7,13 @@ package modele;
  */
 
 public interface Questionnable {
+	
+	/**
+	 * 	Function used to process the effect of the cell on the player
+	 * 	and explains this effect
+	 * 
+	 * @param r The rider entering the cell
+	 * @return A String explaining what the cell does
+	 */
 	public String process (Rider r); 
-	// le cavalier r est éventuellement modifié par la case
-	// est retourné : un message qui explicite l’effet de la case 
-	// sur le cavalier r. 
-	// en version console : ce message est affiché dans la console 
-	// en version graphique ce message est affiché dans la fenêtre
-	// graphique
 }

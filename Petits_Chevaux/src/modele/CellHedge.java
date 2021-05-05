@@ -13,11 +13,9 @@ public class CellHedge extends CellPlayable{
 	/**
 	 * Constructor of CellFinish
 	 * The symbol is the same for all cells of same type
-	 * 
-	 * @param p The position of the cell
 	 */
-	public CellHedge(Position p) {
-		super(p,'|');
+	public CellHedge() {
+		super('|');
 	}
 		
 	//////Methods //////

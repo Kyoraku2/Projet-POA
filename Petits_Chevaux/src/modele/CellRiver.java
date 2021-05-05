@@ -14,10 +14,9 @@ public class CellRiver extends CellPlayable{
 	 * Constructor of CellFinish
 	 * The symbol is the same for all cells of same type
 	 * 
-	 * @param p The position of the cell
 	 */
-	public CellRiver(Position p) {
-		super(p,'~');
+	public CellRiver() {
+		super('~');
 	}	
 	
 	//////Methods //////

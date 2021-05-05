@@ -13,11 +13,9 @@ public class CellFree extends CellPlayable{
 	/**
 	 * Constructor of CellFinish
 	 * The symbol is the same for all cells of same type
-	 * 
-	 * @param p The position of the cell
 	 */
-	public CellFree(Position p) {
-		super(p,'.');
+	public CellFree() {
+		super('.');
 	}
 	
 	
