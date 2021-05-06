@@ -104,7 +104,7 @@ public class Game {
 	 * @param r2 The other rider
 	 * @param de The value of the dice rolled by the player
 	 */
-	public void go(Rider r1, Rider r2, int de) {
+	private void go(Rider r1, Rider r2, int de) {
 		if(board.getCellType(r1.getPos())=='=') {
 			goStart(r1);
 		}else {
@@ -126,7 +126,7 @@ public class Game {
 	 * 
 	 * @param r The rider
 	 */
-	public void goStart(Rider r) {
+	private void goStart(Rider r) {
 		board.move(r,r.getPos(),r.getStart());
 	}
 	
@@ -135,7 +135,7 @@ public class Game {
 	 * 
 	 * @param r The rider
 	 */
-	public void goStable(Rider r) {
+	private void goStable(Rider r) {
 		if(r.getColor()==Couleur.RED) {
 			board.move(r,r.getPos(),new Position(1,0));
 		}else{
@@ -154,7 +154,7 @@ public class Game {
 	 * @param r2 The other rider
 	 * @return True if the player has won (if he is on the finished line) false otherwise
 	 */
-	public boolean turn(Rider r1, Rider r2){
+	private boolean turn(Rider r1, Rider r2){
 		////////////////////////////Exam part (not random dice)
 		Scanner s=new Scanner(System.in);
 		System.out.print("Write value of dice : ");
@@ -227,7 +227,7 @@ public class Game {
 	 * 
 	 * @param r The winner
 	 */
-	public void end(Rider r) {
+	private void end(Rider r) {
 		if(r.getColor()==Couleur.RED) {
 			System.out.println("Le joueur Rouge a gagné !");
 		}else {
