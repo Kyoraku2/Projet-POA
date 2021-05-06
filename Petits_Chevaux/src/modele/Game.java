@@ -156,10 +156,21 @@ public class Game {
 	 */
 	public boolean turn(Rider r1, Rider r2){
 		Scanner s=new Scanner(System.in);
-		System.out.print("Press ENTER to roll the dice : ");
-		String str=s.nextLine();
-		de.rouler();
-		int value=de.getValue();
+		//System.out.print("Press ENTER to roll the dice : ");
+		
+		
+		System.out.print("Write value of dice :");
+        while(!s.hasNextInt()) {
+            s.next();
+            System.out.print("That's not an integer, please enter again:");
+        }
+       int value=s.nextInt();
+		
+		
+			
+
+		//de.rouler();
+		//int value=de.getValue();
 
 		System.out.print("Le cavalier de couleur ");
 		System.out.print(r1.getColor()==Couleur.RED?"ROUGE ":"BLEU ");
