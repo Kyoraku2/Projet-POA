@@ -50,7 +50,7 @@ public class Rider {
 	 * Constructor of Rider
 	 * 
 	 * @param p The position of the rider (At the beginning it's stable)
-	 * @param p The position of the rider's starting point
+	 * @param s The position of the rider's starting point
 	 * @param c Color of the rider
 	 */
 	public Rider(Position p, Position s,Couleur c) {

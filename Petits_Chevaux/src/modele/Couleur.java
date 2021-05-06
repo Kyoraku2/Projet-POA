@@ -6,4 +6,14 @@ package modele;
  * @author Tayeb
  */
 
-public enum Couleur{BLUE,RED} 
+public enum Couleur{
+	/**
+	 * Blue color
+	 */
+	BLUE,
+	/**
+	 * Red color
+	 */
+	RED
+	
+} 

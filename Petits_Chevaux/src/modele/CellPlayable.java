@@ -13,7 +13,7 @@ public abstract class CellPlayable extends Cell implements Questionnable{
 	/**
 	 * Constructor of Cell
 	 * 
-	 * @param c The character used for it's symbol
+	 * @param s The character used for it's symbol
 	 */
 	public CellPlayable(char s) {
 		super(s);

@@ -226,9 +226,8 @@ public class Board {
 	 * Then while the rider hasn't moved of the number of cell he has 
 	 * 		it checks where it is and move it to the next cell 
 	 * 
-	 * @param r		The rider we want to move
-	 * @param from	The position of the rider
-	 * @param to	The position where the rider will be moved
+	 * @param r	The rider we want to move
+	 * @param n The number of cases 
 	 */
 	public void followPath(Rider r, int n) {
 		Position init_rpos=r.getPos();

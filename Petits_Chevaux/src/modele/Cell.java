@@ -22,7 +22,7 @@ public abstract class Cell {
 	/**
 	 * Constructor of Cell
 	 * 
-	 * @param c The character used for it's symbol
+	 * @param s The character used for it's symbol
 	 */
 	public Cell(char s) {
 		symbol=s;
