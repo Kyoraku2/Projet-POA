@@ -1,7 +1,7 @@
 package modele;
 
 /**
- * De class that represent a dice
+ * De, represent a dice
  * @author Marie-Almina
  * @author Tayeb
  */

@@ -41,9 +41,9 @@ public abstract class Cell {
 	
 	
 	/**
-	 * Abstract function used to know is a cell is a playable one or not
+	 * Abstract function used to know if a cell is a playable one or not
 	 * 
-	 * @return true is it's playable false otherwise
+	 * @return true if it's playable false otherwise
 	 */
 	abstract public boolean isPlayable();
 }

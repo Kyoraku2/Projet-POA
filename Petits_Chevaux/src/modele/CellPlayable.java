@@ -1,7 +1,7 @@
 package modele;
 
 /**
- * CellPlayable for cells where riders can go on
+ * CellPlayable, cells where riders can go on
  * @author Marie-Almina
  * @author Tayeb
  */
