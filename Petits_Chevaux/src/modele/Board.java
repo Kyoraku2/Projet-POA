@@ -231,6 +231,7 @@ public class Board {
 	 * @param to	The position where the rider will be moved
 	 */
 	public void followPath(Rider r, int n) {
+		Position init_rpos=r.getPos();
 		if(r.getColor()==Couleur.RED) {
 			while(n!=0) {
 				int x=r.getPos().getCol();
@@ -256,6 +257,10 @@ public class Board {
 					n--;
 				}
 				if(getCell(r.getPos()).getSymbol()=='*') {
+					if(n!=0) {
+						System.out.println("Le cavalier ROUGE a dépassé la case départ !");
+						move(r,r.getPos(),init_rpos);
+					}
 					break;
 				}
 			}
@@ -289,6 +294,10 @@ public class Board {
 					continue;
 				}
 				if(getCell(r.getPos()).getSymbol()=='*') {
+					if(n!=0) {
+						System.out.println("Le cavalier BLEU a dépassé la case départ !");
+						move(r,r.getPos(),init_rpos);
+					}
 					break;
 				}
 			}

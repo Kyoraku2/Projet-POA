@@ -155,20 +155,20 @@ public class Game {
 	 * @return True if the player has won (if he is on the finished line) false otherwise
 	 */
 	public boolean turn(Rider r1, Rider r2){
+		////////////////////////////Exam part (not random dice)
 		Scanner s=new Scanner(System.in);
+		System.out.print("Write value of dice : ");
+		while(!s.hasNextInt()) {
+			s.next();
+			System.out.print("That's not an integer, please enter again : ");
+		}
+		int value=s.nextInt();
+		////////////////////////////End Exam part
+		
+		//For random dice, put above in comments end remove bellow comments 
+		//Scanner s=new Scanner(System.in);
 		//System.out.print("Press ENTER to roll the dice : ");
-		
-		
-		System.out.print("Write value of dice :");
-        while(!s.hasNextInt()) {
-            s.next();
-            System.out.print("That's not an integer, please enter again:");
-        }
-       int value=s.nextInt();
-		
-		
-			
-
+		//s.nextLine();
 		//de.rouler();
 		//int value=de.getValue();
 
