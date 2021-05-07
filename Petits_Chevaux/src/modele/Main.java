@@ -10,9 +10,56 @@ import java.util.Scanner;
  
  */
 
-/*Bonus made:
- * - Select size of board
- * - 
+/* Bonus :
+ * - Selection de la taille du plateau
+ * - Règle spéciale : Comme l'énoncé le suggère, lorsqu'un joueur est "mangé" par un autre,
+ * il est renvoyé à sa case de départ. Cependant, dans le cas ou le joueur mangé se trouve déjà sur
+ * sa case de départ, il sera renvoyé à l'écurie.
+ * Par exemple dans les cas suivants :
+ *
+ * * *Cas classique de collision : retour au départ pour le bleu * * *
+ *  +  =  +  +  +  +  +  +  +  +  +  +  + 
+ *	+  #  .  .  @  .  .  .  .  .  .  R  + 
+ *	+                                   + 
+ *	+  .  .  .  *           *  .  .  B  + 
+ *	+                                   + 
+ *	+  .  .  .  .  |  .  .  .  .  ~  #  + 
+ *	+  +  +  +  +  +  +  +  +  +  +  =  +
+ *
+ * TOUR SUIVANT : (Rouge, dé = 1)
+ *
+ *  +  =  +  +  +  +  +  +  +  +  +  +  + 
+ *	+  #  .  .  @  .  .  .  .  .  .  .  + 
+ *	+                                   + 
+ *	+  .  .  .  *           *  .  .  R  + 
+ *	+                                   + 
+ *	+  .  .  .  .  |  .  .  .  .  ~  B  + 
+ *	+  +  +  +  +  +  +  +  +  +  +  =  +
+ * 
+ * * *Cas où le Bleu se fait manger sur sa case de départ : direction l'écurie * * *
+ * 
+ *  +  =  +  +  +  +  +  +  +  +  +  +  + 
+ *	+  #  .  .  @  .  .  .  .  .  .  .  + 
+ *	+                                   + 
+ *	+  .  .  .  *           *  .  .  R  + 
+ *	+                                   + 
+ *	+  .  .  .  .  |  .  .  .  .  ~  B  + 
+ *	+  +  +  +  +  +  +  +  +  +  +  =  +
+ *
+ * TOUR SUIVANT : (Rouge, dé = 1)
+ * 
+ *  +  =  +  +  +  +  +  +  +  +  +  +  + 
+ *	+  #  .  .  @  .  .  .  .  .  .  .  + 
+ *	+                                   + 
+ *	+  .  .  .  *           *  .  .  .  + 
+ *	+                                   + 
+ *	+  .  .  .  .  |  .  .  .  .  ~  R  + 
+ *	+  +  +  +  +  +  +  +  +  +  +  B  +
+ *
+ *
+ *  Le joueur Bleu se trouve sur sa case de départ. Admettons que le joueur Rouge face 1 au dé.
+ *  Il mange donce le joueur Bleu, puis en accord avec l'implématation choisit, il sera renvoyé cette fois
+ *  à l'écurie.
  */
 public class Main {
 	
@@ -22,6 +69,7 @@ public class Main {
 	   * @param args Array of parameters
 	   */
 	public static void main(String[] args) {
+		//Select board a valid size
 		Scanner s=new Scanner(System.in);
 		System.out.print("Write the length of the board in [11,31] : ");
 		int size=0;
@@ -38,12 +86,8 @@ public class Main {
 			}
 			size=s.nextInt();
 		}
-		/*if(size<11) {
-			System.out.println("Size was lower than 11 : board size set to 11 !\n");
-			size=11;
-		}*/
-		//Create a new game with a board of the size given in args 
-		// Or of size 16 minimum (default 16)
+
+		//Create a new game with a board of the size given in size in [11,31]
 		Game game= new Game(size);
 		
 		//Plays the game with the red going first in 1 in parameter and the blue otherwise
