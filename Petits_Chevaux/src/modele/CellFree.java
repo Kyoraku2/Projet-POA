@@ -11,7 +11,7 @@ public class CellFree extends CellPlayable{
 	//////Constructor //////
 
 	/**
-	 * Constructor of CellFinish
+	 * Constructor of CellFree
 	 * The symbol is the same for all cells of same type
 	 */
 	public CellFree() {
