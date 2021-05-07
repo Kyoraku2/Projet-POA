@@ -11,7 +11,7 @@ public class CellStart extends CellPlayable{
 	//////Constructor //////
 
 	/**
-	 * Constructor of CellFinish
+	 * Constructor of CellStart
 	 * The symbol is the same for all cells of same type
 	 * 
 	 */
