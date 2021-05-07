@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 /* Bonus :
  * - Selection de la taille du plateau
+ * - Retour en arrière si le joueur ne fait pas le bon nombre pour accéder à la case d'arrivée
  * - Règle spéciale : Comme l'énoncé le suggère, lorsqu'un joueur est "mangé" par un autre,
  * il est renvoyé à sa case de départ. Cependant, dans le cas ou le joueur mangé se trouve déjà sur
  * sa case de départ, il sera renvoyé à l'écurie.
