@@ -43,6 +43,12 @@ public class Rider {
 	 */
 	private Position start;
 	
+	/**
+	 * The position where the rider ends
+	 * 	(wins the game)
+	 */
+	private Position end;
+	
 
 	////// Constructor //////
 	
@@ -53,13 +59,14 @@ public class Rider {
 	 * @param s The position of the rider's starting point
 	 * @param c Color of the rider
 	 */
-	public Rider(Position p, Position s,Couleur c) {
+	public Rider(Position p, Position s, Position e, Couleur c) {
 		pos=p;
 		color=c;
 		inHole=-1;
 		river=false;
 		hedge=false;
 		start=s;
+		end=e;
 	}
 	
 
@@ -90,6 +97,15 @@ public class Rider {
 	 */	
 	public Position getStart() {
 		return start;
+	}
+	
+	/**
+	 * Getter of the end position of the rider
+	 * 
+	 * @return the end position
+	 */	
+	public Position getEnd() {
+		return end;
 	}
 	
 	/**

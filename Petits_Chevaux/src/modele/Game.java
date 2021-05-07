@@ -49,9 +49,16 @@ public class Game {
 		de=new De();
 		board=new Board(size);
 		riders=new LinkedList<Rider>();
-		riders.add(new Rider(new Position(1,0),new Position(1,1),Couleur.RED));
-		riders.add(new Rider(new Position(board.getCols()-2,board.getRows()-1),new Position(board.getCols()-2,board.getRows()-2),Couleur.BLUE));
-		board.init();
+		int rows=board.getRows();
+		int cols=board.getCols();
+		if(cols%2==0) {
+			riders.add(new Rider(new Position(1,0),new Position(1,1),new Position((int)(cols/2)-3,(int)(rows/2)),Couleur.RED));
+			riders.add(new Rider(new Position(board.getCols()-2,board.getRows()-1),new Position(board.getCols()-2,board.getRows()-2),new Position((int)(cols/2)+2,(int)(rows/2)),Couleur.BLUE));
+		}else {
+			riders.add(new Rider(new Position(1,0),new Position(1,1),new Position((int)(cols/2)+1-3,(int)(rows/2)),Couleur.RED));
+			riders.add(new Rider(new Position(board.getCols()-2,board.getRows()-1),new Position(board.getCols()-2,board.getRows()-2),new Position((int)(cols/2)+1+1,(int)(rows/2)),Couleur.BLUE));
+		}
+		board.init(riders.get(0),riders.get(1));
 	}
 	
 	

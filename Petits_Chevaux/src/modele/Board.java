@@ -24,15 +24,6 @@ public class Board {
 	 * ArrayList of ArrayList of Cell modeling a board 
 	 */
 	private ArrayList<ArrayList<Cell>> cells;
-	/**
-	 * Position where the red player finish and win the race
-	 */
-	private Position end_red;
-	/**
-	 * Position where the blue player finish and win the race
-	 */
-	private Position end_blue;
-	
 		
 	////// Constructor //////
 		
@@ -51,14 +42,6 @@ public class Board {
 			for(int j=0; j<rows;++j) {
 				cells.get(i).add(new CellFree());
 			}
-		}
-		
-		if(cols%2==0) {
-			end_red=new Position((int)(cols/2)-3,(int)(rows/2));
-			end_blue=new Position((int)(cols/2)+2,(int)(rows/2));
-		}else {
-			end_red=new Position((int)(cols/2)+1-3,(int)(rows/2));
-			end_blue=new Position((int)(cols/2)+1+1,(int)(rows/2));
 		}
 	}
 		
@@ -103,25 +86,6 @@ public class Board {
 	public char getCellType(Position p) {
 		return getCell(p).getSymbol();
 	}
-
-	/**
-	 * Getter of the position where the red rider end the race
-	 * 
-	 * @return The end position of red
-	 */
-	public Position getRedEnd() {
-		return end_red;
-	}
-	
-	/**
-	 * Getter of the position where the blue rider end the race
-	 * 
-	 * @return The end position of blue
-	 */
-	public Position getBlueEnd() {
-		return end_blue;
-	}
-	
 	/**
 	 * Initialize the board
 	 * Put	CellWhite where the players doesn't go
@@ -132,7 +96,7 @@ public class Board {
 	 * Then calculate where the CellFinish of each player will be
 	 * 
 	 */
-	public void init() {
+	public void init(Rider r1, Rider r2) {
 		for(int i=0;i<rows;++i) {
 			if(i==0 || i==rows-1) {
 				for(int j=0; j<cols;j++) {
@@ -158,11 +122,11 @@ public class Board {
 		changeCell('=',new Position(cols-2,rows-1));
 		changeCell('#',new Position(1,1));
 		changeCell('#',new Position(cols-2,rows-2));
-		for(int i=end_red.getCol();i<end_blue.getCol();++i) {
+		for(int i=r1.getEnd().getCol();i<r2.getEnd().getCol();++i) {
 			changeCell(' ',new Position(i,(int)(rows/2)));
 		}
-		changeCell('*',new Position(end_red.getCol(),end_red.getRow()));
-		changeCell('*',new Position(end_blue.getCol(),end_blue.getRow()));
+		changeCell('*',new Position(r1.getEnd().getCol(),r1.getEnd().getRow()));
+		changeCell('*',new Position(r2.getEnd().getCol(),r2.getEnd().getRow()));
 	}
 	
 	/**
@@ -251,7 +215,7 @@ public class Board {
 					move(r,r.getPos(),new Position(x,y-2));
 					n--;
 				}
-				if(y==3 && x<end_red.getCol()) {
+				if(y==3 && x<r.getEnd().getCol()) {
 					move(r,r.getPos(),new Position(x+1,y));
 					n--;
 				}
@@ -287,7 +251,7 @@ public class Board {
 					n--;
 					continue;
 				}
-				if(y==3 && x>end_blue.getCol()) {
+				if(y==3 && x>r.getEnd().getCol()) {
 					move(r,r.getPos(),new Position(x-1,y));
 					n--;
 					continue;
