@@ -23,16 +23,25 @@ public class Main {
 	   */
 	public static void main(String[] args) {
 		Scanner s=new Scanner(System.in);
-		System.out.print("Write the length of the board (minimum 16) : ");
+		System.out.print("Write the length of the board in [11,31] : ");
+		int size=0;
 		while(!s.hasNextInt()) {
 			s.next();
-			System.out.print("That's not an integer, please enter again : ");
+			System.out.print("That's not an integer, please enter again in [11,31] : ");
 		}
-		int size=s.nextInt();
-		if(size<16) {
-			System.out.println("Size was lower than 16 : board size set to 16 !\n");
-			size=16;
+		size=s.nextInt();
+		while(size<11 || size>31) {
+			System.out.print("That's not in the good intervalle, please enter again in [11,31] : ");
+			while(!s.hasNextInt()) {
+				s.next();
+				System.out.print("That's not an integer, please enter again in [11,31] : ");
+			}
+			size=s.nextInt();
 		}
+		/*if(size<11) {
+			System.out.println("Size was lower than 11 : board size set to 11 !\n");
+			size=11;
+		}*/
 		//Create a new game with a board of the size given in args 
 		// Or of size 16 minimum (default 16)
 		Game game= new Game(size);

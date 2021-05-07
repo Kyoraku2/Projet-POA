@@ -58,7 +58,7 @@ public class Game {
 			riders.add(new Rider(new Position(1,0),new Position(1,1),new Position((int)(cols/2)+1-3,(int)(rows/2)),Couleur.RED));
 			riders.add(new Rider(new Position(board.getCols()-2,board.getRows()-1),new Position(board.getCols()-2,board.getRows()-2),new Position((int)(cols/2)+1+1,(int)(rows/2)),Couleur.BLUE));
 		}
-		board.init(riders.get(0),riders.get(1));
+		board.init(riders);
 	}
 	
 	

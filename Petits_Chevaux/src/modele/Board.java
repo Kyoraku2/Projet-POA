@@ -91,12 +91,12 @@ public class Board {
 	 * Put	CellWhite where the players doesn't go
 	 * 		CellFree where they can go
 	 * 		CellSide around the board
-	 * 		Cell start and CellStable of each players
+	 * 		CellStart, CellFinish and CellStable of each players
 	 * 		CellRiver, CellHole and CellHedge according to the board we where given in class
-	 * Then calculate where the CellFinish of each player will be
 	 * 
+	 * @param riders The list of riders
 	 */
-	public void init(Rider r1, Rider r2) {
+	public void init(List<Rider> riders) {
 		for(int i=0;i<rows;++i) {
 			if(i==0 || i==rows-1) {
 				for(int j=0; j<cols;j++) {
@@ -122,11 +122,11 @@ public class Board {
 		changeCell('=',new Position(cols-2,rows-1));
 		changeCell('#',new Position(1,1));
 		changeCell('#',new Position(cols-2,rows-2));
-		for(int i=r1.getEnd().getCol();i<r2.getEnd().getCol();++i) {
+		for(int i=riders.get(0).getEnd().getCol();i<riders.get(1).getEnd().getCol();++i) {
 			changeCell(' ',new Position(i,(int)(rows/2)));
 		}
-		changeCell('*',new Position(r1.getEnd().getCol(),r1.getEnd().getRow()));
-		changeCell('*',new Position(r2.getEnd().getCol(),r2.getEnd().getRow()));
+		changeCell('*',new Position(riders.get(0).getEnd().getCol(),riders.get(0).getEnd().getRow()));
+		changeCell('*',new Position(riders.get(1).getEnd().getCol(),riders.get(1).getEnd().getRow()));
 	}
 	
 	/**
