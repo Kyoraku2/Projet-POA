@@ -49,11 +49,17 @@ public class Rider {
 	 */
 	private Position end;
 	
+	/**
+	 * The position where the rider ends
+	 * 	(wins the game)
+	 */
+	private Position stable;
 
 	////// Constructor //////
 	
 	/**
-	 * Constructor of Rider
+	 * Constructor of Rider,
+	 * 	The stable position is the same position as the rider's beginning position
 	 * 
 	 * @param p The position of the rider (At the beginning it's stable)
 	 * @param s The position of the rider's starting point
@@ -67,6 +73,7 @@ public class Rider {
 		river=false;
 		hedge=false;
 		start=s;
+		stable=p;
 		end=e;
 	}
 	
@@ -107,6 +114,15 @@ public class Rider {
 	 */	
 	public Position getEnd() {
 		return end;
+	}
+	
+	/**
+	 * Getter of the stable's position of the rider
+	 * 
+	 * @return The stable's position
+	 */	
+	public Position getStable() {
+		return stable;
 	}
 	
 	/**

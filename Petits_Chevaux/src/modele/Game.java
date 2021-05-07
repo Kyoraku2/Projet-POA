@@ -147,11 +147,7 @@ public class Game {
 	 * @param r The rider
 	 */
 	private void goStable(Rider r) {
-		if(r.getColor()==Couleur.RED) {
-			board.move(r,r.getPos(),new Position(1,0));
-		}else{
-			board.move(r,r.getPos(),new Position(board.getCols()-2,board.getRows()-1));
-		}
+		board.move(r,r.getPos(),r.getStable());
 	}
 	
 	/**
