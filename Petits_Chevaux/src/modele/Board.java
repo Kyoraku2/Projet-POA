@@ -52,7 +52,7 @@ public class Board {
 	/**
 	 * Getter of the number of columns of the board
 	 * 
-	 * @return the number of columns
+	 * @return The number of columns
 	 */
 	public int getCols() {
 		return cols;
@@ -61,7 +61,7 @@ public class Board {
 	/**
 	 * Getter of the number of rows of the board
 	 * 
-	 * @return the number of rows
+	 * @return The number of rows
 	 */
 	public int getRows() {
 		return rows;
@@ -70,7 +70,7 @@ public class Board {
 	/**
 	 * Getter of a cell of the board 
 	 * 
-	 * @param p the position of the cell we want
+	 * @param p The position of the cell we want
 	 * @return The cell
 	 */
 	public Cell getCell(Position p) {
@@ -81,7 +81,7 @@ public class Board {
 	 * Getter of the type of a cell of the board 
 	 * 	Uses getCell
 	 * 
-	 * @param p the position of the cell we want
+	 * @param p The position of the cell we want
 	 * @return The character indicating the type of the cell 
 	 */
 	public char getCellType(Position p) {
@@ -89,10 +89,10 @@ public class Board {
 	}
 	/**
 	 * Initialize the board
-	 * Put	CellWhite where the players doesn't go
-	 * 		CellFree where they can go
-	 * 		CellSide around the board
-	 * 		CellStart, CellFinish and CellStable of each players
+	 * Put	CellWhite where the players doesn't go,
+	 * 		CellFree where they can go,
+	 * 		CellSide around the board,
+	 * 		CellStart, CellFinish and CellStable of each players,
 	 * 		CellRiver, CellHole and CellHedge according to the board we where given in class
 	 * 
 	 * @param riders The list of riders
@@ -183,7 +183,7 @@ public class Board {
 	
 	
 	/**
-	 * Move a rider from a cell to another
+	 * Move a rider from a cell to another,
 	 * Checks if the new position is valid then move the rider to it
 	 * 
 	 * @param r		The rider we want to move
@@ -197,9 +197,9 @@ public class Board {
 	}
 	
 	/**
-	 * Allow to move the rider of several cases according to his path
-	 * First it checks what player has to move since they don't have the same path
-	 * Then while the rider hasn't moved of the number of cell he has 
+	 * Allow to move the rider of several cases according to his path,
+	 * First it checks what player has to move since they don't have the same path,
+	 * Then while the rider hasn't moved of the number of cell he has to
 	 * 		it checks where it is and move it to the next cell 
 	 * 
 	 * @param r	The rider we want to move
@@ -289,7 +289,7 @@ public class Board {
 	}
 	
 	/**
-	 * Allows to represent the board of the game 
+	 * Allows to represent the board of the game,
 	 * 	shows the players and all the specials cells
 	 * 
 	 * @param r1 The first player

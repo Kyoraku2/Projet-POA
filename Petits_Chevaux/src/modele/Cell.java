@@ -11,8 +11,8 @@ public abstract class Cell {
 	//////Attributes //////
 	
 	/**
-	 * symbol of the cell
-	 * used to know it's type and to print it on the board
+	 * Symbol of the cell,
+	 * Used to know it's type and to print it on the board
 	 */	
 	private char symbol;
 	
@@ -33,7 +33,7 @@ public abstract class Cell {
 	/**
 	 * Getter of the symbol of the cell
 	 * 
-	 * @return the symbol
+	 * @return The symbol
 	 */
 	public char getSymbol() {
 		return symbol;
@@ -43,7 +43,7 @@ public abstract class Cell {
 	/**
 	 * Abstract function used to know if a cell is a playable one or not
 	 * 
-	 * @return true if it's playable false otherwise
+	 * @return True if it's playable false otherwise
 	 */
 	abstract public boolean isPlayable();
 }
