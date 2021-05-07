@@ -38,7 +38,7 @@ public class Position {
 
 	/**
 	 * Getter of the column
-	 * @return the number of the column
+	 * @return The number of the column
 	 */
 	public int getCol() {
 		return col;
@@ -46,7 +46,7 @@ public class Position {
 	
 	/**
 	 * Getter of the row
-	 * @return the number of the row
+	 * @return The number of the row
 	 */
 	public int getRow() {
 		return row;
@@ -74,7 +74,7 @@ public class Position {
 	}
 	
 	/**
-	 * Allows to show the position 
+	 * Allows to show the position,
 	 * 	Used for developing 
 	 * 
 	 * @return A String made from the column and the row
