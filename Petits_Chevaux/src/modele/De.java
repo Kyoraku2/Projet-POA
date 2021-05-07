@@ -40,7 +40,7 @@ public class De {
 	/**
 	 * Getter of the value of the dice
 	 * 
-	 * @return the value
+	 * @return The value
 	 */
 	int getValue() {
 		return value;

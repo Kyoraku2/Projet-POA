@@ -11,7 +11,7 @@ public class CellHedge extends CellPlayable{
 	//////Constructor //////
 
 	/**
-	 * Constructor of CellFinish
+	 * Constructor of CellHedge
 	 * The symbol is the same for all cells of same type
 	 */
 	public CellHedge() {
@@ -22,7 +22,7 @@ public class CellHedge extends CellPlayable{
 
 	/**
 	 * 	Function used to process the effect of the cell on the player
-	 * 	and explains this effect
+	 * 	and explains this effect,
 	 * 	Sets the boolean hedge of the player to true
 	 * 
 	 * @param r The rider entering the cell

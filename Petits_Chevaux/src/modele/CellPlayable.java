@@ -11,7 +11,7 @@ public abstract class CellPlayable extends Cell implements Questionnable{
 	//////Constructor //////
 	
 	/**
-	 * Constructor of Cell
+	 * Constructor of CellPlayable
 	 * 
 	 * @param s The character used for it's symbol
 	 */
@@ -25,7 +25,7 @@ public abstract class CellPlayable extends Cell implements Questionnable{
 	/**
 	 * Allows to know is a cell is a playable one or not
 	 * 
-	 * @return true because all cell extending CellPlayables are playable
+	 * @return True because all cell extending CellPlayables are playable
 	 */
 	public boolean isPlayable() {
 		return true;

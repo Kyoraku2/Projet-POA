@@ -11,7 +11,7 @@ public class CellHole extends CellPlayable{
 	//////Constructor //////
 
 	/**
-	 * Constructor of CellFinish
+	 * Constructor of CellHole
 	 * The symbol is the same for all cells of same type
 	 */
 	public CellHole() {
@@ -23,7 +23,7 @@ public class CellHole extends CellPlayable{
 
 	/**
 	 * 	Function used to process the effect of the cell on the player
-	 * 	and explains this effect
+	 * 	and explains this effect,
 	 * 	Increments or reset the counter of turns spend in a hole of the player
 	 * 
 	 * @param r The rider entering the cell

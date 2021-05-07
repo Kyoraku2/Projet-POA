@@ -31,7 +31,7 @@ public class Game {
 	////// Constructor //////
 	
 	/**
-	 * Default constructor of game
+	 * Default constructor of game,
 	 * Call the other constructor with the size 16
 	 */
 	public Game() {
@@ -39,8 +39,8 @@ public class Game {
 	}
 	
 	/**
-	 * Constructor of Game
-	 * Create a dice, add two riders to the list
+	 * Constructor of Game,
+	 * Create a dice, add two riders to the list,
 	 * Create and initialize a board of size size
 	 * 
 	 * @param size The size of the board that will be created
@@ -65,9 +65,9 @@ public class Game {
 	////// Methods //////
 
 	/**
-	 * The game loop
-	 * Calls the function turn for each turn of each player
-	 * If one player win end the game loop and calls end
+	 * The game loop,
+	 * Calls the function turn for each turn of each player,
+	 * If one player win ends the game loop and calls end()
 	 * 
 	 * @param first The first player to play (1 for red)
 	 */
@@ -102,9 +102,9 @@ public class Game {
 	}
 	
 	/**
-	 * Allows to move a player of a number of case given by the dice
-	 * If it lands on the same case as the other rider the other rider will be sent back to it's start 
-	 * 		and the rider is already on it's start it will go back to it's stable
+	 * Allows to move a player of a number of case given by the dice,
+	 * If it lands on the same case as the other rider the other rider will be sent back to it's start,
+	 * 		and if the rider is already on it's start it will go back to it's stable.
 	 * Prints the result of the process of the cell
 	 * 
 	 * @param r1 The first rider
@@ -129,7 +129,7 @@ public class Game {
 	
 	
 	/**
-	 * Send a rider back to the start cell
+	 * Sends a rider back to the start cell
 	 * 
 	 * @param r The rider
 	 */
@@ -138,7 +138,7 @@ public class Game {
 	}
 	
 	/**
-	 * Send a rider back to the stable cell
+	 * Sends a rider back to the stable cell
 	 * 
 	 * @param r The rider
 	 */
@@ -151,10 +151,10 @@ public class Game {
 	}
 	
 	/**
-	 * Allows to make a turn 
-	 * Ask the player to press enter to roll the dice
-	 * Then prints information on this turn (who plays and how much)
-	 * Checks on witch cell the player is and then if he can move
+	 * Allows to make a turn, 
+	 * Ask the player to press enter to roll the dice (or to enter the value for the evaluation version).
+	 * Then prints information on this turn (who plays and how much),
+	 * Checks on witch cell the player is and then if he can move,
 	 * If he can move it moves it to the right cell using go
 	 * 
 	 * @param r1 The first rider
