@@ -75,7 +75,7 @@ public class Position {
 	
 	/**
 	 * Allows to show the position,
-	 * 	Used for developing 
+	 * 	Used for development
 	 * 
 	 * @return A String made from the column and the row
 	 */
