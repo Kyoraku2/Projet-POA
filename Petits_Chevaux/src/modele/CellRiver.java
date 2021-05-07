@@ -28,7 +28,8 @@ public class CellRiver extends CellPlayable{
 	 * 
 	 * @param r The rider entering the cell
 	 * @return A String explaining what the cell does
-	 */	public String process (Rider r) {
+	 */	
+	public String process (Rider r) {
 		r.setRiver(true);
 		String str="** Le cavalier ";
 		if(r.getColor()==Couleur.RED) {
