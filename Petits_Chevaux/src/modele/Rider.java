@@ -16,12 +16,12 @@ public class Rider {
 	private Position pos;
 	
 	/**
-	 * Counter of turns spend in a hole 
+	 * Counter of turns spend in a hole.
 	 */
 	private int inHole;
 	
 	/**
-	 * Boolean allowing to know is the rider is stuck in a river 
+	 * Boolean allowing to know is the rider is stuck in a river
 	 * True if is false otherwise
 	 */
 	private boolean river;
@@ -76,7 +76,7 @@ public class Rider {
 	/**
 	 * Getter of the position of the rider
 	 * 
-	 * @return the current position of the rider
+	 * @return The current position of the rider
 	 */	
 	public Position getPos() {
 		return pos;
@@ -85,7 +85,7 @@ public class Rider {
 	/**
 	 * Getter of the color of the rider
 	 * 
-	 * @return the color of the rider
+	 * @return The color of the rider
 	 */	
 	public Couleur getColor() {
 		return color;
@@ -94,7 +94,7 @@ public class Rider {
 	/**
 	 * Getter of the start position of the rider
 	 * 
-	 * @return the start position
+	 * @return The start position
 	 */	
 	public Position getStart() {
 		return start;
@@ -103,7 +103,7 @@ public class Rider {
 	/**
 	 * Getter of the end position of the rider
 	 * 
-	 * @return the end position
+	 * @return The end position
 	 */	
 	public Position getEnd() {
 		return end;
