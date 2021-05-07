@@ -73,26 +73,30 @@ public class Game {
 	 */
 	public void play(int first) {
 		boolean ended=false;
-		Rider r1= riders.get(0); //red
-		Rider r2= riders.get(1); //blue
+		Rider r1= riders.get(0); //Red
+		Rider r2= riders.get(1); //Blue
 		System.out.println(this.toString());
 		while(ended==false){
 			if(first==1){
+				//Red turn
 				ended=turn(r1,r2);
 				if(ended) {
 					end(r1);
 					break;
 				}
+				//Blue turn
 				ended=turn(r2,r1);
 				if(ended) {
 					end(r2);
 				}
 			}else{
+				//Blue turn
 				ended=turn(r2,r1);
 				if(ended) {
 					end(r2);
 					break;
 				}
+				//Red turn
 				ended=turn(r1,r2);
 				if(ended) {
 					end(r1);
@@ -159,7 +163,7 @@ public class Game {
 	 * 
 	 * @param r1 The first rider
 	 * @param r2 The other rider
-	 * @return True if the player has won (if he is on the finished line) false otherwise
+	 * @return True if the player has won (if he is on the finished cell) false otherwise
 	 */
 	private boolean turn(Rider r1, Rider r2){
 		////////////////////////////Exam part (not random dice)
@@ -217,7 +221,7 @@ public class Game {
 				break;
 			case '*'://if end
 				return true;
-			default://Si free :
+			default://if free :
 				go(r1,r2,value);
 				break;
 		}
