@@ -35,8 +35,9 @@ public class Board {
 	public Board(int c) {
 		rows=7;
 		this.cols=c+2;
-		cells=new ArrayList<ArrayList<Cell>>(cols);
 		
+		//Cells initialization
+		cells=new ArrayList<ArrayList<Cell>>(cols);
 		for(int i=0;i<cols;++i) {
 			cells.add(new ArrayList<Cell>(rows));
 			for(int j=0; j<rows;++j) {
@@ -97,6 +98,7 @@ public class Board {
 	 * @param riders The list of riders
 	 */
 	public void init(List<Rider> riders) {
+		//CellSide initialization
 		for(int i=0;i<rows;++i) {
 			if(i==0 || i==rows-1) {
 				for(int j=0; j<cols;j++) {
@@ -111,20 +113,30 @@ public class Board {
 				}
 			}
 		}
+		
+		//CellWhite initialization
 		for(int i=1; i<cols-1;i++) {
 			changeCell(' ',new Position(i,2));
 			changeCell(' ',new Position(i,4));
 		}
-		changeCell('@',new Position(4,1));
-		changeCell('|',new Position(5,5));
-		changeCell('~',new Position(10,5));
-		changeCell('=',new Position(1,0));
-		changeCell('=',new Position(cols-2,rows-1));
-		changeCell('#',new Position(1,1));
-		changeCell('#',new Position(cols-2,rows-2));
 		for(int i=riders.get(0).getEnd().getCol();i<riders.get(1).getEnd().getCol();++i) {
 			changeCell(' ',new Position(i,(int)(rows/2)));
 		}
+		
+		//Special cells initialization
+		//Hole
+		changeCell('@',new Position(4,1));
+		//Hedge
+		changeCell('|',new Position(5,5));
+		//River
+		changeCell('~',new Position(10,5));
+		//Stable
+		changeCell('=',new Position(1,0));
+		changeCell('=',new Position(cols-2,rows-1));
+		//Start 
+		changeCell('#',new Position(1,1));
+		changeCell('#',new Position(cols-2,rows-2));
+		//End
 		changeCell('*',new Position(riders.get(0).getEnd().getCol(),riders.get(0).getEnd().getRow()));
 		changeCell('*',new Position(riders.get(1).getEnd().getCol(),riders.get(1).getEnd().getRow()));
 	}
@@ -196,29 +208,36 @@ public class Board {
 	public void followPath(Rider r, int n) {
 		Position init_rpos=r.getPos();
 		if(r.getColor()==Couleur.RED) {
+			//Red Rider
 			while(n!=0) {
 				int x=r.getPos().getCol();
 				int y=r.getPos().getRow();
+				//Up
 				if(x<cols-2 && y==1) {
 					move(r,r.getPos(),new Position(x+1,y));
 					n--;
 				}
+				//Right
 				if(x==cols-2 && y<rows-2) {
 					move(r,r.getPos(),new Position(x,y+2));
 					n--;
 				}
+				//Down
 				if(x>1 && y==rows-2) {
 					move(r,r.getPos(),new Position(x-1,y));
 					n--;
 				}
+				//Left
 				if(x==1 && y>3) {
 					move(r,r.getPos(),new Position(x,y-2));
 					n--;
 				}
+				//End Line
 				if(y==3 && x<r.getEnd().getCol()) {
 					move(r,r.getPos(),new Position(x+1,y));
 					n--;
 				}
+				//End Position
 				if(getCell(r.getPos()).getSymbol()=='*') {
 					if(n!=0) {
 						System.out.println("Le cavalier ROUGE a dépassé la case départ !");
@@ -228,34 +247,36 @@ public class Board {
 				}
 			}
 		}else {
+			//Blue Rider
 			while(n!=0) {
 				int x=r.getPos().getCol();
 				int y=r.getPos().getRow();
+				//Down
 				if(x>1 && y==rows-2) {
 					move(r,r.getPos(),new Position(x-1,y));
 					n--;
-					continue;
 				}
+				//Left
 				if(x==1 && y>1) {
 					move(r,r.getPos(),new Position(x,y-2));
 					n--;
-					continue;
 				}
+				//Up
 				if(x<cols-2 && y==1) {
 					move(r,r.getPos(),new Position(x+1,y));
 					n--;
-					continue;
 				}
+				//Right
 				if(x==cols-2 && y<3) {
 					move(r,r.getPos(),new Position(x,y+2));
 					n--;
-					continue;
 				}
+				//End line
 				if(y==3 && x>r.getEnd().getCol()) {
 					move(r,r.getPos(),new Position(x-1,y));
 					n--;
-					continue;
 				}
+				//End Position
 				if(getCell(r.getPos()).getSymbol()=='*') {
 					if(n!=0) {
 						System.out.println("Le cavalier BLEU a dépassé la case départ !");
@@ -279,12 +300,15 @@ public class Board {
 		String str="";
 		for(int i=0;i<rows;++i) {
 			for(int j=0;j<cols;++j) {
+				//Red on the board
 				if(r1.getPos().equals(new Position(j,i))) {
 					str+=" R ";
 				}else {
+					//Blue on the board
 					if(r2.getPos().equals(new Position(j,i))) {
 						str+=" B ";
 					}else {
+						//Other cells
 						str+=" "+cells.get(j).get(i).getSymbol()+" ";
 					}
 				}
