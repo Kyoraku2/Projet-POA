@@ -21,13 +21,13 @@ public class Rider {
 	private int inHole;
 	
 	/**
-	 * Boolean allowing to know is the rider is stuck in a river
+	 * Boolean allowing to know if the rider is stuck in a river, 
 	 * True if is false otherwise
 	 */
 	private boolean river;
 	
 	/**
-	 * Boolean allowing to know is the rider is stuck behind a hedge 
+	 * Boolean allowing to know if the rider is stuck behind a hedge, 
 	 * True if is false otherwise
 	 */
 	private boolean hedge;
@@ -137,7 +137,7 @@ public class Rider {
 	}
 	
 	/**
-	 * Increment the number of turns spent in a hole by ont
+	 * Increment the number of turns spent in a hole by one
 	 */
 	public void incrementHole() {
 		++inHole;
