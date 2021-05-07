@@ -11,7 +11,7 @@ public class CellStable extends CellPlayable{
 	//////Constructor //////
 
 	/**
-	 * Constructor of CellFinish
+	 * Constructor of CellStable
 	 * The symbol is the same for all cells of same type
 	 * 
 	 */

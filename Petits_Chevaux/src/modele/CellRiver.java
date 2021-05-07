@@ -11,7 +11,7 @@ public class CellRiver extends CellPlayable{
 	//////Constructor //////
 
 	/**
-	 * Constructor of CellFinish
+	 * Constructor of CellRiver
 	 * The symbol is the same for all cells of same type
 	 * 
 	 */
@@ -23,7 +23,7 @@ public class CellRiver extends CellPlayable{
 
 	/**
 	 * 	Function used to process the effect of the cell on the player
-	 * 	and explains this effect
+	 * 	and explains this effect,
 	 * 	Sets the river boolean of the rider to true
 	 * 
 	 * @param r The rider entering the cell

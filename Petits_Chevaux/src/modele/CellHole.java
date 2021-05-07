@@ -11,7 +11,7 @@ public class CellHole extends CellPlayable{
 	//////Constructor //////
 
 	/**
-	 * Constructor of CellFinish
+	 * Constructor of CellHole
 	 * The symbol is the same for all cells of same type
 	 */
 	public CellHole() {
