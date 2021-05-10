@@ -2,6 +2,8 @@ package modele;
 
 import java.util.Scanner;
 
+import vue.Window;
+
 /** 
  * Game of "Petits Chevaux"
  * 
@@ -70,6 +72,8 @@ public class Main {
 	   * @param args Array of parameters
 	   */
 	public static void main(String[] args) {
+		
+		/*
 		//Select board a valid size
 		Scanner s=new Scanner(System.in);
 		System.out.print("Write the length of the board in [11,31] : ");
@@ -87,11 +91,21 @@ public class Main {
 			}
 			size=s.nextInt();
 		}
-
+		 */
+		
+		
 		//Create a new game with a board of the size given in size in [11,31]
-		Game game= new Game(size);
+		Game game= new Game();
+		
+		Window w=new Window();
+		w.setVisible(true);
 		
 		//Plays the game with the red going first in 1 in parameter and the blue otherwise
 		game.play(1);
+		
+		
+		
 	}
+	
+	
 }

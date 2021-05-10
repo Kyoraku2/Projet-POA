@@ -42,7 +42,7 @@ public class De {
 	 * 
 	 * @return The value
 	 */
-	int getValue() {
+	public int getValue() {
 		return value;
 	}
 	

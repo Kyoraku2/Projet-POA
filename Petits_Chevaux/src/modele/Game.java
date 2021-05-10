@@ -63,6 +63,11 @@ public class Game {
 	
 	
 	////// Methods //////
+	
+	
+	public De getDe() {
+		return de;
+	}
 
 	/**
 	 * The game loop,
