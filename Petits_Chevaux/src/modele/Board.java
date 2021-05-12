@@ -48,6 +48,10 @@ public class Board {
 		
 		
 	////// Methods //////
+	
+	public ArrayList<ArrayList<Cell>> getCells(){
+		return cells;
+	}
 
 	/**
 	 * Getter of the number of columns of the board

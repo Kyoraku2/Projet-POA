@@ -65,8 +65,8 @@ public class Game {
 	////// Methods //////
 	
 	
-	public De getDe() {
-		return de;
+	public Board getBoard() {
+		return board;
 	}
 
 	/**
