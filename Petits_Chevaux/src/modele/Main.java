@@ -91,19 +91,21 @@ public class Main {
 			}
 			size=s.nextInt();
 		}
-		 */
+		 
 		
 		
 		//Create a new game with a board of the size given in size in [11,31]
 		Game game= new Game();
 		
-		Window w=new Window();
-		w.setVisible(true);
+		
+		
 		
 		//Plays the game with the red going first in 1 in parameter and the blue otherwise
 		game.play(1);
+		*/
 		
-		
+		Window w=new Window();
+		w.setVisible(true);
 		
 	}
 	

@@ -2,23 +2,28 @@ package vue;
 
 
 import javax.swing.*;
+
+
+import controleurs.*;
 import modele.*;
 import java.awt.*;
 
 public class Window extends JFrame {
 	
-	private int width; 
-	private int height; 
+
 	
 	private JButton roll; 
+	
+	private JPanel center= new JPanel();
+	
 	
 	
 
 	public Window(){
 		
-		width=500;
-		height=300;
-		setSize(width,height);
+		btnListener list = new btnListener(this);
+		
+	
 		setTitle("Petits Chevaux");
 		Container c=this.getContentPane();		
 		c.setLayout(new BorderLayout());
@@ -34,19 +39,16 @@ public class Window extends JFrame {
 		
 		
 ////CENTER
-		JPanel center= new JPanel();
-		center.setBackground(Color.white);
+
+		center.setBackground(Color.white);		
+
 		
-		//board.getCols()
-		
-		center.setLayout(new GridLayout(7,5));
 
 		
 ////DOWN
 		JPanel down= new JPanel();
-		down.setBackground(Color.white);
+		down.setBackground(Color.LIGHT_GRAY);
 		
-		//board.getCols()
 		
 		
 		
@@ -59,5 +61,13 @@ public class Window extends JFrame {
 		
 		
 	}
+	
+	
+	public JPanel getCenter() {
+		return center;
+	}
+	
+
+	
 	
 }
