@@ -43,6 +43,7 @@ public class Window extends JFrame {
 		
 		roll=new JButton("Rouler le dé");
 		roll.addActionListener(list);
+
 		
 		step=new JButton("Pas à pas");
 		step.addActionListener(list);

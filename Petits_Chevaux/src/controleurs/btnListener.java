@@ -155,7 +155,7 @@ public class btnListener implements ActionListener{
 		}else {
 			// Pas à pas c chiant on verra a p r e s
 			
-			//Pour animer avec rouler de, juste while(de){follow(1)+timer+move}
+			//Pour animer avec rouler de, juste while(de){follow(1)+timer+move} Et followpath tableau positions
 			game.getBoard().followPath(r1,de);
 			
 		}
@@ -208,5 +208,12 @@ public class btnListener implements ActionListener{
 	}
 	
 	
-	
+	/*Pour les bonus :
+	 * - On peut créer une liste de playable cell (hors start, end et stable), qu'on shuffle 
+	 * 	 et ensuite on cast en random les type pour les bonus
+	 * - Jsp mdr (c le plus chiant, si on fait tous les autre ça passe)
+	 * - Création d'une autre fenêtre qui va communiquer avec celle du plateau
+	 * - C'est simple, juste faut créer un menu
+	 * - Soit un random soit une saisie utilisateur
+	 * */
 }
