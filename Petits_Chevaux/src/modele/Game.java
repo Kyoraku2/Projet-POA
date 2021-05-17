@@ -64,9 +64,16 @@ public class Game {
 	
 	////// Methods //////
 	
+	public Rider getRider(int i) {
+		return riders.get(i);
+	}
 	
 	public Board getBoard() {
 		return board;
+	}
+	
+	public De getDice() {
+		return de;
 	}
 
 	/**
@@ -168,6 +175,7 @@ public class Game {
 	 */
 	private boolean turn(Rider r1, Rider r2){
 		////////////////////////////Exam part (not random dice)
+		/*
 		Scanner s=new Scanner(System.in);
 		System.out.print("Write value of dice : ");
 		while(!s.hasNextInt()) {
@@ -175,14 +183,15 @@ public class Game {
 			System.out.print("That's not an integer, please enter again : ");
 		}
 		int value=s.nextInt();
+		*/
 		////////////////////////////End Exam part
 		
 		//For random dice, put above in comments end remove bellow comments 
 		//Scanner s=new Scanner(System.in);
 		//System.out.print("Press ENTER to roll the dice : ");
 		//s.nextLine();
-		//de.rouler();
-		//int value=de.getValue();
+		de.rouler();
+		int value=de.getValue();
 
 		System.out.print("Le cavalier de couleur ");
 		System.out.print(r1.getColor()==Couleur.RED?"ROUGE ":"BLEU ");

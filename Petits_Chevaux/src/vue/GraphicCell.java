@@ -12,17 +12,17 @@ public class GraphicCell{
 	//voila :) je t'aime <2
 	
 	private JPanel cell=new JPanel();
-	private JLabel player;
+	private JLabel texte;
 	
 	public GraphicCell(Cell c){
 		
 		cell.setSize(50,50);
 		cell.setLayout(new GridBagLayout());
 		
-		player=new JLabel(" ");
-		player.setBorder(null);
+		texte=new JLabel(" ");
+		texte.setBorder(null);
 		
-		cell.add(player);
+		cell.add(texte);
 		
 		initialize(c);
 		
@@ -70,6 +70,10 @@ public class GraphicCell{
 	
 	public JPanel getCell() {
 		return cell;
+	}
+	
+	public void setLabel(String str) {
+		texte.setText(str);
 	}
 	
 }
