@@ -1,5 +1,6 @@
 package controleurs;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.*;
@@ -14,18 +15,129 @@ public class btnListener implements ActionListener{
 	Game game;
 	private ArrayList<ArrayList<GraphicCell>> cells;
 	private int turn; // red :<=0, bleu :>0
+	private int sizeBoard;
 	
 	public btnListener(Window w) {
 		window=w;
 		turn=1;
-		game=new Game();
+		sizeBoard=16;
+		
+	}
 	
+	
+	
+	
+	
+
+	public void actionPerformed(ActionEvent e) {
+		boolean ended=false;
+		if(e.getSource()==window.getRoll()){
+			game.getDice().rouler();
+			int value=game.getDice().getValue();
+			cells.get((int)(game.getBoard().getCols()/2)).get(3).setLabel("  "+value+"  ");
+			if(turn<=0) {
+				ended=turn(game.getRider(0),game.getRider(1),value);
+				if(ended) {
+					end(game.getRider(0));
+					return;
+				}
+			}else {
+				ended=turn(game.getRider(1),game.getRider(0),value);
+				if(ended) {
+					end(game.getRider(1));
+					return;
+				}
+			}
+		}
+		
+		if(e.getSource()==window.getStep()) {
+			int value=window.getStepValue();
+			window.getStep().setText("");
+			cells.get((int)(game.getBoard().getCols()/2)).get(3).setLabel("  "+value+"  ");
+			if(turn<=0) {
+				ended=turn(game.getRider(0),game.getRider(1),value);
+				if(ended) {
+					end(game.getRider(0));
+					return;
+				}
+			}else {
+				ended=turn(game.getRider(1),game.getRider(0),value);
+				if(ended) {
+					end(game.getRider(1));
+					return;
+				}
+			}
+		}
+		
+		if(e.getSource()==window.getPlay()) {
+			
+			initGame();
+			
+			window.getC().add(window.getUp(),BorderLayout.NORTH);
+			window.getC().add(window.getCenter(),BorderLayout.CENTER);
+			window.getC().add(window.getDown(),BorderLayout.SOUTH);
+		
+		}
+		
+		if(e.getSource()==window.getEasy()) {
+			window.getPlay().setEnabled(true);
+			sizeBoard=10;
+		}
+		
+		if(e.getSource()==window.getNormal()) {
+			window.getPlay().setEnabled(true);
+			sizeBoard=16;
+		}
+		
+		if(e.getSource()==window.getHard()) {
+			window.getPlay().setEnabled(true);
+			sizeBoard=24;
+		}
+		
+		
+	}
+	
+	private void initGame() {
+		window.getPlay().setEnabled(false);
+		window.getPlay().setVisible(false);
+		
+		window.getDif().setVisible(false);
+		
+		
+		window.getEasy().setEnabled(false);
+		window.getEasy().setVisible(false);
+		
+		window.getNormal().setEnabled(false);
+		window.getNormal().setVisible(false);
+		
+		window.getHard().setEnabled(false);
+		window.getHard().setVisible(false);
+		
+		
+		game=new Game(sizeBoard);
+		
+		initGraphicBoard();
+		
+		
+	}
+	
+	private void initGraphicBoard() {
+		
+		/*
+		 * nb Holes dans easy 1 normal 2(1 trou deux boing une ribiere)  hard 3
+		 * nb truc
+		 * 
+		 * tire ligne entre 1ere et deuxieme 
+		 * puis tire case entre 1 et 16
+		 * on le pose et nbHole-- si 0 on arrete pour les hole
+		 * on refais pour les autres (attention pas au même endroit)
+		 * 
+		 * 
+		 * */
+		
 		window.setSize(game.getBoard().getCols()*50, game.getBoard().getRows()*50+200);
-		//set un size pour toute ces merde
-		// init board (a metre dans btn commencer partie aptes)
 		window.getCenter().setLayout(new GridLayout(game.getBoard().getRows(),game.getBoard().getCols()));
-		
-		
+	
 		cells=new ArrayList<ArrayList<GraphicCell>>(game.getBoard().getCols());
 		for(int i=0;i<game.getBoard().getCols();++i) {
 			cells.add(new ArrayList<GraphicCell>(game.getBoard().getRows()));
@@ -50,52 +162,10 @@ public class btnListener implements ActionListener{
 		cells.get((int)(game.getBoard().getCols()/2)-1).get(3).setLabel("  Dé  ");
 		
 	}
-
-	public void actionPerformed(ActionEvent e) {
-		boolean ended=false;
-		if(e.getSource()==window.getRoll()){
-			game.getDice().rouler();
-			int value=game.getDice().getValue();
-			cells.get((int)(game.getBoard().getCols()/2)).get(3).setLabel("  "+value+"  ");
-			if(turn<=0) {
-				ended=turn(game.getRider(0),game.getRider(1),value);
-				if(ended) {
-					end(game.getRider(0));
-					return;
-				}
-			}else {
-				ended=turn(game.getRider(1),game.getRider(0),value);
-				if(ended) {
-					end(game.getRider(1));
-					return;
-				}
-			}
-		}
-		
-		if(e.getSource()==window.getStep()) {
-			if(turn<=0) {
-				if(game.getRider(0).getStable().equals(game.getRider(0).getPos())) {
-					ended=turn(game.getRider(0),game.getRider(1),6);
-				}else {
-					ended=turn(game.getRider(0),game.getRider(1),1);
-				}
-				if(ended) {
-					end(game.getRider(0));
-					return;
-				}
-			}else {
-				if(game.getRider(1).getStable().equals(game.getRider(1).getPos())) {
-					ended=turn(game.getRider(1),game.getRider(0),6);
-				}else {
-					ended=turn(game.getRider(1),game.getRider(0),1);
-				}
-				if(ended) {
-					end(game.getRider(1));
-					return;
-				}
-			}
-		}
-	}
+	
+	
+	
+	
 	
 	private boolean turn(Rider r1, Rider r2,int value){
 		String txtTurn="Le cavalier de couleur ";
@@ -209,11 +279,8 @@ public class btnListener implements ActionListener{
 	
 	
 	/*Pour les bonus :
-	 * - On peut créer une liste de playable cell (hors start, end et stable), qu'on shuffle 
-	 * 	 et ensuite on cast en random les type pour les bonus
-	 * - Jsp mdr (c le plus chiant, si on fait tous les autre ça passe)
-	 * - Création d'une autre fenêtre qui va communiquer avec celle du plateau
-	 * - C'est simple, juste faut créer un menu
-	 * - Soit un random soit une saisie utilisateur
+	 * - Créer une zone de saisie pour le nombre d'obstacles
+	 * - Créer des boutons pour choisir la difficuté (un entier ? ou juste si source on initialise a telle valeur
+	 * - Créer un entier pour le nombre d'obstacle
 	 * */
 }
