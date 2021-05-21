@@ -41,7 +41,7 @@ public class btnListener implements ActionListener{
 		
 		if(e.getSource()==window.getPerso()) {
 			window.getGameType().setVisible(false);
-			
+			window.getC().add(window.getSizePanel());
 		}
 		
 		boolean ended=false;

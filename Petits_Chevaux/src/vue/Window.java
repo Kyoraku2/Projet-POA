@@ -29,6 +29,9 @@ public class Window extends JFrame {
 	
 	//dans partie personalisé
 	
+	private JPanel size;
+	private JComboBox<Integer> selectSize;
+	
 	//Dans fenetre de jeu
 	
 	private JPanel up = new JPanel();
@@ -101,7 +104,15 @@ public class Window extends JFrame {
 //// Parties personnalisée ////
 		
 		//Classe Graphic board 	
-		
+		size=new JPanel();
+		size.setBackground(Color.LIGHT_GRAY);
+		JLabel sizeLab = new JLabel("Veuillez choisir une taille pour votre plateau : ");
+		selectSize=new JComboBox<Integer>();
+		for(int i=10;i<32;++i) {
+			selectSize.addItem(i);
+		}
+		size.add(sizeLab);
+		size.add(selectSize);
 		//menu random
 		//demander largeur plateau (menu déroulant?)
 		
@@ -160,6 +171,14 @@ public class Window extends JFrame {
 
 		down.add(txtProcess);
 		
+	}
+	
+	public JPanel getSizePanel() {
+		return size;
+	}
+	
+	public JComboBox<Integer> getSelectBox() {
+		return selectSize;
 	}
 	
 	public JPanel getGameType() {
