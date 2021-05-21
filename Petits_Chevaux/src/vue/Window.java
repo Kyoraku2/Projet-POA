@@ -8,6 +8,23 @@ import controleurs.*;
 import modele.*;
 import java.awt.*;
 
+/*
+ * A faire avant de rendre :
+ * Menu de fin
+ * Fonctions dans actionPerformed dans le listener
+ * Renommer un max de variables qui sont nommées comme de la merde
+ * Ranger l'ordre des fonctions
+ * Ranger l'intérieur des fonctions
+ * Division en plusieurs fonctions si c'est vraiment dégueux
+ * JavaDoc + commentaires
+ * Rapport
+ * Mettre des JLabels dans Personnalisée pour expliquer
+ * Revoir mise en forme premier menu + menu partie simple
+ * 
+ * Bonus : boutons de retour
+ */
+
+
 public class Window extends JFrame {
 	
 	private Container c;
@@ -25,12 +42,15 @@ public class Window extends JFrame {
 	private JButton normal;
 	private JButton hard;
 	
+	//A renommmé
 	private JButton play;
+	private JButton playPerso;
 	
 	//dans partie personalisé
 	
 	private JPanel size;
 	private JComboBox<Integer> selectSize;
+	private JButton boxValidate;
 	
 	//Dans fenetre de jeu
 	
@@ -111,15 +131,15 @@ public class Window extends JFrame {
 		for(int i=10;i<32;++i) {
 			selectSize.addItem(i);
 		}
+		boxValidate=new JButton("Valider");
+		boxValidate.addActionListener(list);
 		size.add(sizeLab);
 		size.add(selectSize);
-		//menu random
-		//demander largeur plateau (menu déroulant?)
+		size.add(boxValidate);
 		
-		//then 
-		//mouse listener 
-		//aff un plateu 
-		// clic clic clic change de couleur hehe 
+		playPerso=new JButton("Jouer");
+		playPerso.addActionListener(list);
+		playPerso.setEnabled(false);
 
 		
 //// Fenetre de jeu ////
@@ -173,6 +193,10 @@ public class Window extends JFrame {
 		
 	}
 	
+	public JButton getBoxValidate() {
+		return boxValidate;
+	}
+	
 	public JPanel getSizePanel() {
 		return size;
 	}
@@ -195,6 +219,10 @@ public class Window extends JFrame {
 	
 	public JPanel getDif() {
 		return dif;
+	}
+	
+	public JButton getPlayPerso() {
+		return playPerso;
 	}
 	
 	public JButton getPlay() {

@@ -3,6 +3,8 @@ package vue;
 import javax.swing.*;
 import modele.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GraphicCell{
 	
@@ -21,12 +23,37 @@ public class GraphicCell{
 		cell.add(texte);
 		
 		initialize(c);
-		
+	}
+	
+	public void listen(Game game, Position pos) {
+		cell.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				if(game.getBoard().getCell(pos) instanceof CellFree) {
+					game.getBoard().changeCell('@', pos);
+					initialize(game.getBoard().getCell(pos));
+					return;
+				}
+				if(game.getBoard().getCell(pos) instanceof CellHole) {
+					game.getBoard().changeCell('~', pos);
+					initialize(game.getBoard().getCell(pos));
+					return;
+				}
+				if(game.getBoard().getCell(pos) instanceof CellRiver) {
+					game.getBoard().changeCell('|', pos);
+					initialize(game.getBoard().getCell(pos));
+					return;
+				}
+				if(game.getBoard().getCell(pos) instanceof CellHedge) {
+					game.getBoard().changeCell('.', pos);
+					initialize(game.getBoard().getCell(pos));
+					return;
+				}
+			}
+		});
 	}
 	
 	public void initialize(Cell c) {
 		if(c instanceof CellSide) {
-			//cell.setBackground(Color.GREEN);
 			cell.setBackground(new Color(23,162,33));
 		}
 		if(c instanceof CellWhite) {
@@ -35,17 +62,14 @@ public class GraphicCell{
 		}
 		
 		if(c instanceof CellFinish) {
-			//cell.setBackground(Color.CYAN);
 			cell.setBackground(new Color(53,195,255));
 			cell.setBorder(BorderFactory.createLineBorder(Color.black));
 		}
 		if(c instanceof CellStable) {
-			//cell.setBackground(Color.ORANGE);
 			cell.setBackground(new Color(204,102,0));
 			cell.setBorder(BorderFactory.createLineBorder(Color.black));
 		}
 		if(c instanceof CellStart) {
-			//cell.setBackground(Color.RED);
 			cell.setBackground(new Color(188,0,0));
 			cell.setBorder(BorderFactory.createLineBorder(Color.black));
 		}
@@ -55,12 +79,10 @@ public class GraphicCell{
 			cell.setBorder(BorderFactory.createLineBorder(Color.black));
 		}
 		if(c instanceof CellHole) {
-			//cell.setBackground(Color.YELLOW);
 			cell.setBackground(new Color(255,205,0));
 			cell.setBorder(BorderFactory.createLineBorder(Color.black));
 		}
 		if(c instanceof CellRiver) {
-			//cell.setBackground(Color.BLUE);
 			cell.setBackground(new Color(78,78,255));
 			cell.setBorder(BorderFactory.createLineBorder(Color.black));
 		}

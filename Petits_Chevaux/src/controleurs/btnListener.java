@@ -11,22 +11,17 @@ import modele.*;
 
 public class btnListener implements ActionListener{
 
-	Window window;
-	Game game;
-	private ArrayList<ArrayList<GraphicCell>> cells;
+	private Window window;
+	private Game game;
 	private int turn; // red :<=0, bleu :>0
 	private int sizeBoard;
-	private int nbHole;
-	private int nbRiver;
-	private int nbHedge;
+	private GraphicBoard gboard;
 	
 	public btnListener(Window w) {
 		window=w;
 		turn=1;
 		sizeBoard=16;
-		nbHole=1;
-		nbRiver=1;
-		nbHedge=1;
+		gboard=new GraphicBoard();
 	}
 	
 	
@@ -41,14 +36,36 @@ public class btnListener implements ActionListener{
 		
 		if(e.getSource()==window.getPerso()) {
 			window.getGameType().setVisible(false);
-			window.getC().add(window.getSizePanel());
+			window.getC().add(window.getSizePanel(),BorderLayout.NORTH);
+			sizeBoard=Integer.parseInt(window.getSelectBox().getSelectedItem().toString());
+			window.getC().add(window.getPlayPerso(),BorderLayout.SOUTH);
+		}
+		
+		if(e.getSource()==window.getBoxValidate()) {
+			sizeBoard=Integer.parseInt(window.getSelectBox().getSelectedItem().toString());
+			initGame();
+			window.getC().add(window.getCenter(),BorderLayout.CENTER);
+			window.getPlayPerso().setEnabled(true);
+		}
+		
+		if(e.getSource()==window.getPlayPerso()) {
+			window.getPlayPerso().setEnabled(false);
+			window.getPlayPerso().setVisible(false);
+			
+			window.getSizePanel().setVisible(false);
+			
+			window.getC().add(window.getUp(),BorderLayout.NORTH);
+			window.getC().add(window.getCenter(),BorderLayout.CENTER);
+			window.getC().add(window.getDown(),BorderLayout.SOUTH);
+		
+			gboard.removeListener();
 		}
 		
 		boolean ended=false;
 		if(e.getSource()==window.getRoll()){
 			game.getDice().rouler();
 			int value=game.getDice().getValue();
-			cells.get((int)(game.getBoard().getCols()/2)).get(3).setLabel("  "+value+"  ");
+			gboard.getCells().get((int)(game.getBoard().getCols()/2)).get(3).setLabel("  "+value+"  ");
 			if(turn<=0) {
 				ended=turn(game.getRider(0),game.getRider(1),value);
 				if(ended) {
@@ -67,7 +84,7 @@ public class btnListener implements ActionListener{
 		if(e.getSource()==window.getStep()) {
 			int value=window.getStepValue();
 			window.getStep().setText("");
-			cells.get((int)(game.getBoard().getCols()/2)).get(3).setLabel("  "+value+"  ");
+			gboard.getCells().get((int)(game.getBoard().getCols()/2)).get(3).setLabel("  "+value+"  ");
 			if(turn<=0) {
 				ended=turn(game.getRider(0),game.getRider(1),value);
 				if(ended) {
@@ -84,7 +101,11 @@ public class btnListener implements ActionListener{
 		}
 		
 		if(e.getSource()==window.getPlay()) {
+			// Voir si on change
+			window.getPlay().setEnabled(false);
+			window.getPlay().setVisible(false);
 			
+			window.getDif().setVisible(false);
 			initGame();
 			
 			window.getC().add(window.getUp(),BorderLayout.NORTH);
@@ -96,114 +117,35 @@ public class btnListener implements ActionListener{
 		if(e.getSource()==window.getEasy()) {
 			window.getPlay().setEnabled(true);
 			sizeBoard=10;
-			nbHole=1;
-			nbRiver=1;
-			nbHedge=1;
+			gboard.setNbHole(1);
+			gboard.setNbRiver(1);
+			gboard.setNbHedge(1);
 		}
 		
 		if(e.getSource()==window.getNormal()) {
 			window.getPlay().setEnabled(true);
 			sizeBoard=16;
-			nbHole=1;
-			nbRiver=2;
-			nbHedge=2;
+			gboard.setNbHole(1);
+			gboard.setNbRiver(2);
+			gboard.setNbHedge(2);
 		}
 		
 		if(e.getSource()==window.getHard()) {
 			window.getPlay().setEnabled(true);
 			sizeBoard=24;
-			nbHole=3;
-			nbRiver=2;
-			nbHedge=2;
+			gboard.setNbHole(3);
+			gboard.setNbRiver(2);
+			gboard.setNbHedge(2);
 		}
 		
 		
 	}
 	
 	private void initGame() {
-		window.getPlay().setEnabled(false);
-		window.getPlay().setVisible(false);
-		
-		window.getDif().setVisible(false);
-		
-		
-		window.getEasy().setEnabled(false);
-		window.getEasy().setVisible(false);
-		
-		window.getNormal().setEnabled(false);
-		window.getNormal().setVisible(false);
-		
-		window.getHard().setEnabled(false);
-		window.getHard().setVisible(false);
-		
-		
 		game=new Game(sizeBoard,false);
 		
-		
-		initGraphicBoard();
-		
-		
+		gboard.init(game,window,sizeBoard);
 	}
-	
-	private void initGraphicBoard() {
-		
-		while(nbHole>0 || nbRiver>0 || nbHedge>0) {
-			int row =(int)(Math.random() * 2);
-			if(row==0) {
-				row=game.getBoard().getRows()-2;
-			}
-			int col =(int)(Math.random()*(sizeBoard-1)+1);
-			
-			Position pos=new Position(col,row);
-			if(game.getBoard().getCellType(pos)=='.'){
-				if(nbHole>0) {
-					game.getBoard().changeCell('@',pos);
-					--nbHole;
-					continue;
-				}
-				if(nbRiver>0) {
-					game.getBoard().changeCell('~',pos);
-					--nbRiver;
-					continue;
-				}
-				if(nbHedge>0) {
-					game.getBoard().changeCell('|',pos);
-					--nbHedge;
-					continue;
-				}
-			}
-			
-		}
-		
-		window.setSize(game.getBoard().getCols()*50, game.getBoard().getRows()*50+200);
-		window.getCenter().setLayout(new GridLayout(game.getBoard().getRows(),game.getBoard().getCols()));
-	
-		cells=new ArrayList<ArrayList<GraphicCell>>(game.getBoard().getCols());
-		for(int i=0;i<game.getBoard().getCols();++i) {
-			cells.add(new ArrayList<GraphicCell>(game.getBoard().getRows()));
-			for(int j=0; j<game.getBoard().getRows();++j) {
-				cells.get(i).add(new GraphicCell(new CellFree()));
-			}
-		}
-		
-		for(int i=0;i<game.getBoard().getRows();++i) {
-			for(int j=0;j<game.getBoard().getCols();++j) {
-				GraphicCell c=new GraphicCell(game.getBoard().getCell(new Position(j,i)));
-				window.getCenter().add(c.getCell());
-				cells.get(j).set(i, c);
-			}	
-		}
-		
-		
-		Position tmp=game.getRider(0).getPos();
-		cells.get(tmp.getCol()).get(tmp.getRow()).setLabel("  R  ");
-		tmp=game.getRider(1).getPos();
-		cells.get(tmp.getCol()).get(tmp.getRow()).setLabel("  B  ");
-		
-		cells.get((int)(game.getBoard().getCols()/2)-1).get(3).setLabel("  Dé  ");
-		
-	}
-	
 	
 	private boolean turn(Rider r1, Rider r2,int value){
 		String txtTurn="Le cavalier de couleur ";
@@ -311,8 +253,8 @@ public class btnListener implements ActionListener{
 	
 	
 	private void move(Rider r,Position from, Position to) {
-		cells.get(from.getCol()).get(from.getRow()).setLabel("    ");
-		cells.get(to.getCol()).get(to.getRow()).setLabel("  "+((r.getColor()==Couleur.RED)?"R":"B")+"  ");
+		gboard.getCells().get(from.getCol()).get(from.getRow()).setLabel("    ");
+		gboard.getCells().get(to.getCol()).get(to.getRow()).setLabel("  "+((r.getColor()==Couleur.RED)?"R":"B")+"  ");
 	}
 	
 	
