@@ -1,15 +1,11 @@
 package vue;
 
 import javax.swing.*;
-
 import modele.*;
 import java.awt.*;
 
 public class GraphicCell{
 	
-	//chnager getCell c unnom de merde
-	//mettre un get jlabel get text ui
-	//voila :) je t'aime <2
 	
 	private JPanel cell=new JPanel();
 	private JLabel texte;

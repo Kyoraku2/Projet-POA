@@ -35,7 +35,7 @@ public class Game {
 	 * Call the other constructor with the size 16
 	 */
 	public Game() {
-		this(16);
+		this(16,true);
 	}
 	
 	/**
@@ -45,7 +45,7 @@ public class Game {
 	 * 
 	 * @param size The size of the board that will be created
 	 */
-	public Game(int size) {
+	public Game(int size,boolean console) {
 		de=new De();
 		board=new Board(size);
 		riders=new LinkedList<Rider>();
@@ -58,7 +58,7 @@ public class Game {
 			riders.add(new Rider(new Position(1,0),new Position(1,1),new Position((int)(cols/2)+1-3,(int)(rows/2)),Couleur.RED));
 			riders.add(new Rider(new Position(board.getCols()-2,board.getRows()-1),new Position(board.getCols()-2,board.getRows()-2),new Position((int)(cols/2)+1+1,(int)(rows/2)),Couleur.BLUE));
 		}
-		board.init(riders);
+		board.init(riders,console);
 	}
 	
 	

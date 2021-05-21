@@ -16,20 +16,34 @@ public class btnListener implements ActionListener{
 	private ArrayList<ArrayList<GraphicCell>> cells;
 	private int turn; // red :<=0, bleu :>0
 	private int sizeBoard;
+	private int nbHole;
+	private int nbRiver;
+	private int nbHedge;
 	
 	public btnListener(Window w) {
 		window=w;
 		turn=1;
 		sizeBoard=16;
-		
+		nbHole=1;
+		nbRiver=1;
+		nbHedge=1;
 	}
-	
-	
-	
 	
 	
 
 	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource()==window.getSimple()) {
+			window.getGameType().setVisible(false);
+			window.getC().add(window.getDif(),BorderLayout.CENTER);
+			window.getC().add(window.getPlay(),BorderLayout.SOUTH);
+		}
+		
+		if(e.getSource()==window.getPerso()) {
+			window.getGameType().setVisible(false);
+			
+		}
+		
 		boolean ended=false;
 		if(e.getSource()==window.getRoll()){
 			game.getDice().rouler();
@@ -82,16 +96,25 @@ public class btnListener implements ActionListener{
 		if(e.getSource()==window.getEasy()) {
 			window.getPlay().setEnabled(true);
 			sizeBoard=10;
+			nbHole=1;
+			nbRiver=1;
+			nbHedge=1;
 		}
 		
 		if(e.getSource()==window.getNormal()) {
 			window.getPlay().setEnabled(true);
 			sizeBoard=16;
+			nbHole=1;
+			nbRiver=2;
+			nbHedge=2;
 		}
 		
 		if(e.getSource()==window.getHard()) {
 			window.getPlay().setEnabled(true);
 			sizeBoard=24;
+			nbHole=3;
+			nbRiver=2;
+			nbHedge=2;
 		}
 		
 		
@@ -114,7 +137,8 @@ public class btnListener implements ActionListener{
 		window.getHard().setVisible(false);
 		
 		
-		game=new Game(sizeBoard);
+		game=new Game(sizeBoard,false);
+		
 		
 		initGraphicBoard();
 		
@@ -123,17 +147,35 @@ public class btnListener implements ActionListener{
 	
 	private void initGraphicBoard() {
 		
-		/*
-		 * nb Holes dans easy 1 normal 2(1 trou deux boing une ribiere)  hard 3
-		 * nb truc
-		 * 
-		 * tire ligne entre 1ere et deuxieme 
-		 * puis tire case entre 1 et 16
-		 * on le pose et nbHole-- si 0 on arrete pour les hole
-		 * on refais pour les autres (attention pas au même endroit)
-		 * 
-		 * 
-		 * */
+		while(nbHole>0 || nbRiver>0 || nbHedge>0) {
+			int row =(int)(Math.random() * 2);
+			if(row==0) {
+				row=game.getBoard().getRows()-2;
+			}
+			int col =(int)(Math.random()*(sizeBoard-1)+1);
+			
+			Position pos=new Position(col,row);
+			if(game.getBoard().getCellType(pos)=='.'){
+				if(nbHole>0) {
+					game.getBoard().changeCell('@',pos);
+					--nbHole;
+					continue;
+				}
+				if(nbRiver>0) {
+					game.getBoard().changeCell('~',pos);
+					--nbRiver;
+					continue;
+				}
+				if(nbHedge>0) {
+					game.getBoard().changeCell('|',pos);
+					--nbHedge;
+					continue;
+				}
+			}
+			
+		}
+		
+	
 		
 		window.setSize(game.getBoard().getCols()*50, game.getBoard().getRows()*50+200);
 		window.getCenter().setLayout(new GridLayout(game.getBoard().getRows(),game.getBoard().getCols()));
@@ -153,6 +195,11 @@ public class btnListener implements ActionListener{
 				cells.get(j).set(i, c);
 			}	
 		}
+		
+		
+		
+		
+		
 		
 		Position tmp=game.getRider(0).getPos();
 		cells.get(tmp.getCol()).get(tmp.getRow()).setLabel("  R  ");
