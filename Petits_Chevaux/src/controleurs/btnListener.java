@@ -175,8 +175,6 @@ public class btnListener implements ActionListener{
 			
 		}
 		
-	
-		
 		window.setSize(game.getBoard().getCols()*50, game.getBoard().getRows()*50+200);
 		window.getCenter().setLayout(new GridLayout(game.getBoard().getRows(),game.getBoard().getCols()));
 	
@@ -197,10 +195,6 @@ public class btnListener implements ActionListener{
 		}
 		
 		
-		
-		
-		
-		
 		Position tmp=game.getRider(0).getPos();
 		cells.get(tmp.getCol()).get(tmp.getRow()).setLabel("  R  ");
 		tmp=game.getRider(1).getPos();
@@ -209,9 +203,6 @@ public class btnListener implements ActionListener{
 		cells.get((int)(game.getBoard().getCols()/2)-1).get(3).setLabel("  Dé  ");
 		
 	}
-	
-	
-	
 	
 	
 	private boolean turn(Rider r1, Rider r2,int value){
