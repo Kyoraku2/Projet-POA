@@ -1,11 +1,10 @@
-package controleurs;
+package vue;
 
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import vue.*;
 import modele.*;
 
 public class GraphicBoard {
