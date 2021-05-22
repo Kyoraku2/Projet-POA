@@ -63,7 +63,7 @@ public class Window extends JFrame {
 	private JTextField step;
 	
 	private JTextField txtTurn;
-	private JTextField txtProcess;
+	private JTextArea txtProcess;
 	
 
 	public Window(){
@@ -184,7 +184,7 @@ public class Window extends JFrame {
 		down.setSize(this.getWidth(),100);
 		
 		//texte de process
-		txtProcess=new JTextField(35);
+		txtProcess=new JTextArea(2, 1);
 		txtProcess.setEditable(false);
 		txtProcess.setBorder(null);
 		txtProcess.setBackground(Color.LIGHT_GRAY);
@@ -281,7 +281,7 @@ public class Window extends JFrame {
 		return txtTurn;
 	}
 
-	public JTextField getTxtProcess() {
+	public JTextArea getTxtProcess() {
 		return txtProcess;
 	}
 	

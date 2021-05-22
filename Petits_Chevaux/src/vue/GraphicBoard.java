@@ -74,7 +74,6 @@ public class GraphicBoard {
 				GraphicCell c=new GraphicCell(game.getBoard().getCell(new Position(j,i)));
 				window.getCenter().add(c.getCell());
 				cells.get(j).set(i, c);
-				c.listen(game, new Position(j,i));
 			}	
 		}
 		
@@ -86,6 +85,14 @@ public class GraphicBoard {
 		
 		cells.get((int)(game.getBoard().getCols()/2)-1).get(3).setLabel("  Dé  ");
 		
+	}
+	
+	public void addListener(Game game) {
+		for(int i=0;i<game.getBoard().getRows();++i) {
+			for(int j=0;j<game.getBoard().getCols();++j) {
+				cells.get(j).get(i).listen(game, new Position(j,i));
+			}
+		}
 	}
 	
 	public void removeListener() {

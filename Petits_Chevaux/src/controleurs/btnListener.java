@@ -46,6 +46,7 @@ public class btnListener implements ActionListener{
 			initGame();
 			window.getC().add(window.getCenter(),BorderLayout.CENTER);
 			window.getPlayPerso().setEnabled(true);
+			gboard.addListener(game);
 		}
 		
 		if(e.getSource()==window.getPlayPerso()) {
@@ -200,13 +201,15 @@ public class btnListener implements ActionListener{
 
 	private void go(Rider r1, Rider r2, int de) {
 		Position tmp=r1.getPos();
+		String process="";
 		if(game.getBoard().getCellType(r1.getPos())=='=') {
 			goStart(r1);
 		}else {
-			// Pas à pas c chiant on verra a p r e s
-			
 			//Pour animer avec rouler de, juste while(de){follow(1)+timer+move} Et followpath tableau positions
 			game.getBoard().followPath(r1,de);
+			if(r1.getPos().equals(tmp)) {
+				process="Le cavalier "+(r1.getColor()==Couleur.BLUE?"BLEU":"ROUGE")+" a dépassé la case départ !\n";
+			}
 			
 		}
 		if(r1.getPos().equals(r2.getPos())) {
@@ -217,7 +220,8 @@ public class btnListener implements ActionListener{
 			}
 		}
 		move(r1,tmp,r1.getPos()); 
-		window.getTxtProcess().setText(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1));
+		process+=((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1);
+		window.getTxtProcess().setText(process);
 	}
 	
 	

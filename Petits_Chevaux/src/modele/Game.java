@@ -131,7 +131,11 @@ public class Game {
 		if(board.getCellType(r1.getPos())=='=') {
 			goStart(r1);
 		}else {
+			Position tmp=r1.getPos();
 			board.followPath(r1,de);
+			if(r1.getPos().equals(tmp)) {
+				System.out.println("Le cavalier "+(r1.getColor()==Couleur.BLUE?"BLEU":"ROUGE")+" a dépassé la case départ !");
+			}
 		}
 		if(r1.getPos().equals(r2.getPos())) {
 			if(r2.getPos().equals(r2.getStart())) {

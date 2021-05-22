@@ -247,7 +247,6 @@ public class Board {
 				//End Position
 				if(getCell(r.getPos()).getSymbol()=='*') {
 					if(n!=0) {
-						System.out.println("Le cavalier ROUGE a dépassé la case départ !");
 						move(r,r.getPos(),init_rpos);
 					}
 					break;
@@ -286,7 +285,6 @@ public class Board {
 				//End Position
 				if(getCell(r.getPos()).getSymbol()=='*') {
 					if(n!=0) {
-						System.out.println("Le cavalier BLEU a dépassé la case départ !");
 						move(r,r.getPos(),init_rpos);
 					}
 					break;
