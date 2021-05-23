@@ -31,7 +31,7 @@ public class Window extends JFrame {
 	
 	private JButton retourMenu;
 	private JButton retourMenu2;
-	private JButton replay;
+	
 	
 	//dans menu principal
 	
@@ -71,6 +71,13 @@ public class Window extends JFrame {
 	private JTextField txtTurn;
 	private JTextArea txtProcess;
 	
+	// Dans menu de fin 
+	
+	private JPanel endMenu;
+	private JButton replay;
+	private JButton quit;
+	private JTextArea winner;
+	
 
 	public Window(){
 		
@@ -79,8 +86,6 @@ public class Window extends JFrame {
 		setTitle("Petits Chevaux");
 		c=this.getContentPane();		
 		c.setLayout(new BorderLayout());
-		replay = new JButton("Rejouer");
-		replay.addActionListener(list);
 		
 ///// Choix type de partie ////
 		
@@ -198,9 +203,13 @@ public class Window extends JFrame {
 		step=new JTextField(3);
 		step.addActionListener(list);
 		
+		
+		
 		up_button.add(roll);
 		up_button.add(stepLab);
 		up_button.add(step);
+		
+		
 		
 		up.add(txtTurn);
 		up.add(up_button);
@@ -221,6 +230,50 @@ public class Window extends JFrame {
 		txtProcess.setBackground(Color.LIGHT_GRAY);
 
 		down.add(txtProcess);
+		
+///// MENU FIN ////
+		
+		endMenu=new JPanel();
+		endMenu.setLayout(new FlowLayout());
+		endMenu.setBackground(Color.LIGHT_GRAY);
+		
+		endMenu.setLayout(new BorderLayout());
+		
+		replay = new JButton("Rejouer");
+		replay.addActionListener(list);
+		quit = new JButton("Quitter");
+		quit.addActionListener(list);
+		
+		winner = new JTextArea(2,1);
+		winner.setEditable(false);
+		winner.setBorder(null);
+		winner.setBackground(Color.LIGHT_GRAY);
+		
+		JPanel btnEndMenu = new JPanel();
+		btnEndMenu.setLayout(new FlowLayout());
+		btnEndMenu.setBackground(Color.LIGHT_GRAY);;
+		
+		btnEndMenu.add(replay);
+		btnEndMenu.add(quit);
+		
+		JPanel txtWinner = new JPanel();
+		txtWinner.setBackground(Color.LIGHT_GRAY);
+		txtWinner.setSize(this.getWidth(),100);
+		
+		txtWinner.add(winner);
+		
+		endMenu.add(txtWinner,BorderLayout.NORTH);
+		endMenu.add(btnEndMenu,BorderLayout.CENTER);
+		
+	}
+	
+	
+	public JButton getQuit() {
+		return quit;
+	}
+	
+	public JTextArea getTxtWinner() {
+		return winner;
 	}
 	
 	public JPanel getButtonSimple() {
@@ -228,6 +281,10 @@ public class Window extends JFrame {
 	}
 	public JPanel getButtonPerso() {
 		return btnPerso;
+	}
+	
+	public JPanel getEndMenu() {
+		return endMenu;
 	}
 	
 	public JButton getRetourMenu() {

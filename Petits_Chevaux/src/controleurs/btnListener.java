@@ -83,6 +83,16 @@ public class btnListener implements ActionListener{
 			gboard.getCells().get((int)(game.getBoard().getCols()/2)).get(3).setLabel("  "+value+"  ");
 			playTurn(value);
 		}
+		
+		if(e.getSource()==window.getQuit()) {
+			System.exit(0);
+		}
+		
+		if(e.getSource()==window.getReplay()) {
+			game=null;
+			window.getEndMenu().setVisible(false);
+			window.getGameType().setVisible(true);
+		}
 	}
 	
 	//Simple game functions
@@ -133,6 +143,7 @@ public class btnListener implements ActionListener{
 	}
 	
 	private void returnMenu() {
+		
 		window.getButtonSimple().setVisible(false);
 		window.getDif().setVisible(false);
 		window.getPlay().setEnabled(false);
@@ -141,7 +152,6 @@ public class btnListener implements ActionListener{
 	
 	//Personalized game functions
 	private void persoMenu() {
-		game=null;
 		gboard.setNbHole(0);
 		gboard.setNbRiver(0);
 		gboard.setNbHedge(0);
@@ -197,6 +207,7 @@ public class btnListener implements ActionListener{
 	}
 	
 	private void returnMenu2() {
+		game=null;
 		window.getButtonPerso().setVisible(false);
 		window.getSizePanel().setVisible(false);
 		window.getPlayPerso().setEnabled(false);
@@ -267,6 +278,30 @@ public class btnListener implements ActionListener{
 	}
 	
 	private void end(Rider r) {
+		
+		//yeet menu de jeu
+		//ajouter menu de fin
+		
+		
+		window.getUp().setVisible(false);
+		window.getCenter().setVisible(false);
+		window.getDown().setVisible(false);
+		
+		
+		if(r.getColor()==Couleur.RED) {
+			window.getTxtWinner().setText("** Le joueur Rouge a gagné ! ** \n   Voulez vous rejouer ?");
+		}else {
+			window.getTxtWinner().setText("** Le joueur Bleu a gagné ! ** \n   Voulez vous rejouer ?");
+		}
+		
+		window.getEndMenu().setVisible(true);
+		
+		window.getC().add(window.getEndMenu());
+		
+		
+		window.setSize(700,400);
+		
+		/*
 		window.getRoll().setEnabled(false);
 		window.getStep().setEnabled(false);
 		if(r.getColor()==Couleur.RED) {
@@ -274,6 +309,8 @@ public class btnListener implements ActionListener{
 		}else {
 			window.getTxtTurn().setText("** Le joueur Bleu a gagné ! **");
 		}
+		
+		*/
 	}
 	
 	private void move(Rider r,Position from, Position to) {
