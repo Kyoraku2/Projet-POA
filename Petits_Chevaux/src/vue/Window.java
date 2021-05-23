@@ -29,6 +29,9 @@ public class Window extends JFrame {
 	
 	private Container c;
 	
+	private JButton retourMenu;
+	private JButton retourMenu2;
+	
 	//dans menu principal
 	
 	private JPanel gameType;
@@ -38,11 +41,13 @@ public class Window extends JFrame {
 	//dans partie simple
 	
 	private JPanel dif;
+	private JPanel btnSimple;
 	private JButton easy;
 	private JButton normal;
 	private JButton hard;
 	
 	//A renommmé
+	private JPanel btnPerso;
 	private JButton play;
 	private JButton playPerso;
 	
@@ -117,9 +122,21 @@ public class Window extends JFrame {
 		dif.add(normal);
 		dif.add(hard);
 		
+		btnSimple=new JPanel();
+		btnSimple.setBackground(Color.LIGHT_GRAY);
+		
+		retourMenu=new JButton("Retour au menu");
+		retourMenu.addActionListener(list);
 		play=new JButton("Jouer");
 		play.addActionListener(list);
 		play.setEnabled(false);
+		
+		btnSimple.setLayout(new FlowLayout());
+
+		btnSimple.add(retourMenu);
+		btnSimple.add(play);
+		
+		
 		
 //// Parties personnalisée ////
 		
@@ -137,9 +154,21 @@ public class Window extends JFrame {
 		size.add(selectSize);
 		size.add(boxValidate);
 		
+		retourMenu2=new JButton("Retour au menu");
+		retourMenu2.addActionListener(list);
+		
 		playPerso=new JButton("Jouer");
 		playPerso.addActionListener(list);
 		playPerso.setEnabled(false);
+		playPerso.setVisible(true);
+		
+		btnPerso=new JPanel();
+		btnPerso.setBackground(Color.LIGHT_GRAY);
+	
+		btnPerso.setLayout(new FlowLayout());
+		
+		btnPerso.add(retourMenu2);
+		btnPerso.add(playPerso);
 
 		
 //// Fenetre de jeu ////
@@ -191,6 +220,21 @@ public class Window extends JFrame {
 
 		down.add(txtProcess);
 		
+	}
+	
+	public JPanel getButtonSimple() {
+		return btnSimple;
+	}
+	public JPanel getButtonPerso() {
+		return btnPerso;
+	}
+	
+	public JButton getRetourMenu() {
+		return retourMenu;
+	}
+	
+	public JButton getRetourMenu2() {
+		return retourMenu2;
 	}
 	
 	public JButton getBoxValidate() {
