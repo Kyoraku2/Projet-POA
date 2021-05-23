@@ -31,6 +31,7 @@ public class Window extends JFrame {
 	
 	private JButton retourMenu;
 	private JButton retourMenu2;
+	private JButton replay;
 	
 	//dans menu principal
 	
@@ -78,7 +79,8 @@ public class Window extends JFrame {
 		setTitle("Petits Chevaux");
 		c=this.getContentPane();		
 		c.setLayout(new BorderLayout());
-		
+		replay = new JButton("Rejouer");
+		replay.addActionListener(list);
 		
 ///// Choix type de partie ////
 		
@@ -219,7 +221,6 @@ public class Window extends JFrame {
 		txtProcess.setBackground(Color.LIGHT_GRAY);
 
 		down.add(txtProcess);
-		
 	}
 	
 	public JPanel getButtonSimple() {
@@ -329,5 +330,7 @@ public class Window extends JFrame {
 		return txtProcess;
 	}
 	
-	
+	public JButton getReplay() {
+		return replay;
+	}
 }

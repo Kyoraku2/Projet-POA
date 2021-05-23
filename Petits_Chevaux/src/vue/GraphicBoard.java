@@ -98,7 +98,9 @@ public class GraphicBoard {
 	public void removeListener() {
 		for(ArrayList<GraphicCell> array : cells) {
 			for(GraphicCell c : array) {
-				c.getCell().removeMouseListener(c.getCell().getMouseListeners()[0]);
+				if(c.getCell().getMouseListeners().length != 0) {
+					c.getCell().removeMouseListener(c.getCell().getMouseListeners()[0]);
+				}
 			}
 		}
 	}

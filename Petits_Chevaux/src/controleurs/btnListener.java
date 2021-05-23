@@ -34,16 +34,13 @@ public class btnListener implements ActionListener{
 			window.getButtonSimple().setVisible(true);
 			window.getC().add(window.getDif(),BorderLayout.CENTER);
 			window.getC().add(window.getButtonSimple(),BorderLayout.SOUTH);
-			
 		}
 		
 		if(e.getSource()==window.getPerso()) {
-			
 			game=null;
 			gboard.setNbHole(0);
 			gboard.setNbRiver(0);
 			gboard.setNbHedge(0);
-			
 			
 			window.getGameType().setVisible(false);
 			window.getC().add(window.getSizePanel(),BorderLayout.NORTH);
@@ -78,43 +75,18 @@ public class btnListener implements ActionListener{
 			gboard.removeListener();
 		}
 		
-		boolean ended=false;
 		if(e.getSource()==window.getRoll()){
 			game.getDice().rouler();
 			int value=game.getDice().getValue();
 			gboard.getCells().get((int)(game.getBoard().getCols()/2)).get(3).setLabel("  "+value+"  ");
-			if(turn<=0) {
-				ended=turn(game.getRider(0),game.getRider(1),value);
-				if(ended) {
-					end(game.getRider(0));
-					return;
-				}
-			}else {
-				ended=turn(game.getRider(1),game.getRider(0),value);
-				if(ended) {
-					end(game.getRider(1));
-					return;
-				}
-			}
+			play(value);
 		}
 		
 		if(e.getSource()==window.getStep()) {
 			int value=window.getStepValue();
 			window.getStep().setText("");
 			gboard.getCells().get((int)(game.getBoard().getCols()/2)).get(3).setLabel("  "+value+"  ");
-			if(turn<=0) {
-				ended=turn(game.getRider(0),game.getRider(1),value);
-				if(ended) {
-					end(game.getRider(0));
-					return;
-				}
-			}else {
-				ended=turn(game.getRider(1),game.getRider(0),value);
-				if(ended) {
-					end(game.getRider(1));
-					return;
-				}
-			}
+			play(value);
 		}
 		
 		if(e.getSource()==window.getPlay()) {
@@ -136,7 +108,7 @@ public class btnListener implements ActionListener{
 		if(e.getSource()==window.getRetourMenu()) {
 			window.getButtonSimple().setVisible(false);
 			window.getDif().setVisible(false);
-						
+			window.getPlay().setEnabled(false);
 			window.getGameType().setVisible(true);
 			
 		}
@@ -144,7 +116,7 @@ public class btnListener implements ActionListener{
 		if(e.getSource()==window.getRetourMenu2()) {
 			window.getButtonPerso().setVisible(false);
 			window.getSizePanel().setVisible(false);
-			
+			window.getPlayPerso().setEnabled(false);
 			window.getUp().setVisible(false);
 			window.getCenter().setVisible(false);
 			window.getDown().setVisible(false);
@@ -159,31 +131,62 @@ public class btnListener implements ActionListener{
 		}
 		
 		if(e.getSource()==window.getEasy()) {
-			window.getPlay().setEnabled(true);
-			sizeBoard=10;
-			gboard.setNbHole(1);
-			gboard.setNbRiver(1);
-			gboard.setNbHedge(1);
+			easyDifficulty();
 		}
 		
 		if(e.getSource()==window.getNormal()) {
-			window.getPlay().setEnabled(true);
-			sizeBoard=16;
-			gboard.setNbHole(1);
-			gboard.setNbRiver(2);
-			gboard.setNbHedge(2);
+			normalDifficulty();
 		}
 		
 		if(e.getSource()==window.getHard()) {
-			window.getPlay().setEnabled(true);
-			sizeBoard=24;
-			gboard.setNbHole(3);
-			gboard.setNbRiver(2);
-			gboard.setNbHedge(2);
+			hardDifficulty();
 		}
-		
-		
 	}
+	
+	private void play(int value) {
+		boolean ended=false;
+		if(turn<=0) {
+			ended=turn(game.getRider(0),game.getRider(1),value);
+			if(ended) {
+				end(game.getRider(0));
+				return;
+			}
+		}else {
+			ended=turn(game.getRider(1),game.getRider(0),value);
+			if(ended) {
+				end(game.getRider(1));
+				return;
+			}
+		}
+	}
+	
+	
+	private void hardDifficulty() {
+		window.getPlay().setEnabled(true);
+		sizeBoard=24;
+		gboard.setNbHole(3);
+		gboard.setNbRiver(2);
+		gboard.setNbHedge(2);
+	}
+	
+	private void normalDifficulty() {
+		window.getPlay().setEnabled(true);
+		sizeBoard=16;
+		gboard.setNbHole(1);
+		gboard.setNbRiver(2);
+		gboard.setNbHedge(2);
+	}
+	
+	private void easyDifficulty() {
+		window.getPlay().setEnabled(true);
+		sizeBoard=10;
+		gboard.setNbHole(1);
+		gboard.setNbRiver(1);
+		gboard.setNbHedge(1);
+	}
+	
+	
+	
 	
 	private void initGame() {
 		game=new Game(sizeBoard,false);
