@@ -72,18 +72,18 @@ public class GraphicBoard {
 		for(int i=0;i<game.getBoard().getRows();++i) {
 			for(int j=0;j<game.getBoard().getCols();++j) {
 				GraphicCell c=new GraphicCell(game.getBoard().getCell(new Position(j,i)));
-				window.getPnlPlayCenter().add(c.getCell());
+				window.getPnlPlayCenter().add(c.getPanel());
 				cells.get(j).set(i, c);
 			}	
 		}
 		
 		
 		Position tmp=game.getRider(0).getPos();
-		cells.get(tmp.getCol()).get(tmp.getRow()).setLabel("  R  ");
+		cells.get(tmp.getCol()).get(tmp.getRow()).getLabel().setText("  R  ");
 		tmp=game.getRider(1).getPos();
-		cells.get(tmp.getCol()).get(tmp.getRow()).setLabel("  B  ");
+		cells.get(tmp.getCol()).get(tmp.getRow()).getLabel().setText("  B  ");
 		
-		cells.get((int)(game.getBoard().getCols()/2)-1).get(3).setLabel("  Dé  ");
+		cells.get((int)(game.getBoard().getCols()/2)-1).get(3).getLabel().setText("  Dé  ");
 		
 	}
 	
@@ -98,8 +98,8 @@ public class GraphicBoard {
 	public void removeListener() {
 		for(ArrayList<GraphicCell> array : cells) {
 			for(GraphicCell c : array) {
-				if(c.getCell().getMouseListeners().length != 0) {
-					c.getCell().removeMouseListener(c.getCell().getMouseListeners()[0]);
+				if(c.getPanel().getMouseListeners().length != 0) {
+					c.getPanel().removeMouseListener(c.getPanel().getMouseListeners()[0]);
 				}
 			}
 		}
