@@ -9,21 +9,44 @@ import modele.*;
 
 public class btnListener implements ActionListener{
 
+	/**
+	 * The window of the game
+	 */
 	private Window window;
+	/**
+	 * The current game
+	 */
 	private Game game;
+	/**
+	 * Allows to witch players plays the turn
+	 */
 	private int turn; // red :<=0, bleu :>0
+	/**
+	 * The size of the board
+	 */
 	private int sizeBoard;
+	/**
+	 * The graphic board 
+	 */
 	private GraphicBoard gboard;
 	
+	/**
+	 * Constructor of btnListener 
+	 * 
+	 * @param w The window containing the elements to listen
+	 */
 	public btnListener(Window w) {
 		window=w;
 		turn=1;
 		sizeBoard=16;
 		gboard=new GraphicBoard();
 	}
-	
-	
 
+	/**
+	 * Associate an action to a element listened
+	 * 
+	 * @param e The event that triggered the listener
+	 */
 	public void actionPerformed(ActionEvent e) {
 		
 		//Simple game event
@@ -100,16 +123,28 @@ public class btnListener implements ActionListener{
 	//Simple game functions
 	
 	
-	
+	/**
+	 * Shows the menu allowing to chose the game type
+	 * And resize the window 
+	 * 
+	 */
 	private void showGameTypeMenu() {
 		window.setSize(700,400);
 		window.getPnlGameType().setVisible(true);
 	}
 	
+	/**
+	 * Hides the menu allowing to chose the game type
+	 * 
+	 */
 	private void hideGameTypeMenu() {
 		window.getPnlGameType().setVisible(false);
 	}
 	
+	/**
+	 * Shows the menu allowing to chose the party difficulty in simples  games
+	 * 
+	 */
 	private void showGameSimpleMenu() {
 		window.setSize(700,400);
 		window.getPnlDif().setVisible(true);
@@ -118,11 +153,19 @@ public class btnListener implements ActionListener{
 		window.getC().add(window.getPnlSimpleBtn(),BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Hides the menu allowing to chose the party difficulty in simples  games
+	 * 
+	 */
 	private void hideGameSimpleMenu() {
 		window.getPnlDif().setVisible(false);
 		window.getPnlSimpleBtn().setVisible(false);
 	}
 	
+	/**
+	 * Shows the menu allowing to personalize a party 
+	 * 
+	 */
 	private void showGamePersoMenu() {
 		window.setSize(700,400);
 		sizeBoard=Integer.parseInt(window.getSelectBox().getSelectedItem().toString());
@@ -132,12 +175,20 @@ public class btnListener implements ActionListener{
 		window.getC().add(window.getPnlPersoBtn(),BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Hides the menu allowing to personalize a party 
+	 * 
+	 */
 	private void hideGamePersoMenu() {
 		window.getSizePanel().setVisible(false);
 		window.getPnlPersoBtn().setVisible(false);
 		window.getPnlPlayCenter().setVisible(false);
 	}
 	
+	/**
+	 * Shows the panels of a party
+	 * 
+	 */
 	private void showGame() {
 		initGame();
 		window.getC().add(window.getPnlPlayUp(),BorderLayout.NORTH);
@@ -148,12 +199,20 @@ public class btnListener implements ActionListener{
 		window.getPnlPlayDown().setVisible(true);
 	}
 	
+	/**
+	 * Hides the panels of a party
+	 * 
+	 */
 	private void hideGame() {
 		window.getPnlPlayUp().setVisible(false);
 		window.getPnlPlayCenter().setVisible(false);
 		window.getPnlPlayDown().setVisible(false);
 	}
 	
+	/**
+	 * Sets the difficulty to easy 
+	 * 
+	 */
 	private void easyDifficulty() {
 		window.getBtnPlaySimple().setEnabled(true);
 		sizeBoard=10;
@@ -162,6 +221,10 @@ public class btnListener implements ActionListener{
 		gboard.setNbHedge(1);
 	}
 	
+	/**
+	 * Sets the difficulty to normal 
+	 * 
+	 */
 	private void normalDifficulty() {
 		window.getBtnPlaySimple().setEnabled(true);
 		sizeBoard=16;
@@ -170,6 +233,10 @@ public class btnListener implements ActionListener{
 		gboard.setNbHedge(2);
 	}
 	
+	/**
+	 * Sets the difficulty to hard 
+	 * 
+	 */
 	private void hardDifficulty() {
 		window.getBtnPlaySimple().setEnabled(true);
 		sizeBoard=24;
@@ -178,7 +245,10 @@ public class btnListener implements ActionListener{
 		gboard.setNbHedge(2);
 	}
 	
-	
+	/**
+	 * Reset the difficulty and goes to the personalize menu
+	 * 
+	 */
 	private void persoMenu() {
 		gboard.setNbHole(0);
 		gboard.setNbRiver(0);
@@ -188,6 +258,13 @@ public class btnListener implements ActionListener{
 		showGamePersoMenu();	
 	}
 	
+	/**
+	 * Sets board size to the size chosen by the user
+	 * Adds the board in the middle for the user to chose where to put the traps
+	 * Adds a listener to the cells for that
+	 * Makes it possible to use the play button to create a game
+	 * 
+	 */
 	private void validateBoardSize() {
 		sizeBoard=Integer.parseInt(window.getSelectBox().getSelectedItem().toString());
 		initGame();
@@ -197,12 +274,22 @@ public class btnListener implements ActionListener{
 		gboard.addListener(game);
 	}
 	
+	/**
+	 * Allows to go from the perso menu to the game
+	 * Remove the listener
+	 * 
+	 */
 	private void playPersoGame() {
 		hideGamePersoMenu();
 		showGame();
 		gboard.removeListener();
 	}
 	
+	/**
+	 * Allows to go from the perso menu back to the game type menu
+	 * Remove the listener if needed
+	 * 
+	 */
 	private void returnMenu2() {
 		game=null;
 		hideGamePersoMenu();
@@ -212,6 +299,11 @@ public class btnListener implements ActionListener{
 		showGameTypeMenu();
 	}
 	
+	/**
+	 * Play a turn, if a rider has finish calls the end function
+	 * 
+	 * @param value The number of cell the rider has to go 
+	 */
 	private void playTurn(int value) {
 		boolean ended=false;
 		if(turn<=0) {
@@ -229,18 +321,26 @@ public class btnListener implements ActionListener{
 		}
 	}
 	
+	/**
+	 * Initialize the game and the graphic board
+	 * 
+	 */
 	private void initGame() {
 		game=new Game(sizeBoard,false);
 		gboard.init(game,window,sizeBoard);
 	}
 	
+	/**
+	 * Moves the rider of the right number of cells
+	 * Uses the functions from the model
+	 * 
+	 */
 	private void go(Rider r1, Rider r2, int de) {
 		Position tmp=r1.getPos();
 		String process="";
 		if(game.getBoard().getCellType(r1.getPos())=='=') {
 			goStart(r1);
 		}else {
-			//Pour animer avec rouler de, juste while(de){follow(1)+timer+move} Et followpath tableau positions
 			game.getBoard().followPath(r1,de);
 			if(r1.getPos().equals(tmp)) {
 				process="Le cavalier "+(r1.getColor()==Couleur.BLUE?"BLEU":"ROUGE")+" a dépassé la case départ !\n";
@@ -279,27 +379,48 @@ public class btnListener implements ActionListener{
 		game.getBoard().move(r,r.getPos(),r.getStable());
 	}
 	
+	/**
+	 * Go from the game to the end menu
+	 * Set a text to shows who won
+	 * 
+	 * @param r The winner
+	 */
 	private void end(Rider r) {
-		
 		hideGame();
-	
 		if(r.getColor()==Couleur.RED) {
 			window.getTxtWinner().setText("** Le joueur Rouge a gagné ! ** \n   Voulez vous rejouer ?");
 		}else {
 			window.getTxtWinner().setText("** Le joueur Bleu a gagné ! ** \n   Voulez vous rejouer ?");
 		}
-		
 		window.getEndMenu().setVisible(true);
 		window.getC().add(window.getEndMenu());
 		window.setSize(700,400);
-		
 	}
 	
+	/**
+	 * Moves a rider from a position to another on the graphic board
+	 * 
+	 * 
+	 * @param r The rider
+	 * @param from The initial position
+	 * @param to The new position
+	 */
 	private void move(Rider r,Position from, Position to) {
 		gboard.getCells().get(from.getCol()).get(from.getRow()).getLabel().setText("    ");
 		gboard.getCells().get(to.getCol()).get(to.getRow()).getLabel().setText("  "+((r.getColor()==Couleur.RED)?"R":"B")+"  ");
 	}
 	
+	/**
+	 * Allows to make a turn, 
+	 * Prints information on the turn (who plays and how much),
+	 * Checks on witch cell the player is and then if he can move,
+	 * If he can move it moves it to the right cell using go
+	 * 
+	 * @param r1 The first rider
+	 * @param r2 The other rider
+	 * @param value The number of cells the rider has to move
+	 * @return True if the player has won (if he is on the finished cell) false otherwise
+	 */
 	private boolean turn(Rider r1, Rider r2,int value){
 		String txtTurn="Le cavalier de couleur ";
 		txtTurn+=r1.getColor()==Couleur.RED?"ROUGE ":"BLEU ";
