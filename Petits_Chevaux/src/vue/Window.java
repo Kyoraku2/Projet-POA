@@ -9,10 +9,7 @@ import modele.*;
 import java.awt.*;
 
 /*
- * A faire avant de rendre :
- * Menu de fin
- * Fonctions dans actionPerformed dans le listener
- * Renommer un max de variables qui sont nommées comme de la merde
+
  * Ranger l'ordre des fonctions
  * Ranger l'intérieur des fonctions
  * Division en plusieurs fonctions si c'est vraiment dégueux
@@ -21,7 +18,6 @@ import java.awt.*;
  * Mettre des JLabels dans Personnalisée pour expliquer
  * Revoir mise en forme premier menu + menu partie simple
  * 
- * Bonus : boutons de retour
  */
 
 
@@ -29,54 +25,54 @@ public class Window extends JFrame {
 	
 	private Container c;
 	
-	private JButton retourMenu;
-	private JButton retourMenu2;
+	private JButton btnBackSimple;
+	private JButton btnBackPerso;
 	
 	
 	//dans menu principal
 	
-	private JPanel gameType;
-	private JButton simpleGame;
-	private JButton persoGame;
+	private JPanel pnlGameType;
+	private JButton btnSimpleGame;
+	private JButton btnPersoGame;
 	
 	//dans partie simple
 	
-	private JPanel dif;
-	private JPanel btnSimple;
-	private JButton easy;
-	private JButton normal;
-	private JButton hard;
+	private JPanel pnlDif;
+	private JPanel pnlBtnSimple;
+	private JButton btnEasy;
+	private JButton btnNormal;
+	private JButton btnHard;
 	
 	//A renommmé
-	private JPanel btnPerso;
-	private JButton play;
-	private JButton playPerso;
+	private JPanel pnlBtnPerso;
+	private JButton btnPlaySimple;
+	private JButton btnPlayPerso;
 	
 	//dans partie personalisé
 	
-	private JPanel size;
+	private JPanel pnlSizePerso;
 	private JComboBox<Integer> selectSize;
-	private JButton boxValidate;
+	private JButton btnBoxValidate;
 	
 	//Dans fenetre de jeu
 	
-	private JPanel up = new JPanel();
-	private JPanel up_button = new JPanel();
-	private JPanel center = new JPanel();
-	private JPanel down = new JPanel();
+	private JPanel pnlPlayUp = new JPanel();
+	private JPanel pnlPlayUpBtn = new JPanel();
+	private JPanel pnlPlayCenter = new JPanel();
+	private JPanel pnlPlayDown = new JPanel();
 	
-	private JButton roll;
-	private JTextField step;
+	private JButton btnRoll;
+	private JTextField txtStep;
 	
 	private JTextField txtTurn;
 	private JTextArea txtProcess;
 	
 	// Dans menu de fin 
 	
-	private JPanel endMenu;
-	private JButton replay;
-	private JButton quit;
-	private JTextArea winner;
+	private JPanel pnlEndMenu;
+	private JButton btnReplay;
+	private JButton btnQuit;
+	private JTextArea txtWinner;
 	
 
 	public Window(){
@@ -89,101 +85,101 @@ public class Window extends JFrame {
 		
 ///// Choix type de partie ////
 		
-		gameType=new JPanel();
-		gameType.setLayout(new FlowLayout());
-		gameType.setBackground(Color.LIGHT_GRAY);
+		pnlGameType=new JPanel();
+		pnlGameType.setLayout(new FlowLayout());
+		pnlGameType.setBackground(Color.LIGHT_GRAY);
 		
-		JLabel choseGame=new JLabel("Choisir votre type de partie : ");
+		JLabel txtChoseGame=new JLabel("Choisir votre type de partie : ");
 		
-		simpleGame = new JButton("Simple");
-		simpleGame.addActionListener(list);
+		btnSimpleGame = new JButton("Simple");
+		btnSimpleGame.addActionListener(list);
 		
-		persoGame = new JButton("Personnalisée");
-		persoGame.addActionListener(list);
+		btnPersoGame = new JButton("Personnalisée");
+		btnPersoGame.addActionListener(list);
 		
-		gameType.add(choseGame);
-		gameType.add(simpleGame);
-		gameType.add(persoGame);
+		pnlGameType.add(txtChoseGame);
+		pnlGameType.add(btnSimpleGame);
+		pnlGameType.add(btnPersoGame);
 		
-		c.add(gameType);
+		c.add(pnlGameType);
 
 //// Parties simple ////
 		
-		dif=new JPanel();
-		dif.setBackground(Color.LIGHT_GRAY);
+		pnlDif=new JPanel();
+		pnlDif.setBackground(Color.LIGHT_GRAY);
 		
-		JLabel difLab=new JLabel("Choisir la difficultée :");
-		difLab.setOpaque(true);
-		difLab.setBackground(Color.LIGHT_GRAY);
+		JLabel txtDifLab=new JLabel("Choisir la difficultée :");
+		txtDifLab.setOpaque(true);
+		txtDifLab.setBackground(Color.LIGHT_GRAY);
 		
 		//Boutons de choix de la difficulté
-		easy=new JButton("Facile");
-		easy.addActionListener(list);
-		normal=new JButton("Normal");
-		normal.addActionListener(list);
-		hard=new JButton("Difficile");
-		hard.addActionListener(list);
+		btnEasy=new JButton("Facile");
+		btnEasy.addActionListener(list);
+		btnNormal=new JButton("Normal");
+		btnNormal.addActionListener(list);
+		btnHard=new JButton("Difficile");
+		btnHard.addActionListener(list);
 		
-		dif.add(difLab);
-		dif.add(easy);
-		dif.add(normal);
-		dif.add(hard);
+		pnlDif.add(txtDifLab);
+		pnlDif.add(btnEasy);
+		pnlDif.add(btnNormal);
+		pnlDif.add(btnHard);
 		
-		btnSimple=new JPanel();
-		btnSimple.setBackground(Color.LIGHT_GRAY);
+		pnlBtnSimple=new JPanel();
+		pnlBtnSimple.setBackground(Color.LIGHT_GRAY);
 		
-		retourMenu=new JButton("Retour au menu");
-		retourMenu.addActionListener(list);
-		play=new JButton("Jouer");
-		play.addActionListener(list);
-		play.setEnabled(false);
+		btnBackSimple=new JButton("Retour au menu");
+		btnBackSimple.addActionListener(list);
+		btnPlaySimple=new JButton("Jouer");
+		btnPlaySimple.addActionListener(list);
+		btnPlaySimple.setEnabled(false);
 		
-		btnSimple.setLayout(new FlowLayout());
+		pnlBtnSimple.setLayout(new FlowLayout());
 
-		btnSimple.add(retourMenu);
-		btnSimple.add(play);
+		pnlBtnSimple.add(btnBackSimple);
+		pnlBtnSimple.add(btnPlaySimple);
 		
 		
 		
 //// Parties personnalisée ////
 		
 		//Classe Graphic board 	
-		size=new JPanel();
-		size.setBackground(Color.LIGHT_GRAY);
+		pnlSizePerso=new JPanel();
+		pnlSizePerso.setBackground(Color.LIGHT_GRAY);
 		JLabel sizeLab = new JLabel("Veuillez choisir une taille pour votre plateau : ");
 		selectSize=new JComboBox<Integer>();
 		for(int i=10;i<32;++i) {
 			selectSize.addItem(i);
 		}
-		boxValidate=new JButton("Valider");
-		boxValidate.addActionListener(list);
-		size.add(sizeLab);
-		size.add(selectSize);
-		size.add(boxValidate);
+		btnBoxValidate=new JButton("Valider");
+		btnBoxValidate.addActionListener(list);
+		pnlSizePerso.add(sizeLab);
+		pnlSizePerso.add(selectSize);
+		pnlSizePerso.add(btnBoxValidate);
 		
-		retourMenu2=new JButton("Retour au menu");
-		retourMenu2.addActionListener(list);
+		btnBackPerso=new JButton("Retour au menu");
+		btnBackPerso.addActionListener(list);
 		
-		playPerso=new JButton("Jouer");
-		playPerso.addActionListener(list);
-		playPerso.setEnabled(false);
-		playPerso.setVisible(true);
+		btnPlayPerso=new JButton("Jouer");
+		btnPlayPerso.addActionListener(list);
+		btnPlayPerso.setEnabled(false);
+		btnPlayPerso.setVisible(true);
 		
-		btnPerso=new JPanel();
-		btnPerso.setBackground(Color.LIGHT_GRAY);
+		pnlBtnPerso=new JPanel();
+		pnlBtnPerso.setBackground(Color.LIGHT_GRAY);
 	
-		btnPerso.setLayout(new FlowLayout());
+		pnlBtnPerso.setLayout(new FlowLayout());
 		
-		btnPerso.add(retourMenu2);
-		btnPerso.add(playPerso);
+		pnlBtnPerso.add(btnBackPerso);
+		pnlBtnPerso.add(btnPlayPerso);
 
 		
 //// Fenetre de jeu ////
 		
 	// HAUT 
-		up.setBackground(Color.LIGHT_GRAY);
-		up.setSize(this.getWidth(),100);
-		up.setLayout(new GridLayout(2,1));
+		pnlPlayUp.setBackground(Color.LIGHT_GRAY);
+		pnlPlayUp.setSize(this.getWidth(),100);
+		pnlPlayUp.setLayout(new GridLayout(2,1));
 		
 		//Text indiquant le joueur du tour
 		txtTurn=new JTextField();
@@ -193,26 +189,22 @@ public class Window extends JFrame {
 		txtTurn.setHorizontalAlignment(JTextField.CENTER);
 		
 		//partie des boutons
-		up_button.setBackground(Color.LIGHT_GRAY);	
+		pnlPlayUpBtn.setBackground(Color.LIGHT_GRAY);	
 		
-		roll=new JButton("Rouler le dé");
-		roll.addActionListener(list);
+		btnRoll=new JButton("Rouler le dé");
+		btnRoll.addActionListener(list);
 
 		//Choix de valeur du dé par utilisateur
-		JLabel stepLab =new JLabel("        Saisir valeur Dé :");
-		step=new JTextField(3);
-		step.addActionListener(list);
+		JLabel txtStepAsk =new JLabel("        Saisir valeur Dé :");
+		txtStep=new JTextField(3);
+		txtStep.addActionListener(list);	
 		
+		pnlPlayUpBtn.add(btnRoll);
+		pnlPlayUpBtn.add(txtStepAsk);
+		pnlPlayUpBtn.add(txtStep);
 		
-		
-		up_button.add(roll);
-		up_button.add(stepLab);
-		up_button.add(step);
-		
-		
-		
-		up.add(txtTurn);
-		up.add(up_button);
+		pnlPlayUp.add(txtTurn);
+		pnlPlayUp.add(pnlPlayUpBtn);
 		
 		
 	// CENTRE
@@ -220,8 +212,8 @@ public class Window extends JFrame {
 		// Dans listener
 		
 	// BAS
-		down.setBackground(Color.LIGHT_GRAY);
-		down.setSize(this.getWidth(),100);
+		pnlPlayDown.setBackground(Color.LIGHT_GRAY);
+		pnlPlayUp.setSize(this.getWidth(),100);
 		
 		//texte de process
 		txtProcess=new JTextArea(2, 1);
@@ -229,150 +221,149 @@ public class Window extends JFrame {
 		txtProcess.setBorder(null);
 		txtProcess.setBackground(Color.LIGHT_GRAY);
 
-		down.add(txtProcess);
+		pnlPlayDown.add(txtProcess);
 		
 ///// MENU FIN ////
 		
-		endMenu=new JPanel();
-		endMenu.setLayout(new FlowLayout());
-		endMenu.setBackground(Color.LIGHT_GRAY);
+		pnlEndMenu=new JPanel();
+		pnlEndMenu.setLayout(new FlowLayout());
+		pnlEndMenu.setBackground(Color.LIGHT_GRAY);
 		
-		endMenu.setLayout(new BorderLayout());
+		pnlEndMenu.setLayout(new BorderLayout());
 		
-		replay = new JButton("Rejouer");
-		replay.addActionListener(list);
-		quit = new JButton("Quitter");
-		quit.addActionListener(list);
+		btnReplay = new JButton("Rejouer");
+		btnReplay.addActionListener(list);
+		btnQuit = new JButton("Quitter");
+		btnQuit.addActionListener(list);
 		
-		winner = new JTextArea(2,1);
-		winner.setEditable(false);
-		winner.setBorder(null);
-		winner.setBackground(Color.LIGHT_GRAY);
-		
-		JPanel btnEndMenu = new JPanel();
-		btnEndMenu.setLayout(new FlowLayout());
-		btnEndMenu.setBackground(Color.LIGHT_GRAY);;
-		
-		btnEndMenu.add(replay);
-		btnEndMenu.add(quit);
-		
-		JPanel txtWinner = new JPanel();
+		txtWinner = new JTextArea(2,1);
+		txtWinner.setEditable(false);
+		txtWinner.setBorder(null);
 		txtWinner.setBackground(Color.LIGHT_GRAY);
-		txtWinner.setSize(this.getWidth(),100);
 		
-		txtWinner.add(winner);
+		JPanel pnlEndMenuBtn = new JPanel();
+		pnlEndMenuBtn.setLayout(new FlowLayout());
+		pnlEndMenuBtn.setBackground(Color.LIGHT_GRAY);;
 		
-		endMenu.add(txtWinner,BorderLayout.NORTH);
-		endMenu.add(btnEndMenu,BorderLayout.CENTER);
+		pnlEndMenuBtn.add(btnReplay);
+		pnlEndMenuBtn.add(btnQuit);
+		
+		JPanel pnlWinner = new JPanel();
+		pnlWinner.setBackground(Color.LIGHT_GRAY);
+		pnlWinner.setSize(this.getWidth(),100);
+		
+		pnlWinner.add(txtWinner);
+		
+		pnlEndMenu.add(pnlWinner,BorderLayout.NORTH);
+		pnlEndMenu.add(pnlEndMenuBtn,BorderLayout.CENTER);
 		
 	}
 	
 	
-	public JButton getQuit() {
-		return quit;
+	public JButton getBtnQuit() {
+		return btnQuit;
 	}
 	
 	public JTextArea getTxtWinner() {
-		return winner;
+		return txtWinner;
 	}
 	
-	public JPanel getButtonSimple() {
-		return btnSimple;
+	public JPanel getPnlSimpleBtn() {
+		return pnlBtnSimple;
 	}
-	public JPanel getButtonPerso() {
-		return btnPerso;
+	public JPanel getPnlPersoBtn() {
+		return pnlBtnPerso;
 	}
 	
 	public JPanel getEndMenu() {
-		return endMenu;
+		return pnlEndMenu;
 	}
 	
-	public JButton getRetourMenu() {
-		return retourMenu;
+	public JButton getBtnBackSimple() {
+		return btnBackSimple;
 	}
 	
-	public JButton getRetourMenu2() {
-		return retourMenu2;
+	public JButton getBtnBackPerso() {
+		return btnBackPerso;
 	}
 	
 	public JButton getBoxValidate() {
-		return boxValidate;
+		return btnBoxValidate;
 	}
 	
 	public JPanel getSizePanel() {
-		return size;
+		return pnlSizePerso;
 	}
 	
 	public JComboBox<Integer> getSelectBox() {
 		return selectSize;
 	}
 	
-	public JPanel getGameType() {
-		return gameType;
+	public JPanel getPnlGameType() {
+		return pnlGameType;
 	}
 	
-	public JButton getSimple() {
-		return simpleGame;
+	public JButton getBtnSimple() {
+		return btnSimpleGame;
 	}
 	
-	public JButton getPerso() {
-		return persoGame;
+	public JButton getBtnPerso() {
+		return btnPersoGame;
 	}
 	
-	public JPanel getDif() {
-		return dif;
+	public JPanel getPnlDif() {
+		return pnlDif;
 	}
 	
-	public JButton getPlayPerso() {
-		return playPerso;
+	public JButton getBtnPlayPerso() {
+		return btnPlayPerso;
 	}
 	
-	public JButton getPlay() {
-		return play;
+	public JButton getBtnPlaySimple() {
+		return btnPlaySimple;
 	}
 	
-	public JButton getEasy() {
-		return easy;
+	public JButton getBtnEasy() {
+		return btnEasy;
 	}
 	
-	public JButton getNormal() {
-		return normal;
+	public JButton getBtnNormal() {
+		return btnNormal;
 	}
 	
-	public JButton getHard() {
-		return hard;
+	public JButton getBtnHard() {
+		return btnHard;
 	}
 	
 	public Container getC() {
 		return c;
 	}
 	
-	public JPanel getUp() {
-		return up;
+	public JPanel getPnlPlayUp() {
+		return pnlPlayUp;
 	}
 	
-	public JPanel getCenter() {
-		return center;
+	public JPanel getPnlPlayCenter() {
+		return pnlPlayCenter;
 	}
 	
-	public JPanel getDown() {
-		return down;
+	public JPanel getPnlPlayDown() {
+		return pnlPlayDown;
 	}
 	
-	public JButton getRoll() {
-		return roll;
+	public JButton getBtnRoll() {
+		return btnRoll;
 	}
 	
-	public JTextField getStep() {
-		return step;
+	public JTextField getTxtStep() {
+		return txtStep;
 	}
 	
 	public int getStepValue() {
 		int res;
 		try {
-			res = Integer.parseInt(step.getText());
+			res = Integer.parseInt(txtStep.getText());
 		}
-		
 		catch (NumberFormatException e) {
 			res=0;
 		}
@@ -387,7 +378,7 @@ public class Window extends JFrame {
 		return txtProcess;
 	}
 	
-	public JButton getReplay() {
-		return replay;
+	public JButton getBtnReplay() {
+		return btnReplay;
 	}
 }

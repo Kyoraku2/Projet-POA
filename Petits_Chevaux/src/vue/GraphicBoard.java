@@ -24,7 +24,7 @@ public class GraphicBoard {
 	
 	public void init(Game game,Window window,int size) {
 		sizeBoard=size;
-		window.getCenter().removeAll();
+		window.getPnlPlayCenter().removeAll();
 		
 		int tmpHole=nbHole;
 		int tmpHedge=nbHedge;
@@ -59,7 +59,7 @@ public class GraphicBoard {
 		}
 		
 		window.setSize(game.getBoard().getCols()*50, game.getBoard().getRows()*50+200);
-		window.getCenter().setLayout(new GridLayout(game.getBoard().getRows(),game.getBoard().getCols()));
+		window.getPnlPlayCenter().setLayout(new GridLayout(game.getBoard().getRows(),game.getBoard().getCols()));
 	
 		cells=new ArrayList<ArrayList<GraphicCell>>(game.getBoard().getCols());
 		for(int i=0;i<game.getBoard().getCols();++i) {
@@ -72,7 +72,7 @@ public class GraphicBoard {
 		for(int i=0;i<game.getBoard().getRows();++i) {
 			for(int j=0;j<game.getBoard().getCols();++j) {
 				GraphicCell c=new GraphicCell(game.getBoard().getCell(new Position(j,i)));
-				window.getCenter().add(c.getCell());
+				window.getPnlPlayCenter().add(c.getCell());
 				cells.get(j).set(i, c);
 			}	
 		}
