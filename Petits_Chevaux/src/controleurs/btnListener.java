@@ -281,7 +281,12 @@ public class btnListener implements ActionListener{
 	 */
 	private void playPersoGame() {
 		hideGamePersoMenu();
-		showGame();
+		window.getPnlPlayUp().setVisible(true);
+		window.getPnlPlayCenter().setVisible(true);
+		window.getC().add(window.getPnlPlayUp(),BorderLayout.NORTH);
+		window.getC().add(window.getPnlPlayCenter(),BorderLayout.CENTER);
+		window.getC().add(window.getPnlPlayDown(),BorderLayout.SOUTH);
+		window.getPnlPlayDown().setVisible(true);
 		gboard.removeListener();
 	}
 	
