@@ -27,9 +27,11 @@ public class btnListener implements ActionListener{
 	
 
 	public void actionPerformed(ActionEvent e) {
+		
 		//Simple game event
 		if(e.getSource()==window.getSimple()) {
-			simpleMenu();
+			hideGameTypeMenu();
+			showGameSimpleMenu();
 		}
 		
 		if(e.getSource()==window.getEasy()) {
@@ -45,11 +47,13 @@ public class btnListener implements ActionListener{
 		}
 		
 		if(e.getSource()==window.getRetourMenu()) {
-			returnMenu();
+			hideGameSimpleMenu();
+			showGameTypeMenu();
 		}
 		
 		if(e.getSource()==window.getPlay()) {
-			playGame();
+			hideGameSimpleMenu();
+			showGame();
 		}
 		
 		//Personalized game event
@@ -96,28 +100,60 @@ public class btnListener implements ActionListener{
 	}
 	
 	//Simple game functions
-	private void simpleMenu() {
+	
+	
+	
+	private void showGameTypeMenu() {
+		window.setSize(700,400);
+		window.getGameType().setVisible(true);
+	}
+	
+	private void hideGameTypeMenu() {
 		window.getGameType().setVisible(false);
+	}
+	
+	private void showGameSimpleMenu() {
+		window.setSize(700,400);
 		window.getDif().setVisible(true);
 		window.getButtonSimple().setVisible(true);
 		window.getC().add(window.getDif(),BorderLayout.CENTER);
 		window.getC().add(window.getButtonSimple(),BorderLayout.SOUTH);
 	}
 	
-	private void hardDifficulty() {
-		window.getPlay().setEnabled(true);
-		sizeBoard=24;
-		gboard.setNbHole(3);
-		gboard.setNbRiver(2);
-		gboard.setNbHedge(2);
+	private void hideGameSimpleMenu() {
+		window.getDif().setVisible(false);
+		window.getButtonSimple().setVisible(false);
 	}
 	
-	private void normalDifficulty() {
-		window.getPlay().setEnabled(true);
-		sizeBoard=16;
-		gboard.setNbHole(1);
-		gboard.setNbRiver(2);
-		gboard.setNbHedge(2);
+	private void showGamePersoMenu() {
+		window.setSize(700,400);
+		sizeBoard=Integer.parseInt(window.getSelectBox().getSelectedItem().toString());
+		window.getSizePanel().setVisible(true);
+		window.getButtonPerso().setVisible(true);
+		window.getC().add(window.getSizePanel(),BorderLayout.NORTH);
+		window.getC().add(window.getButtonPerso(),BorderLayout.SOUTH);
+	}
+	
+	private void hideGamePersoMenu() {
+		window.getSizePanel().setVisible(false);
+		window.getButtonPerso().setVisible(false);
+		window.getCenter().setVisible(false);
+	}
+	
+	private void showGame() {
+		initGame();
+		window.getC().add(window.getUp(),BorderLayout.NORTH);
+		window.getC().add(window.getCenter(),BorderLayout.CENTER);
+		window.getC().add(window.getDown(),BorderLayout.SOUTH);
+		window.getUp().setVisible(true);
+		window.getCenter().setVisible(true);
+		window.getDown().setVisible(true);
+	}
+	
+	private void hideGame() {
+		window.getUp().setVisible(false);
+		window.getCenter().setVisible(false);
+		window.getDown().setVisible(false);
 	}
 	
 	private void easyDifficulty() {
@@ -128,40 +164,30 @@ public class btnListener implements ActionListener{
 		gboard.setNbHedge(1);
 	}
 	
-	private void playGame(){
-		window.getButtonSimple().setVisible(false);
-		
-		window.getDif().setVisible(false);
-		initGame();
-		
-		window.getC().add(window.getUp(),BorderLayout.NORTH);
-		window.getC().add(window.getCenter(),BorderLayout.CENTER);
-		window.getC().add(window.getDown(),BorderLayout.SOUTH);
-		window.getUp().setVisible(true);
-		window.getCenter().setVisible(true);
-		window.getDown().setVisible(true);
+	private void normalDifficulty() {
+		window.getPlay().setEnabled(true);
+		sizeBoard=16;
+		gboard.setNbHole(1);
+		gboard.setNbRiver(2);
+		gboard.setNbHedge(2);
 	}
 	
-	private void returnMenu() {
-		
-		window.getButtonSimple().setVisible(false);
-		window.getDif().setVisible(false);
-		window.getPlay().setEnabled(false);
-		window.getGameType().setVisible(true);
+	private void hardDifficulty() {
+		window.getPlay().setEnabled(true);
+		sizeBoard=24;
+		gboard.setNbHole(3);
+		gboard.setNbRiver(2);
+		gboard.setNbHedge(2);
 	}
 	
-	//Personalized game functions
+	
 	private void persoMenu() {
 		gboard.setNbHole(0);
 		gboard.setNbRiver(0);
 		gboard.setNbHedge(0);
 		
-		window.getGameType().setVisible(false);
-		window.getC().add(window.getSizePanel(),BorderLayout.NORTH);
-		sizeBoard=Integer.parseInt(window.getSelectBox().getSelectedItem().toString());
-		window.getSizePanel().setVisible(true);
-		window.getC().add(window.getButtonPerso(),BorderLayout.SOUTH);
-		window.getButtonPerso().setVisible(true);	
+		hideGameTypeMenu();
+		showGamePersoMenu();	
 	}
 	
 	private void validateBoardSize() {
@@ -174,19 +200,18 @@ public class btnListener implements ActionListener{
 	}
 	
 	private void playPersoGame() {
-		window.getButtonPerso().setVisible(false);
-		
-		window.getSizePanel().setVisible(false);
-		
-		window.getC().add(window.getUp(),BorderLayout.NORTH);
-		window.getC().add(window.getCenter(),BorderLayout.CENTER);
-		window.getC().add(window.getDown(),BorderLayout.SOUTH);
-		
-		window.getUp().setVisible(true);
-		window.getCenter().setVisible(true);
-		window.getDown().setVisible(true);
-	
+		hideGamePersoMenu();
+		showGame();
 		gboard.removeListener();
+	}
+	
+	private void returnMenu2() {
+		game=null;
+		hideGamePersoMenu();
+		if(gboard.getCells()!=null) {
+			gboard.removeListener();
+		}
+		showGameTypeMenu();
 	}
 	
 	private void playTurn(int value) {
@@ -206,31 +231,11 @@ public class btnListener implements ActionListener{
 		}
 	}
 	
-	private void returnMenu2() {
-		game=null;
-		window.getButtonPerso().setVisible(false);
-		window.getSizePanel().setVisible(false);
-		window.getPlayPerso().setEnabled(false);
-		window.getUp().setVisible(false);
-		window.getCenter().setVisible(false);
-		window.getDown().setVisible(false);
-		
-		if(gboard.getCells()!=null) {
-			gboard.removeListener();
-		}
-		
-		window.setSize(700,400);
-		window.getGameType().setVisible(true);
-	}
-	
-	
-	//General functions
 	private void initGame() {
 		game=new Game(sizeBoard,false);
-		
 		gboard.init(game,window,sizeBoard);
 	}
-
+	
 	private void go(Rider r1, Rider r2, int de) {
 		Position tmp=r1.getPos();
 		String process="";
@@ -256,7 +261,6 @@ public class btnListener implements ActionListener{
 		window.getTxtProcess().setText(process);
 	}
 	
-	
 	/**
 	 * Sends a rider back to the start cell
 	 * 
@@ -279,15 +283,8 @@ public class btnListener implements ActionListener{
 	
 	private void end(Rider r) {
 		
-		//yeet menu de jeu
-		//ajouter menu de fin
-		
-		
-		window.getUp().setVisible(false);
-		window.getCenter().setVisible(false);
-		window.getDown().setVisible(false);
-		
-		
+		hideGame();
+	
 		if(r.getColor()==Couleur.RED) {
 			window.getTxtWinner().setText("** Le joueur Rouge a gagné ! ** \n   Voulez vous rejouer ?");
 		}else {
@@ -295,22 +292,9 @@ public class btnListener implements ActionListener{
 		}
 		
 		window.getEndMenu().setVisible(true);
-		
 		window.getC().add(window.getEndMenu());
-		
-		
 		window.setSize(700,400);
 		
-		/*
-		window.getRoll().setEnabled(false);
-		window.getStep().setEnabled(false);
-		if(r.getColor()==Couleur.RED) {
-			window.getTxtTurn().setText("** Le joueur Rouge a gagné ! **");
-		}else {
-			window.getTxtTurn().setText("** Le joueur Bleu a gagné ! **");
-		}
-		
-		*/
 	}
 	
 	private void move(Rider r,Position from, Position to) {
