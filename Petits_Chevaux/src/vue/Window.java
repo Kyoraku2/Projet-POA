@@ -9,15 +9,11 @@ import modele.*;
 import java.awt.*;
 
 /*
-
  * Ranger l'ordre des fonctions
  * Ranger l'intérieur des fonctions
- * Division en plusieurs fonctions si c'est vraiment dégueux
  * JavaDoc + commentaires
  * Rapport
- * Mettre des JLabels dans Personnalisée pour expliquer
  * Revoir mise en forme premier menu + menu partie simple
- * 
  */
 
 

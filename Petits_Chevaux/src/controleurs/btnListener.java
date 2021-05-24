@@ -1,10 +1,8 @@
 package controleurs;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
+
 import java.awt.event.*;
-import java.util.*;
 
 import vue.*;
 import modele.*;

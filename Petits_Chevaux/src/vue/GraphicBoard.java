@@ -1,17 +1,32 @@
 package vue;
 
 import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 import java.util.ArrayList;
 
 import modele.*;
 
 public class GraphicBoard {
+	
+	/**
+	 * The length of the board
+	 */
 	private int sizeBoard;
+	/**
+	 * The number of holes in the board
+	 */
 	private int nbHole;
+	/**
+	 * The number of rivers in the board
+	 */
 	private int nbRiver;
+	/**
+	 * The number of hedges in the board
+	 */
 	private int nbHedge;
+	/**
+	 * ArrayList of ArrayList of GraphicCell modeling a board 
+	 */
 	private ArrayList<ArrayList<GraphicCell>> cells;
 	
 	public GraphicBoard() {
@@ -20,7 +35,6 @@ public class GraphicBoard {
 		nbHedge=0;
 		sizeBoard=16;
 	}
-	
 	
 	public void init(Game game,Window window,int size) {
 		sizeBoard=size;
