@@ -74,6 +74,14 @@ public class GraphicCell{
 		});
 	}
 	
+	
+	/**
+	 * Remove the previously added listener
+	 */
+	public void removeListener(){
+		panel.removeMouseListener(panel.getMouseListeners()[0]);
+	}
+	
 	/**
 	 * Initialize the GraphicCell according to a Cell
 	 * Depending on the type of the cell to portray the color and the border
