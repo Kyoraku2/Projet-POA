@@ -77,14 +77,14 @@ public class btnListener implements ActionListener{
 		if(e.getSource()==window.getBtnRoll()){
 			game.getDice().rouler();
 			int value=game.getDice().getValue();
-			gboard.getCells().get((int)(game.getBoard().getCols()/2)).get(3).setLabel("  "+value+"  ");
+			gboard.getCells().get((int)(game.getBoard().getCols()/2)).get(3).getLabel().setText("  "+value+"  ");
 			playTurn(value);
 		}
 		
 		if(e.getSource()==window.getTxtStep()) {
 			int value=window.getStepValue();
 			window.getTxtStep().setText("");
-			gboard.getCells().get((int)(game.getBoard().getCols()/2)).get(3).setLabel("  "+value+"  ");
+			gboard.getCells().get((int)(game.getBoard().getCols()/2)).get(3).getLabel().setText("  "+value+"  ");
 			playTurn(value);
 		}
 		
@@ -298,8 +298,8 @@ public class btnListener implements ActionListener{
 	}
 	
 	private void move(Rider r,Position from, Position to) {
-		gboard.getCells().get(from.getCol()).get(from.getRow()).setLabel("    ");
-		gboard.getCells().get(to.getCol()).get(to.getRow()).setLabel("  "+((r.getColor()==Couleur.RED)?"R":"B")+"  ");
+		gboard.getCells().get(from.getCol()).get(from.getRow()).getLabel().setText("    ");
+		gboard.getCells().get(to.getCol()).get(to.getRow()).getLabel().setText("  "+((r.getColor()==Couleur.RED)?"R":"B")+"  ");
 	}
 	
 	private boolean turn(Rider r1, Rider r2,int value){
