@@ -133,7 +133,7 @@ public class GraphicBoard {
 		for(ArrayList<GraphicCell> array : cells) {
 			for(GraphicCell c : array) {
 				if(c.getPanel().getMouseListeners().length != 0) {
-					c.getPanel().removeMouseListener(c.getPanel().getMouseListeners()[0]);
+					c.removeListener();
 				}
 			}
 		}
