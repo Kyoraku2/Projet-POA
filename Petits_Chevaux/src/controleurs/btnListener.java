@@ -69,6 +69,7 @@ public class btnListener implements ActionListener{
 		
 		if(e.getSource()==window.getBtnBackSimple()) {
 			hideGameSimpleMenu();
+			window.getBtnPlaySimple().setEnabled(false);
 			showGameTypeMenu();
 		}
 		
