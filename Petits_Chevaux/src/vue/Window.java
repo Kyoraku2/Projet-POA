@@ -23,51 +23,113 @@ import java.awt.*;
 
 public class Window extends JFrame {
 	
+//// Attributs ////
+	
+	/**
+	 * The container of the window
+	 */
 	private Container c;
 	
-	private JButton btnBackSimple;
-	private JButton btnBackPerso;
-	
-	
-	//dans menu principal
-	
+	//// Game type menu
+	/**
+	 * Panel the menu where to chose the game type
+	 */
 	private JPanel pnlGameType;
+	/**
+	 * Button to play a simple game
+	 */
 	private JButton btnSimpleGame;
+	/**
+	 * Button to play a personalized game
+	 */
 	private JButton btnPersoGame;
 	
-	//dans partie simple
-	
+	//// Simple game menu
+	/**
+	 * Panel containing button to chose difficulty
+	 */
 	private JPanel pnlDif;
+	/**
+	 * Panel containing the other buttons of the menu
+	 */
 	private JPanel pnlBtnSimple;
+	/**
+	 * Button to go back to the choice of game type
+	 */
+	private JButton btnBackSimple;
+	/**
+	 * Button to chose the difficulty easy
+	 */
 	private JButton btnEasy;
+	/**
+	 * Button to chose the difficulty normal
+	 */
 	private JButton btnNormal;
+	/**
+	 * Button to chose the difficulty hard
+	 */
 	private JButton btnHard;
-	
-	//A renommmé
-	private JPanel pnlBtnPerso;
+	/**
+	 * Button to play a simple party
+	 */
 	private JButton btnPlaySimple;
-	private JButton btnPlayPerso;
-	
-	//dans partie personalisé
-	
+
+	//// Personalized party
+	/**
+	 * Button to go back to the game type menu
+	 */
+	private JButton btnBackPerso;
+	/**
+	 * Panel containing the element to chose the size of the board
+	 */
 	private JPanel pnlSizePerso;
+	/**
+	 * To chose the size of the board
+	 */
 	private JComboBox<Integer> selectSize;
+	/**
+	 * Button to validate the chosen sized
+	 */
 	private JButton btnBoxValidate;
+	/**
+	 * Button to play a personalized game
+	 */
+	private JButton btnPlayPerso;
+	/**
+	 * Panel containing the button of the perso menu
+	 */
+	private JPanel pnlBtnPerso;
 	
-	//Dans fenetre de jeu
-	
+	//// Game window
+	/**
+	 * The up panel of the game, contains the button to roll the dice and text to know what the player did
+	 */
 	private JPanel pnlPlayUp = new JPanel();
+	/**
+	 * Panel containing the button of the up panel of the game window
+	 */
 	private JPanel pnlPlayUpBtn = new JPanel();
+	/**
+	 * Panel containing the board
+	 */
 	private JPanel pnlPlayCenter = new JPanel();
+	/**
+	 * Panel containing text to indicate the status of the player
+	 */
 	private JPanel pnlPlayDown = new JPanel();
-	
+	/**
+	 * Button to roll a dice
+	 */
 	private JButton btnRoll;
+	/**
+	 * Text field allowing to chose manually the 
+	 */
 	private JTextField txtStep;
 	
 	private JTextField txtTurn;
 	private JTextArea txtProcess;
 	
-	// Dans menu de fin 
+	//// End menu
 	
 	private JPanel pnlEndMenu;
 	private JButton btnReplay;

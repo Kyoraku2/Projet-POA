@@ -101,7 +101,7 @@ public class Board {
 	 * 
 	 * @param riders The list of riders
 	 */
-	public void init(List<Rider> riders,boolean console) {
+	public void init(List<Rider> riders,boolean initObstacles) {
 		//CellSide initialization
 		for(int i=0;i<rows;++i) {
 			if(i==0 || i==rows-1) {
@@ -127,7 +127,7 @@ public class Board {
 			changeCell(' ',new Position(i,(int)(rows/2)));
 		}
 		
-		if(console) {
+		if(initObstacles) {
 			//Special cells initialization
 			//Hole
 			changeCell('@',new Position(4,1));
