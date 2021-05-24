@@ -122,22 +122,40 @@ public class Window extends JFrame {
 	 */
 	private JButton btnRoll;
 	/**
-	 * Text field allowing to chose manually the 
+	 * Text field allowing to chose manually the value of the dice 
 	 */
 	private JTextField txtStep;
-	
+	/**
+	 * Text field showing what player is playing
+	 */
 	private JTextField txtTurn;
+	/**
+	 * Text field containing the value of the process function, indicates the status of the player
+	 */
 	private JTextArea txtProcess;
 	
 	//// End menu
-	
+	/**
+	 * Panel containing the end menu
+	 */
 	private JPanel pnlEndMenu;
+	/**
+	 * Button allowing to replay a game
+	 */
 	private JButton btnReplay;
+	/**
+	 * Button to quit the application
+	 */
 	private JButton btnQuit;
+	/**
+	 * Text field showing the winner of the game
+	 */
 	private JTextArea txtWinner;
 	
 
 	public Window(){
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		btnListener list = new btnListener(this);
 		setSize(700,400);
