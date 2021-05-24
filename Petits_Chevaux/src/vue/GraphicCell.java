@@ -6,6 +6,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * GraphicCell class
+ * @author Marie-Almina
+ * @author Tayeb
+ */
 public class GraphicCell{
 	
 	/**

@@ -7,6 +7,11 @@ import java.awt.event.*;
 import vue.*;
 import modele.*;
 
+/**
+ * btnListener class
+ * @author Marie-Almina
+ * @author Tayeb
+ */
 public class btnListener implements ActionListener{
 
 	/**
@@ -340,6 +345,9 @@ public class btnListener implements ActionListener{
 	 * Moves the rider of the right number of cells
 	 * Uses the functions from the model
 	 * 
+	 * @param r1 The first rider
+	 * @param r2 The other rider
+	 * @param de The number of cells 
 	 */
 	private void go(Rider r1, Rider r2, int de) {
 		Position tmp=r1.getPos();

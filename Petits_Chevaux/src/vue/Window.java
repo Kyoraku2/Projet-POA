@@ -16,7 +16,11 @@ import java.awt.*;
  * Revoir mise en forme premier menu + menu partie simple
  */
 
-
+/**
+ * Window class
+ * @author Marie-Almina
+ * @author Tayeb
+ */
 public class Window extends JFrame {
 	
 //// Attributs ////

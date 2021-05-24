@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 import modele.*;
 
+/**
+ * GraphicBoard class
+ * @author Marie-Almina
+ * @author Tayeb
+ */
 public class GraphicBoard {
 	
 	/**

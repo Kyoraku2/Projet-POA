@@ -49,6 +49,12 @@ public class Board {
 		
 	////// Methods //////
 	
+	
+	/**
+	 * Getter of the ArrayList of ArrayList of Cell
+	 * 
+	 * @return The attribute cells
+	 */
 	public ArrayList<ArrayList<Cell>> getCells(){
 		return cells;
 	}
@@ -100,6 +106,7 @@ public class Board {
 	 * 		CellRiver, CellHole and CellHedge according to the board we where given in class
 	 * 
 	 * @param riders The list of riders
+	 * @param initObstacles True if we init the obstacle false otherwise
 	 */
 	public void init(List<Rider> riders,boolean initObstacles) {
 		//CellSide initialization
