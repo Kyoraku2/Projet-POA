@@ -146,16 +146,19 @@ public class Window extends JFrame {
 		//Classe Graphic board 	
 		pnlSizePerso=new JPanel();
 		pnlSizePerso.setBackground(Color.LIGHT_GRAY);
-		JLabel sizeLab = new JLabel("Veuillez choisir une taille pour votre plateau : ");
+		JTextArea TxtExplainPerso = new JTextArea("Veuillez choisir une taille pour votre plateau : \n\nAppuyer sur une case pour changer son type. ");
+		TxtExplainPerso.setBackground(Color.LIGHT_GRAY);
+		TxtExplainPerso.setEditable(false);
 		selectSize=new JComboBox<Integer>();
 		for(int i=10;i<32;++i) {
 			selectSize.addItem(i);
 		}
 		btnBoxValidate=new JButton("Valider");
 		btnBoxValidate.addActionListener(list);
-		pnlSizePerso.add(sizeLab);
+		pnlSizePerso.add(TxtExplainPerso);
 		pnlSizePerso.add(selectSize);
 		pnlSizePerso.add(btnBoxValidate);
+		
 		
 		btnBackPerso=new JButton("Retour au menu");
 		btnBackPerso.addActionListener(list);
