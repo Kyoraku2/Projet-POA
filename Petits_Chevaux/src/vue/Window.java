@@ -152,6 +152,7 @@ public class Window extends JFrame {
 	 */
 	private JTextArea txtWinner;
 	
+//// Constructor /////
 
 	/**
 	 * Constructor of window,
@@ -344,6 +345,8 @@ public class Window extends JFrame {
 		pnlEndMenu.add(pnlEndMenuBtn,BorderLayout.CENTER);
 		
 	}
+	
+///// Methods /////
 	
 	/**
 	 * Getter of the button allowing to quit when the party is finished
