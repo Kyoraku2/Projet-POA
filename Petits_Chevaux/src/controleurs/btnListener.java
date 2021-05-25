@@ -121,6 +121,8 @@ public class btnListener implements ActionListener{
 		
 		if(e.getSource()==window.getBtnReplay()) {
 			game=null;
+			window.getBtnPlaySimple().setEnabled(false);
+			window.getBtnPlayPerso().setEnabled(false);
 			window.getEndMenu().setVisible(false);
 			window.getPnlGameType().setVisible(true);
 		}
