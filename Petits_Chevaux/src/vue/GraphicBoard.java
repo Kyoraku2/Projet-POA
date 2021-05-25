@@ -65,9 +65,12 @@ public class GraphicBoard {
 		
 		//we place all the traps at randoms places on the board (of game)
 		while(tmpHole>0 || tmpRiver>0 || tmpHedge>0) {
-			int row =(int)(Math.random() * 2);
+			int row =(int)(Math.random() * 3);
 			if(row==0) {
 				row=game.getBoard().getRows()-2;
+			}
+			if(row==2) {
+				row=3;
 			}
 			int col =(int)(Math.random()*(sizeBoard-1)+1);
 			Position pos=new Position(col,row);
