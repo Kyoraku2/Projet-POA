@@ -44,6 +44,7 @@ public class Game {
 	 * Create and initialize a board of size size
 	 * 
 	 * @param size The size of the board that will be created
+	 * @param initObstacles True if the obstacles have to be initializes (for console)
 	 */
 	public Game(int size,boolean initObstacles) {
 		de=new De();
@@ -64,14 +65,30 @@ public class Game {
 	
 	////// Methods //////
 	
+	/**
+	 * Getter of the i rider 
+	 * 
+	 * @param i The index of the rider
+	 * @return The rider
+	 */
 	public Rider getRider(int i) {
 		return riders.get(i);
 	}
 	
+	/**
+	 * Getter of the board of the game
+	 * 
+	 * @return The board
+	 */
 	public Board getBoard() {
 		return board;
 	}
 	
+	/**
+	 * Getter of the dice used in the game
+	 * 
+	 * @return The dice
+	 */
 	public De getDice() {
 		return de;
 	}
