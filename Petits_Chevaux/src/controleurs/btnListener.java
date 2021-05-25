@@ -455,7 +455,7 @@ public class btnListener implements ActionListener{
 				}else {
 					String tmp=((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1);
 					window.getTxtProcess().setText(tmp);
-					System.out.println();
+					System.out.println(tmp);
 				}
 				break;
 			case '|'://if hedge : 
@@ -465,7 +465,7 @@ public class btnListener implements ActionListener{
 				}else {
 					String tmp=((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1);
 					window.getTxtProcess().setText(tmp);
-					System.out.println();
+					System.out.println(tmp);
 				}
 				break;
 			case '~'://if river :
@@ -475,7 +475,7 @@ public class btnListener implements ActionListener{
 				}else {
 					String tmp=((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1);
 					window.getTxtProcess().setText(tmp);
-					System.out.println();
+					System.out.println(tmp);
 				}
 				break;
 			case '='://if stable
@@ -484,7 +484,7 @@ public class btnListener implements ActionListener{
 				}else {
 					String tmp=((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1);
 					window.getTxtProcess().setText(tmp);
-					System.out.println();
+					System.out.println(tmp);
 				}
 				break;
 			case '*'://if end
