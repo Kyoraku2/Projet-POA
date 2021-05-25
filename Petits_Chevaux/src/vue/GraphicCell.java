@@ -34,6 +34,7 @@ public class GraphicCell{
 		
 		texte=new JLabel(" ");
 		texte.setBorder(null);
+		texte.setFont(texte.getFont().deriveFont(16.0f));
 		
 		panel.add(texte);
 		
