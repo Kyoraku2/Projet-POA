@@ -199,7 +199,7 @@ public class Game {
 
 		System.out.print("Le cavalier de couleur ");
 		System.out.print(r1.getColor()==Couleur.RED?"ROUGE ":"BLEU ");
-		System.out.print("joue\n");
+		System.out.print("a joué\n");
 		System.out.println("Valeur du dé : "+value+"\n");
 		char c=board.getCellType(r1.getPos());
 		switch(c) {

@@ -439,7 +439,9 @@ public class btnListener implements ActionListener{
 	private boolean turn(Rider r1, Rider r2,int value){
 		String txtTurn="Le cavalier de couleur ";
 		txtTurn+=r1.getColor()==Couleur.RED?"ROUGE ":"BLEU ";
-		txtTurn+="joue\n";
+		txtTurn+="a joué.  Au tour du ";
+		txtTurn+=r2.getColor()==Couleur.RED?"ROUGE ":"BLEU ";
+		txtTurn+="!";
 		window.getTxtTurn().setText(txtTurn);
 		char c=game.getBoard().getCellType(r1.getPos());
 		switch(c) {
