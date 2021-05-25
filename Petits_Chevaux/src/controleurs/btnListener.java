@@ -371,6 +371,7 @@ public class btnListener implements ActionListener{
 		move(r1,tmp,r1.getPos()); 
 		process+=((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1);
 		window.getTxtProcess().setText(process);
+		System.out.println(process);
 	}
 	
 	/**
@@ -404,8 +405,10 @@ public class btnListener implements ActionListener{
 		hideGame();
 		if(r.getColor()==Couleur.RED) {
 			window.getTxtWinner().setText("** Le joueur Rouge a gagné ! ** \n   Voulez vous rejouer ?");
+			System.out.println("Le joueur Rouge a gagné !");
 		}else {
 			window.getTxtWinner().setText("** Le joueur Bleu a gagné ! ** \n   Voulez vous rejouer ?");
+			System.out.println("Le joueur Bleu a gagné !");
 		}
 		window.getEndMenu().setVisible(true);
 		window.getC().add(window.getEndMenu());
@@ -443,6 +446,7 @@ public class btnListener implements ActionListener{
 		txtTurn+=r2.getColor()==Couleur.RED?"ROUGE ":"BLEU ";
 		txtTurn+="!";
 		window.getTxtTurn().setText(txtTurn);
+		System.out.println(txtTurn);
 		char c=game.getBoard().getCellType(r1.getPos());
 		switch(c) {
 			case '@'://if hole : 
@@ -450,6 +454,7 @@ public class btnListener implements ActionListener{
 					go(r1,r2,value);
 				}else {
 					window.getTxtProcess().setText(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1));
+					System.out.println(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1)+"\n");
 				}
 				break;
 			case '|'://if hedge : 
@@ -458,6 +463,7 @@ public class btnListener implements ActionListener{
 					go(r1,r2,value);
 				}else {
 					window.getTxtProcess().setText(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1));
+					System.out.println(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1)+"\n");
 				}
 				break;
 			case '~'://if river :
@@ -466,6 +472,7 @@ public class btnListener implements ActionListener{
 					go(r1,r2,value);
 				}else {
 					window.getTxtProcess().setText(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1));
+					System.out.println(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1)+"\n");
 				}
 				break;
 			case '='://if stable
@@ -473,6 +480,7 @@ public class btnListener implements ActionListener{
 					go(r1,r2,1);
 				}else {
 					window.getTxtProcess().setText(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1));
+					System.out.println(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1)+"\n");
 				}
 				break;
 			case '*'://if end
@@ -481,6 +489,7 @@ public class btnListener implements ActionListener{
 				go(r1,r2,value);
 				break;
 		}
+		System.out.println(game.toString());
 		c=game.getBoard().getCellType(r1.getPos());
 		if(c=='*') {
 			return true;
