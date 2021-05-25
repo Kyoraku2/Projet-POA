@@ -453,8 +453,9 @@ public class btnListener implements ActionListener{
 				if(r1.inHole()==-1) {
 					go(r1,r2,value);
 				}else {
-					window.getTxtProcess().setText(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1));
-					System.out.println(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1)+"\n");
+					String tmp=((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1);
+					window.getTxtProcess().setText(tmp);
+					System.out.println();
 				}
 				break;
 			case '|'://if hedge : 
@@ -462,8 +463,9 @@ public class btnListener implements ActionListener{
 					r1.setHedge(false);
 					go(r1,r2,value);
 				}else {
-					window.getTxtProcess().setText(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1));
-					System.out.println(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1)+"\n");
+					String tmp=((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1);
+					window.getTxtProcess().setText(tmp);
+					System.out.println();
 				}
 				break;
 			case '~'://if river :
@@ -471,16 +473,18 @@ public class btnListener implements ActionListener{
 					r1.setRiver(false);
 					go(r1,r2,value);
 				}else {
-					window.getTxtProcess().setText(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1));
-					System.out.println(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1)+"\n");
+					String tmp=((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1);
+					window.getTxtProcess().setText(tmp);
+					System.out.println();
 				}
 				break;
 			case '='://if stable
 				if(value==6 && game.getBoard().getCellType(r1.getPos())=='=') {
 					go(r1,r2,1);
 				}else {
-					window.getTxtProcess().setText(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1));
-					System.out.println(((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1)+"\n");
+					String tmp=((CellPlayable)game.getBoard().getCell(r1.getPos())).process(r1);
+					window.getTxtProcess().setText(tmp);
+					System.out.println();
 				}
 				break;
 			case '*'://if end
