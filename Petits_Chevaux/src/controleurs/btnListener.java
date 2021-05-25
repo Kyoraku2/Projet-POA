@@ -135,7 +135,7 @@ public class btnListener implements ActionListener{
 	 * 
 	 */
 	private void showGameTypeMenu() {
-		window.setSize(700,400);
+		window.setSize(500,200);
 		window.getPnlGameType().setVisible(true);
 	}
 	
@@ -152,7 +152,7 @@ public class btnListener implements ActionListener{
 	 * 
 	 */
 	private void showGameSimpleMenu() {
-		window.setSize(700,400);
+		window.setSize(500,200);
 		window.getPnlDif().setVisible(true);
 		window.getPnlSimpleBtn().setVisible(true);
 		window.getC().add(window.getPnlDif(),BorderLayout.CENTER);
@@ -173,7 +173,7 @@ public class btnListener implements ActionListener{
 	 * 
 	 */
 	private void showGamePersoMenu() {
-		window.setSize(700,400);
+		window.setSize(500,200);
 		sizeBoard=Integer.parseInt(window.getSelectBox().getSelectedItem().toString());
 		window.getSizePanel().setVisible(true);
 		window.getPnlPersoBtn().setVisible(true);
@@ -400,6 +400,7 @@ public class btnListener implements ActionListener{
 	 * @param r The winner
 	 */
 	private void end(Rider r) {
+		
 		hideGame();
 		if(r.getColor()==Couleur.RED) {
 			window.getTxtWinner().setText("** Le joueur Rouge a gagné ! ** \n   Voulez vous rejouer ?");
@@ -408,7 +409,7 @@ public class btnListener implements ActionListener{
 		}
 		window.getEndMenu().setVisible(true);
 		window.getC().add(window.getEndMenu());
-		window.setSize(700,400);
+		window.setSize(500,200);
 	}
 	
 	/**

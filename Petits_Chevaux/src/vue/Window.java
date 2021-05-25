@@ -164,7 +164,7 @@ public class Window extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		btnListener list = new btnListener(this);
-		setSize(700,400);
+		setSize(500,200);
 		setTitle("Petits Chevaux");
 		c=this.getContentPane();		
 		c.setLayout(new BorderLayout());
